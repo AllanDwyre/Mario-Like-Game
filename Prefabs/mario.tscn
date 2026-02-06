@@ -1,0 +1,72 @@
+[gd_scene format=3 uid="uid://tsyim253dtnr"]
+
+[ext_resource type="Texture2D" uid="uid://bv5xor7osk183" path="res://Arts/Textures/Mario/Mario_Small_Death.png" id="1_bcy7u"]
+[ext_resource type="Texture2D" uid="uid://c4foe3lejdxln" path="res://Arts/Textures/Mario/Mario_Small_Idle.png" id="2_7oneb"]
+[ext_resource type="Texture2D" uid="uid://d23pj5hff8l00" path="res://Arts/Textures/Mario/Mario_Small_Jump.png" id="3_nsdvb"]
+[ext_resource type="Texture2D" uid="uid://885fhp61p2e1" path="res://Arts/Textures/Mario/Mario_Small_Run1.png" id="4_3snxw"]
+[ext_resource type="Texture2D" uid="uid://cuafa8f1d64wv" path="res://Arts/Textures/Mario/Mario_Small_Run2.png" id="5_gn83l"]
+[ext_resource type="Texture2D" uid="uid://cq13a736ufc1n" path="res://Arts/Textures/Mario/Mario_Small_Run3.png" id="6_2my7j"]
+[ext_resource type="Texture2D" uid="uid://buichcxawtrvv" path="res://Arts/Textures/Mario/Mario_Small_Slide.png" id="7_vtjm4"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l3vmq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bcy7u")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7oneb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nsdvb")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3snxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gn83l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2my7j")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_vtjm4")
+}],
+"loop": true,
+"name": &"slide",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ixgl"]
+radius = 5.0
+height = 16.0
+
+[node name="Mario" type="CharacterBody2D" unique_id=1426263234]
+scale = Vector2(2, 2)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1205049656]
+sprite_frames = SubResource("SpriteFrames_l3vmq")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1117243301]
+shape = SubResource("CapsuleShape2D_5ixgl")

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cgeki1sgl0opi"]
+
+[ext_resource type="PackedScene" uid="uid://tsyim253dtnr" path="res://Prefabs/mario.tscn" id="1_jjgbg"]
+
+[node name="root" type="Node2D" unique_id=151818081]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1228563412]
+
+[node name="Mario" parent="." unique_id=1426263234 instance=ExtResource("1_jjgbg")]

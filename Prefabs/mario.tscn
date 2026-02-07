@@ -1,15 +1,60 @@
 [gd_scene format=3 uid="uid://tsyim253dtnr"]
 
 [ext_resource type="Texture2D" uid="uid://bv5xor7osk183" path="res://Arts/Textures/Mario/Mario_Small_Death.png" id="1_bcy7u"]
+[ext_resource type="Script" uid="uid://buqvyg5hmtfgi" path="res://Scripts/mario.gd" id="1_l3vmq"]
+[ext_resource type="Texture2D" uid="uid://c5nef570g8a3j" path="res://Arts/Textures/Mario/Mario_Big_Idle.png" id="1_vtjm4"]
 [ext_resource type="Texture2D" uid="uid://c4foe3lejdxln" path="res://Arts/Textures/Mario/Mario_Small_Idle.png" id="2_7oneb"]
+[ext_resource type="Texture2D" uid="uid://caepttwq0p4ac" path="res://Arts/Textures/Mario/Mario_Big_Jump.png" id="2_l3vmq"]
+[ext_resource type="Texture2D" uid="uid://ypxoy15bh0q1" path="res://Arts/Textures/Mario/Mario_Big_Run1.png" id="3_5ixgl"]
 [ext_resource type="Texture2D" uid="uid://d23pj5hff8l00" path="res://Arts/Textures/Mario/Mario_Small_Jump.png" id="3_nsdvb"]
 [ext_resource type="Texture2D" uid="uid://885fhp61p2e1" path="res://Arts/Textures/Mario/Mario_Small_Run1.png" id="4_3snxw"]
+[ext_resource type="Texture2D" uid="uid://bveehxf8in04f" path="res://Arts/Textures/Mario/Mario_Big_Run2.png" id="4_4sr14"]
+[ext_resource type="Texture2D" uid="uid://dbripxlgcvt0r" path="res://Arts/Textures/Mario/Mario_Big_Run3.png" id="5_aj11e"]
 [ext_resource type="Texture2D" uid="uid://cuafa8f1d64wv" path="res://Arts/Textures/Mario/Mario_Small_Run2.png" id="5_gn83l"]
 [ext_resource type="Texture2D" uid="uid://cq13a736ufc1n" path="res://Arts/Textures/Mario/Mario_Small_Run3.png" id="6_2my7j"]
+[ext_resource type="Texture2D" uid="uid://cywvd2ihpdbcv" path="res://Arts/Textures/Mario/Mario_Big_Slide.png" id="6_54tf2"]
 [ext_resource type="Texture2D" uid="uid://buichcxawtrvv" path="res://Arts/Textures/Mario/Mario_Small_Slide.png" id="7_vtjm4"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l3vmq"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vtjm4")
+}],
+"loop": true,
+"name": &"big_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l3vmq")
+}],
+"loop": true,
+"name": &"big_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5ixgl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4sr14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_aj11e")
+}],
+"loop": true,
+"name": &"big_run",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_54tf2")
+}],
+"loop": true,
+"name": &"big_slide",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_bcy7u")
@@ -23,7 +68,7 @@ animations = [{
 "texture": ExtResource("2_7oneb")
 }],
 "loop": true,
-"name": &"idle",
+"name": &"small_idle",
 "speed": 5.0
 }, {
 "frames": [{
@@ -31,7 +76,7 @@ animations = [{
 "texture": ExtResource("3_nsdvb")
 }],
 "loop": true,
-"name": &"jump",
+"name": &"small_jump",
 "speed": 5.0
 }, {
 "frames": [{
@@ -45,7 +90,7 @@ animations = [{
 "texture": ExtResource("6_2my7j")
 }],
 "loop": true,
-"name": &"run",
+"name": &"small_run",
 "speed": 5.0
 }, {
 "frames": [{
@@ -53,20 +98,36 @@ animations = [{
 "texture": ExtResource("7_vtjm4")
 }],
 "loop": true,
-"name": &"slide",
+"name": &"small_slide",
 "speed": 5.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5ixgl"]
-radius = 5.0
+radius = 6.0
 height = 16.0
 
-[node name="Mario" type="CharacterBody2D" unique_id=1426263234]
-scale = Vector2(2, 2)
+[node name="Mario" type="CharacterBody2D" unique_id=1426263234 groups=["Player"]]
+collision_layer = 2
+platform_floor_layers = 1
+platform_wall_layers = 1
+script = ExtResource("1_l3vmq")
+speed = 80.0
+jump_force = 290.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1205049656]
 sprite_frames = SubResource("SpriteFrames_l3vmq")
-animation = &"idle"
+animation = &"small_slide"
+frame_progress = 0.53232867
+centered = false
+offset = Vector2(-8, -16)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1117243301]
+position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_5ixgl")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1199989759]
+zoom = Vector2(2.5, 2.5)
+limit_left = -256
+limit_top = -256
+limit_bottom = 32
+position_smoothing_enabled = true

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://dus6thmxe07jj"]
+
+[ext_resource type="Script" uid="uid://biqfpj30f3sil" path="res://Scripts/goomba.gd" id="1_wfgj0"]
+[ext_resource type="Texture2D" uid="uid://bxatrs1l0lx5x" path="res://Arts/Textures/Enemies/Goomba/Goomba_Flat.png" id="1_xm4ep"]
+[ext_resource type="Texture2D" uid="uid://bcie37xfht33i" path="res://Arts/Textures/Enemies/Goomba/Goomba_Walk1.png" id="2_wfgj0"]
+[ext_resource type="Texture2D" uid="uid://bqhd5eu8ood6x" path="res://Arts/Textures/Enemies/Goomba/Goomba_Walk2.png" id="3_juk2e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_n03vb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_xm4ep")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_wfgj0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_juk2e")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o3ptk"]
+radius = 8.0
+height = 16.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wfgj0"]
+radius = 8.0
+height = 16.0
+
+[node name="Goomba" type="CharacterBody2D" unique_id=945219444]
+collision_layer = 4
+collision_mask = 5
+platform_floor_layers = 1
+platform_wall_layers = 1
+script = ExtResource("1_wfgj0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1253290812]
+sprite_frames = SubResource("SpriteFrames_n03vb")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=88045520]
+shape = SubResource("CapsuleShape2D_o3ptk")
+
+[node name="VoidRaycast" type="RayCast2D" parent="." unique_id=352948431]
+position = Vector2(-15, -5)
+target_position = Vector2(0, 16)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=2039306347]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=602309468]
+shape = SubResource("CapsuleShape2D_wfgj0")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_body_entered"]

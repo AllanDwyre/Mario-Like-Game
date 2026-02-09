@@ -1,42 +1,31 @@
-class_name FiniteStateMachine extends RefCounted
+extends RefCounted
+class_name FiniteStateMachine 
 
-var states : Dictionary = {}
 var currentState : State
 var initialState : State
 
 
-func _init(initialState, all_states : Dictionary) -> void:
-	for child in all_states:
-		if child is State:
-			states[child.name.to_lower()] = child
-			(child as State).transitionned.connect(change_state)
-			
+func _init(initialState) -> void:
 	if initialState: 
 		initialState.Enter()
 		currentState = initialState
 
 
-func _process(delta: float) -> void:
+func Update(delta: float) -> void:
 	if currentState:
-		currentState.Update(delta)
+		var next_state = currentState._internal_update(delta)
+		
+		if next_state:
+			Change_state(next_state)
 
 
-func _physics_process(delta: float) -> void:
+func Physics_Update(delta: float) -> void:
 	if currentState:
 		currentState.Physics_Update(delta)
 
-func change_state(old_state : State, new_state_name : String):
-	if old_state != currentState:
-		push_warning("Invalid change_state trying from " + old_state.name + " but currently in :" + currentState.name)
-		return
-	
-	var new_state : State = states.get(new_state_name.to_lower())
-	if not new_state:
-		push_warning("Trying to change to a non-existing state named '" + new_state_name + "'")
-		return
-	
+func Change_state(state : State):
 	if currentState:
 		currentState.Exit()
 	
-	new_state.Enter()
-	currentState = new_state
+	state.Enter()
+	currentState = state

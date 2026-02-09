@@ -16,7 +16,7 @@ func _process(_delta: float) -> void:
 func finish_level():
 	player_collided = true
 	player = raycast.get_collider()
-	player.can_move = false
+	player.set_can_move(false)
 	
 	var tween = create_tween()
 	var flag_target_y = player.global_position.y

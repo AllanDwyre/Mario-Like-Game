@@ -20,6 +20,7 @@ func _change_direction() -> void:
 func _revive():
 	speed = walk_speed
 	stunned = false
+	set_collision_mask_value(3, true)
 	if direction == 0.0:
 		direction = 1
 		_change_direction()
@@ -33,6 +34,7 @@ func take_damage(from : Node2D):
 	# if it was it when stunned, we want the koopa to move
 	if stunned:
 		direction = sign(global_position.x - from.global_position.x)
+		set_collision_mask_value(3, false)
 	else :
 		SoundManager.play_sound(STOMPED_SOUND)
 		stunned = true

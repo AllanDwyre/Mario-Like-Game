@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://kogwpoofcr7h"
+path="res://.godot/imported/05 Walking the Plains.mp3-f32767146d2ad8d968976fb7cfbd3076.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/05 Walking the Plains.mp3"
+dest_files=["res://.godot/imported/05 Walking the Plains.mp3-f32767146d2ad8d968976fb7cfbd3076.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

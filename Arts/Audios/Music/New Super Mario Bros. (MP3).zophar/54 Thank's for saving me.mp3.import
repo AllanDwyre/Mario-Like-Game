@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dscii536vak3w"
+path="res://.godot/imported/54 Thank's for saving me.mp3-ced11045080a8948d671cc71bf59c6b4.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/54 Thank's for saving me.mp3"
+dest_files=["res://.godot/imported/54 Thank's for saving me.mp3-ced11045080a8948d671cc71bf59c6b4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

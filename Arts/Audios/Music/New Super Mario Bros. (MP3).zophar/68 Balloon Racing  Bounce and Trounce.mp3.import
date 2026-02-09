@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dpouk54w2ita6"
+path="res://.godot/imported/68 Balloon Racing  Bounce and Trounce.mp3-7c131c738e989cb3783b6d275eb745dc.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/68 Balloon Racing  Bounce and Trounce.mp3"
+dest_files=["res://.godot/imported/68 Balloon Racing  Bounce and Trounce.mp3-7c131c738e989cb3783b6d275eb745dc.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

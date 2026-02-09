@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cdhcx36jt2msl"
+path="res://.godot/imported/50 Flowing Lava (Hurry).mp3-977d2dda4d7e169a8573c967d621493b.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/50 Flowing Lava (Hurry).mp3"
+dest_files=["res://.godot/imported/50 Flowing Lava (Hurry).mp3-977d2dda4d7e169a8573c967d621493b.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

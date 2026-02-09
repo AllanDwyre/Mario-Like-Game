@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://biyt3verfbnnl"
+path="res://.godot/imported/change_small.wav-79a452a80f660dc5142c6656f587281f.sample"
+
+[deps]
+
+source_file="res://Arts/Audios/Mario SFX/change_small.wav"
+dest_files=["res://.godot/imported/change_small.wav-79a452a80f660dc5142c6656f587281f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

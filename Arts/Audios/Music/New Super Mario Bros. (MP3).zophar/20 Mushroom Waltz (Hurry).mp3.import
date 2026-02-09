@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bxi2jduimn45a"
+path="res://.godot/imported/20 Mushroom Waltz (Hurry).mp3-978eeb5d2b78b1663f2fe57ba87b67a5.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/20 Mushroom Waltz (Hurry).mp3"
+dest_files=["res://.godot/imported/20 Mushroom Waltz (Hurry).mp3-978eeb5d2b78b1663f2fe57ba87b67a5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

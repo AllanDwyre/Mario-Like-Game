@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dtwsm8t0k1jrd"
+path="res://.godot/imported/92 Mini-Game Vs. Final Results - Win.mp3-33508c133c1f01b1e1e3dcc1d5586cc6.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/92 Mini-Game Vs. Final Results - Win.mp3"
+dest_files=["res://.godot/imported/92 Mini-Game Vs. Final Results - Win.mp3-33508c133c1f01b1e1e3dcc1d5586cc6.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

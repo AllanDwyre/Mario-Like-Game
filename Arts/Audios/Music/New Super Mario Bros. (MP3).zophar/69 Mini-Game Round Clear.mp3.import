@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://wu4guoce3lcj"
+path="res://.godot/imported/69 Mini-Game Round Clear.mp3-6d6c892d54cc4504800f7462d43f1bd5.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/69 Mini-Game Round Clear.mp3"
+dest_files=["res://.godot/imported/69 Mini-Game Round Clear.mp3-6d6c892d54cc4504800f7462d43f1bd5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

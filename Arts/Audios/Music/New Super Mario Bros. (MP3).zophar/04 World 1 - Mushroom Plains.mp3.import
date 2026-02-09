@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ynhqkoxtv261"
+path="res://.godot/imported/04 World 1 - Mushroom Plains.mp3-0df1f3ae1662d8b0c4e099c17dd922d5.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/04 World 1 - Mushroom Plains.mp3"
+dest_files=["res://.godot/imported/04 World 1 - Mushroom Plains.mp3-0df1f3ae1662d8b0c4e099c17dd922d5.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

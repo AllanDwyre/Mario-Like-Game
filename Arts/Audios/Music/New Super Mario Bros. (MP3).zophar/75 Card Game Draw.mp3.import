@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cr6imq04yw2q8"
+path="res://.godot/imported/75 Card Game Draw.mp3-89054a7f877d9b9d63ae37e11a7702d1.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/75 Card Game Draw.mp3"
+dest_files=["res://.godot/imported/75 Card Game Draw.mp3-89054a7f877d9b9d63ae37e11a7702d1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

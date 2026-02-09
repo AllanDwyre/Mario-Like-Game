@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c60l65blmvua3"
+path="res://.godot/imported/98 Credits (Short Version) (Unused).mp3-2d84762ee70a1877b5a446901abf6d57.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/98 Credits (Short Version) (Unused).mp3"
+dest_files=["res://.godot/imported/98 Credits (Short Version) (Unused).mp3-2d84762ee70a1877b5a446901abf6d57.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

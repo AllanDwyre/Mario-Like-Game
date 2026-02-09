@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://pddortrpcos7"
+path="res://.godot/imported/42 Haunted Mansion (Hurry).mp3-77342c44ae19f9656dc30b24f8bff364.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/42 Haunted Mansion (Hurry).mp3"
+dest_files=["res://.godot/imported/42 Haunted Mansion (Hurry).mp3-77342c44ae19f9656dc30b24f8bff364.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

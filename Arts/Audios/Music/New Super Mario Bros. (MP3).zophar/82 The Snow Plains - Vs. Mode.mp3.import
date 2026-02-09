@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dv5p8gydo4so6"
+path="res://.godot/imported/82 The Snow Plains - Vs. Mode.mp3-9e0c4e17a380c6956579bf10d762b99f.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/82 The Snow Plains - Vs. Mode.mp3"
+dest_files=["res://.godot/imported/82 The Snow Plains - Vs. Mode.mp3-9e0c4e17a380c6956579bf10d762b99f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

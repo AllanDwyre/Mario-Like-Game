@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dp51xutk3ws3"
+path="res://.godot/imported/86 Vs. Mode Win.mp3-c8415fdfd1e2bd5c03cc789ce61d5d65.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/86 Vs. Mode Win.mp3"
+dest_files=["res://.godot/imported/86 Vs. Mode Win.mp3-c8415fdfd1e2bd5c03cc789ce61d5d65.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://j80s2xmj67rw"
+path="res://.godot/imported/65 Mini-Game Game Over.mp3-718da55a6c5836870a148ceedf017769.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/65 Mini-Game Game Over.mp3"
+dest_files=["res://.godot/imported/65 Mini-Game Game Over.mp3-718da55a6c5836870a148ceedf017769.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

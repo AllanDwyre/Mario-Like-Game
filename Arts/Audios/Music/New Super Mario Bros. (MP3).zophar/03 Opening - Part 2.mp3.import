@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c7g0qmrcsng2v"
+path="res://.godot/imported/03 Opening - Part 2.mp3-aa012f090b4cc25608963f912af3f8af.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/03 Opening - Part 2.mp3"
+dest_files=["res://.godot/imported/03 Opening - Part 2.mp3-aa012f090b4cc25608963f912af3f8af.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

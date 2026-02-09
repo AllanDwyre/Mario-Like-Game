@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cusegpft6juhy"
+path="res://.godot/imported/32 Boss Battle.mp3-32a65ca17d80f0c2c3107978b8a4e881.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/32 Boss Battle.mp3"
+dest_files=["res://.godot/imported/32 Boss Battle.mp3-32a65ca17d80f0c2c3107978b8a4e881.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

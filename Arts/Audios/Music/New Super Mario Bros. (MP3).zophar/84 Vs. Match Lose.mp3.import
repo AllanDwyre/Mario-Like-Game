@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b31xkyyd030qf"
+path="res://.godot/imported/84 Vs. Match Lose.mp3-53f14d99c3053483bf30e28232046cd4.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/84 Vs. Match Lose.mp3"
+dest_files=["res://.godot/imported/84 Vs. Match Lose.mp3-53f14d99c3053483bf30e28232046cd4.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

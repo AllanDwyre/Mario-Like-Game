@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d27akwp0mfh85"
+path="res://.godot/imported/53 Final Bowser Defeated.mp3-0d5ed47fae3fc78ee214cf037d1ddd13.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/53 Final Bowser Defeated.mp3"
+dest_files=["res://.godot/imported/53 Final Bowser Defeated.mp3-0d5ed47fae3fc78ee214cf037d1ddd13.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

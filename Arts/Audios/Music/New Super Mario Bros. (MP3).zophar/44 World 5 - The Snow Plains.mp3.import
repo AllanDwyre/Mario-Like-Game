@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://1mdnal7smyds"
+path="res://.godot/imported/44 World 5 - The Snow Plains.mp3-1eb880e4ff5d1487a1fdc8eaf8b05d93.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/44 World 5 - The Snow Plains.mp3"
+dest_files=["res://.godot/imported/44 World 5 - The Snow Plains.mp3-1eb880e4ff5d1487a1fdc8eaf8b05d93.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

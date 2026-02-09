@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ci2uqw57jskn7"
+path="res://.godot/imported/55 Staff Roll.mp3-838291b9bd7914c316696975ffbe8aa7.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/55 Staff Roll.mp3"
+dest_files=["res://.godot/imported/55 Staff Roll.mp3-838291b9bd7914c316696975ffbe8aa7.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

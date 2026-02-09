@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://blmd410kwktto"
+path="res://.godot/imported/79 Mini-Game Lose.mp3-d1b613039e418bac850f03d63eb97042.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/79 Mini-Game Lose.mp3"
+dest_files=["res://.godot/imported/79 Mini-Game Lose.mp3-d1b613039e418bac850f03d63eb97042.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

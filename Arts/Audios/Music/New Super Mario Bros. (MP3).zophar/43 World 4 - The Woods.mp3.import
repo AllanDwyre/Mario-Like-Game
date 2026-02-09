@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://vdwwqvh0grof"
+path="res://.godot/imported/43 World 4 - The Woods.mp3-74aff637a74b982f25db5ffa68e1a671.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/43 World 4 - The Woods.mp3"
+dest_files=["res://.godot/imported/43 World 4 - The Woods.mp3-74aff637a74b982f25db5ffa68e1a671.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

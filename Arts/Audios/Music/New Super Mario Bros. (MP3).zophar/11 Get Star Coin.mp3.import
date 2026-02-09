@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c14oiiwkq7swy"
+path="res://.godot/imported/11 Get Star Coin.mp3-256519680dd65256ac412909c60ea1bb.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/11 Get Star Coin.mp3"
+dest_files=["res://.godot/imported/11 Get Star Coin.mp3-256519680dd65256ac412909c60ea1bb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

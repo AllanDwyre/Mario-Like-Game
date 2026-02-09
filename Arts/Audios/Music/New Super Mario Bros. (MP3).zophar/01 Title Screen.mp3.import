@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://5d6ytbsgo50v"
+path="res://.godot/imported/01 Title Screen.mp3-d66f8b746992d54ac089d71d089a79aa.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/01 Title Screen.mp3"
+dest_files=["res://.godot/imported/01 Title Screen.mp3-d66f8b746992d54ac089d71d089a79aa.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://b7nddfubo2b8l"
+path="res://.godot/imported/07 Mega Mushroom.mp3-8972fe7bc07621bee724b2b307a7eea9.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/07 Mega Mushroom.mp3"
+dest_files=["res://.godot/imported/07 Mega Mushroom.mp3-8972fe7bc07621bee724b2b307a7eea9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

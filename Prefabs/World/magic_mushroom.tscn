@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cecfp2bkt6itg"]
+
+[ext_resource type="Script" uid="uid://d4fi4pwrhjaol" path="res://Scripts/magic_mushroom.gd" id="1_n0t7w"]
+[ext_resource type="Texture2D" uid="uid://cclm7o0dnfm0r" path="res://Arts/Textures/Items/MagicMushroom.png" id="1_uvhva"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uvhva"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n0t7w"]
+radius = 8.0
+
+[node name="MagicMushroom" type="CharacterBody2D" unique_id=1911241807]
+z_index = -1
+collision_layer = 8
+script = ExtResource("1_n0t7w")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1489713641]
+texture = ExtResource("1_uvhva")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=371915707]
+shape = SubResource("CircleShape2D_uvhva")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="." unique_id=1992853197]
+shape = SubResource("CircleShape2D_n0t7w")
+target_position = Vector2(0, 0)
+max_results = 1
+collision_mask = 2

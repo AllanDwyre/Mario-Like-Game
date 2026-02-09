@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://t5qdugwqmrck"
+path="res://.godot/imported/97 Loves Me... (Unused).mp3-65a7f0f894d9be38db2f93a96de3313d.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/97 Loves Me... (Unused).mp3"
+dest_files=["res://.godot/imported/97 Loves Me... (Unused).mp3-65a7f0f894d9be38db2f93a96de3313d.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

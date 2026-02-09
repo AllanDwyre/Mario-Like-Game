@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cgsiwa6wpq1mp"
+path="res://.godot/imported/74 Card Game Win.mp3-079beb0503c3b87e7a0a6d9b5bba69d1.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/74 Card Game Win.mp3"
+dest_files=["res://.godot/imported/74 Card Game Win.mp3-079beb0503c3b87e7a0a6d9b5bba69d1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bih07rh7ijt5p"
+path="res://.godot/imported/96 Bob-omb Reverse.mp3-8738e8c23b956c7fa9e42ce507c1d133.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/96 Bob-omb Reverse.mp3"
+dest_files=["res://.godot/imported/96 Bob-omb Reverse.mp3-8738e8c23b956c7fa9e42ce507c1d133.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bb1sywt7x7cjr"
+path="res://.godot/imported/91 Vs. Mode Mini-Game Shuffle Choice.mp3-7eda440ece017e3283c3019290e7f1f8.mp3str"
+
+[deps]
+
+source_file="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/91 Vs. Mode Mini-Game Shuffle Choice.mp3"
+dest_files=["res://.godot/imported/91 Vs. Mode Mini-Game Shuffle Choice.mp3-7eda440ece017e3283c3019290e7f1f8.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://dcld6lo48isvu"]
+
+[ext_resource type="Script" uid="uid://driqgr45886de" path="res://Scripts/UI/View/gameplay_view.gd" id="1_hshb5"]
+[ext_resource type="Texture2D" uid="uid://cy2d4a48bf4tp" path="res://Arts/Textures/Items/Coin.png" id="1_rsnaw"]
+[ext_resource type="Theme" uid="uid://dpv0ah3n52fbe" path="res://Arts/Themes/mario_theme.tres" id="3_hshb5"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1fkks"]
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="Gameplay" type="CanvasLayer" unique_id=1488985724]
+script = ExtResource("1_hshb5")
+
+[node name="Control" type="Control" parent="." unique_id=1676708388]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1319768021]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Coins" type="HBoxContainer" parent="Control/MarginContainer" unique_id=1698973677]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/Coins" unique_id=904637992]
+layout_mode = 2
+texture = ExtResource("1_rsnaw")
+
+[node name="CoinsText" type="Label" parent="Control/MarginContainer/Coins" unique_id=672084649]
+layout_mode = 2
+theme = ExtResource("3_hshb5")
+text = "X 16"
+label_settings = SubResource("LabelSettings_1fkks")
+
+[node name="Time" type="HBoxContainer" parent="Control/MarginContainer" unique_id=334523491]
+layout_mode = 2
+size_flags_vertical = 0
+alignment = 2
+
+[node name="TextureRect" type="TextureRect" parent="Control/MarginContainer/Time" unique_id=583514252]
+layout_mode = 2
+
+[node name="TimeLeft" type="Label" parent="Control/MarginContainer/Time" unique_id=1438516837]
+layout_mode = 2
+theme = ExtResource("3_hshb5")
+text = "250"

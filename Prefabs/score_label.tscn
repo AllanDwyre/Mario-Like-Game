@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dimespradenhp"]
+
+[ext_resource type="FontFile" uid="uid://baj4tjho15mmg" path="res://Arts/Fonts/SuperMario256.ttf" id="1_n701k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qyddi"]
+font = ExtResource("1_n701k")
+font_size = 9
+outline_size = 5
+outline_color = Color(0, 0, 0, 1)
+
+[node name="ScoreLabel" type="Label" unique_id=690771687]
+offset_right = 17.0
+offset_bottom = 10.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+text = "100"
+label_settings = SubResource("LabelSettings_qyddi")
+horizontal_alignment = 1
+vertical_alignment = 1

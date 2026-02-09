@@ -3,6 +3,7 @@ extends EnemyBase
 @onready var reset_state_timer: Timer = $ResetShapeTimer
 @onready var anim : AnimatedSprite2D = $AnimatedSprite2D
 const STOMPED_SOUND = preload("res://Arts/Audios/SFX/stomp.wav")
+const KICK_SOUND = preload("res://Arts/Audios/SFX/kick.wav")
 
 var walk_speed : float
 @export var shell_speed : float = 80.0 
@@ -30,35 +31,40 @@ func take_damage(from : Node2D):
 	speed = shell_speed
 	anim.play("shell")
 	reset_state_timer.start()
-	direction = 0.0
+	SoundManager.play_sound(STOMPED_SOUND)
+	
 	# if it was it when stunned, we want the koopa to move
-	if stunned:
+	if stunned and not direction:
 		direction = sign(global_position.x - from.global_position.x)
 		set_collision_mask_value(3, false)
+	elif stunned and direction :
+		direction = 0.0
 	else :
-		SoundManager.play_sound(STOMPED_SOUND)
+		direction = 0.0
 		stunned = true
 
 func kill():
 	direction = 0.0
 	anim.play("shell")
-	
+	SoundManager.play_sound(KICK_SOUND)
+	GameSignals.add_score.emit(200, global_position)
 	# TODO kill animation
 	
-	await get_tree().create_timer(.6).timeout
+	await get_tree().create_timer(.2).timeout
 	queue_free()
 
 	
 
-func _give_damage(body : Node2D, isPlayer : bool = true):
+func _give_damage(receiver : Node2D, isPlayer : bool = true):
 	# Si it another enemy while stunned, it will kill the enemy
 	if not isPlayer and stunned and direction != 0.0:
-		body.kill()
+		receiver.kill()
 		return
 	
 	# On rajoute la condition que la tortue est en mouvement pour donner les damages
 	if direction != 0.0:
-		body.take_damage(self)
+		receiver.take_damage(self)
 	else :
 		# Sinon on considere ça comme si c'est le joueur qui hit la tortue
-		take_damage(body)
+		GameSignals.add_score.emit(100, global_position)
+		self.take_damage(receiver)

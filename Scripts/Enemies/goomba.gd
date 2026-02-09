@@ -19,6 +19,7 @@ func take_damage(_body : Node2D) -> void :
 func kill():
 	died = true
 	anim.play("death")
+	GameSignals.add_score.emit(100, global_position)
 	SoundManager.play_sound(STOMPED_SOUND)
 	
 	await get_tree().create_timer(.6).timeout

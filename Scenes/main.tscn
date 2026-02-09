@@ -6,7 +6,7 @@
 [node name="root" type="Node2D" unique_id=151818081]
 
 [node name="level_1" parent="." unique_id=2121833180 instance=ExtResource("2_bo1nx")]
-background_color = Color(0.5294118, 0.80784315, 0.92156863, 1)
+background_color = null
 
 [node name="Mario" parent="." unique_id=1426263234 instance=ExtResource("1_jjgbg")]
 position = Vector2(0, -8)

@@ -43,6 +43,7 @@ func Physics_Update( _delta : float):
 		context.mario.velocity.y *= REDUCE_MOMENTUM_RATIO
 	
 	context.mario.handle_movement(_delta)
+	context.mario.handle_sliding(_delta)
 
 
 func GetTransition() -> State:

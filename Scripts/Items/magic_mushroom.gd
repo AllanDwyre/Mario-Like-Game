@@ -24,8 +24,12 @@ func _physics_process(delta: float) -> void:
 	position.x += delta * speed * direction
 	move_and_slide()
 
+func change_direction():
+	direction *= -1
+	
 
 func _on_player_hit(body: Node2D) -> void:
 	if body.is_in_group("Player"):
 		body.power_up()
+		GameSignals.add_score.emit(300, global_position)
 		queue_free()

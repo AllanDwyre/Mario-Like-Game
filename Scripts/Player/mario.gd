@@ -53,9 +53,7 @@ var run : State
 var airborne : State
 #endregion
 
-# TODO: [x] each speed have is own acc and decel
-# TODO: [x] P-meter jauge increase and decrese over time
-# TODO: [ ] 
+# TODO: [ ] Player is hit : cannot be hitted for a moment
 # TODO: [ ] level selector + transition effect (death + win)
 
 enum PlayerSize {
@@ -187,13 +185,34 @@ func jump():
 	sprite.play(str(context.size) + "_jump")
 	SoundManager.play_sound(JUMP_SOUND)
 	
-	var height_bonus = abs(velocity.x) * 0.15
-	
-	velocity.y = -(jump_force + height_bonus)
+	if context.wall.length_squared() > 0:
+		wall_jump()
+	else:
+		var height_bonus = abs(velocity.x) * 0.15
+		velocity.y = -(jump_force + height_bonus)
 	
 	context.has_jumped = true
 	context.jump_pressed = false
 
+func wall_jump():
+	var jump_angle = Vector2(sign(context.wall.x), -1).normalized()
+	velocity = jump_angle * jump_force
+	context.wall = Vector2.ZERO
+
+func handle_sliding(_delta : float):
+	return
+	#if not is_on_wall_only():
+		#context.wall = Vector2.ZERO
+		#return
+		#
+	#if sign(context.direction) == sign(get_wall_normal().x) and abs(context.direction) > 0:
+		#context.wall = Vector2.ZERO
+		#return
+	#
+	#context.wall = get_wall_normal()
+	#if velocity.y > 0:
+		#velocity.y = move_toward(velocity.y, 5, 15 * _delta)
+	
 #endregion
 
 #region Public methods

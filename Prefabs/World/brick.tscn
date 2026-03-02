@@ -9,6 +9,10 @@ size = Vector2(16, 16)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3p7my"]
 size = Vector2(16, 16)
 
+[sub_resource type="Curve" id="Curve_3p7my"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.25150383), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Brick" type="StaticBody2D" unique_id=987308865 groups=["Interactables"]]
 script = ExtResource("1_hyest")
 
@@ -23,3 +27,18 @@ position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_3p7my")
 target_position = Vector2(0, 0)
 collision_mask = 14
+
+[node name="BreakEffectParticule" type="CPUParticles2D" parent="." unique_id=534544630]
+emitting = false
+amount = 20
+lifetime = 0.6
+one_shot = true
+explosiveness = 0.8
+spread = 180.0
+gravity = Vector2(0, 98)
+initial_velocity_min = 32.0
+initial_velocity_max = 64.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_3p7my")
+color = Color(0.78431374, 0.29803923, 0.047058824, 1)

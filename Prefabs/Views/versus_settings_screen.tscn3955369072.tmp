@@ -1,0 +1,193 @@
+[gd_scene format=3 uid="uid://7axn47r7bt5m"]
+
+[ext_resource type="Script" uid="uid://bjr51a0aiwaey" path="res://Scripts/UI/View/versus_setting_view.gd" id="1_h22ck"]
+[ext_resource type="PackedScene" uid="uid://d3cxxyntx7bkx" path="res://Scenes/m_world.tscn" id="2_klsvk"]
+[ext_resource type="Theme" uid="uid://dpv0ah3n52fbe" path="res://Arts/Themes/mario_theme.tres" id="2_ucicp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_klsvk"]
+content_margin_top = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0.9521157, 0.40459064, 0.27191013, 1)
+corner_detail = 1
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ucicp"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0.7523515, 0.5445677, 0.47501844, 1)
+
+[node name="VersusSettingsScreen" type="CanvasLayer" unique_id=1442672427 node_paths=PackedStringArray("players_container")]
+script = ExtResource("1_h22ck")
+players_container = NodePath("VSplitContainer/MarginContainer/VContainer/CurrentPlayer")
+target_scene = ExtResource("2_klsvk")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1919831483]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_ucicp")
+
+[node name="VSplitContainer" type="VSplitContainer" parent="." unique_id=1644037586]
+offset_right = 1152.0
+offset_bottom = 648.0
+theme = ExtResource("2_ucicp")
+split_offsets = PackedInt32Array(108)
+split_offset = 108
+
+[node name="Title" type="Label" parent="VSplitContainer" unique_id=581002249]
+layout_mode = 2
+theme = ExtResource("2_ucicp")
+theme_type_variation = &"Display"
+theme_override_font_sizes/font_size = 48
+theme_override_styles/normal = SubResource("StyleBoxFlat_klsvk")
+text = "Versus Lobby"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="VSplitContainer" unique_id=1716766519]
+layout_mode = 2
+theme = ExtResource("2_ucicp")
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VContainer" type="VBoxContainer" parent="VSplitContainer/MarginContainer" unique_id=1994704203]
+layout_mode = 2
+theme = ExtResource("2_ucicp")
+
+[node name="SettingsContainer" type="PanelContainer" parent="VSplitContainer/MarginContainer/VContainer" unique_id=2068071733]
+layout_mode = 2
+theme = ExtResource("2_ucicp")
+theme_override_styles/panel = SubResource("StyleBoxFlat_ucicp")
+
+[node name="GridContainer" type="GridContainer" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer" unique_id=1008252622]
+layout_mode = 2
+columns = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer" unique_id=368353766]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer/HBoxContainer" unique_id=593284426]
+layout_mode = 2
+text = "Stars to win :"
+
+[node name="OptionButton" type="OptionButton" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer/HBoxContainer" unique_id=1081317730]
+layout_mode = 2
+selected = 0
+allow_reselect = true
+item_count = 2
+popup/item_0/text = "5"
+popup/item_0/id = 0
+popup/item_1/text = "10"
+popup/item_1/id = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer" unique_id=216174810]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer/HBoxContainer2" unique_id=1628118119]
+layout_mode = 2
+text = "Lives "
+
+[node name="CheckBox" type="CheckBox" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer/HBoxContainer2" unique_id=926476049]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer/HBoxContainer2" unique_id=502376208]
+layout_mode = 2
+selected = 0
+allow_reselect = true
+item_count = 2
+popup/item_0/text = "5"
+popup/item_0/id = 0
+popup/item_1/text = "10"
+popup/item_1/id = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer" unique_id=1540924168]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer/HBoxContainer3" unique_id=1839767103]
+layout_mode = 2
+text = "Time limit :"
+
+[node name="CheckBox" type="CheckBox" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer/HBoxContainer3" unique_id=1871660743]
+layout_mode = 2
+
+[node name="OptionButton" type="OptionButton" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer/HBoxContainer3" unique_id=1198468760]
+layout_mode = 2
+selected = 0
+allow_reselect = true
+item_count = 2
+popup/item_0/text = "5:00"
+popup/item_0/id = 0
+popup/item_1/text = "10:00"
+popup/item_1/id = 1
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer" unique_id=1380568967]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer/HBoxContainer4" unique_id=1103251388]
+layout_mode = 2
+text = "Map Selection Mode"
+
+[node name="OptionButton" type="OptionButton" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer/HBoxContainer4" unique_id=300091446]
+layout_mode = 2
+selected = 0
+allow_reselect = true
+item_count = 3
+popup/item_0/text = "Random"
+popup/item_0/id = 0
+popup/item_1/text = "Majority Pick"
+popup/item_1/id = 1
+popup/item_2/text = "Ban System"
+popup/item_2/id = 2
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer" unique_id=1483312896]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer/HBoxContainer5" unique_id=1046432989]
+layout_mode = 2
+text = "Match Type"
+
+[node name="OptionButton" type="OptionButton" parent="VSplitContainer/MarginContainer/VContainer/SettingsContainer/GridContainer/HBoxContainer5" unique_id=2081538945]
+layout_mode = 2
+selected = 0
+allow_reselect = true
+item_count = 2
+popup/item_0/text = "Tournois"
+popup/item_0/id = 0
+popup/item_1/text = "Same party"
+popup/item_1/id = 2
+
+[node name="CurrentPlayer" type="GridContainer" parent="VSplitContainer/MarginContainer/VContainer" unique_id=11582325]
+layout_mode = 2
+theme = ExtResource("2_ucicp")
+
+[node name="HSeparator" type="HSeparator" parent="VSplitContainer/MarginContainer/VContainer" unique_id=833509217]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VSplitContainer/MarginContainer/VContainer" unique_id=1345740585]
+layout_mode = 2
+theme = ExtResource("2_ucicp")
+alignment = 2
+
+[node name="Back_Button" type="Button" parent="VSplitContainer/MarginContainer/VContainer/HBoxContainer" unique_id=721780290]
+layout_mode = 2
+theme = ExtResource("2_ucicp")
+text = "Back"
+
+[node name="VSeparator" type="VSeparator" parent="VSplitContainer/MarginContainer/VContainer/HBoxContainer" unique_id=1550962719]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_ucicp")
+
+[node name="Next_Button" type="Button" parent="VSplitContainer/MarginContainer/VContainer/HBoxContainer" unique_id=1664182073]
+layout_mode = 2
+theme = ExtResource("2_ucicp")
+text = "Next"
+
+[connection signal="pressed" from="VSplitContainer/MarginContainer/VContainer/HBoxContainer/Back_Button" to="." method="_on_back_button_pressed"]
+[connection signal="pressed" from="VSplitContainer/MarginContainer/VContainer/HBoxContainer/Next_Button" to="." method="_on_next_button_pressed"]

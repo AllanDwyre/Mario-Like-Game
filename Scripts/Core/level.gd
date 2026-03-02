@@ -1,44 +1,40 @@
-extends Node
+extends Node	
+class_name Level
 
 @export var background_color: Color = Color.SKY_BLUE
 @export var level_music : AudioStream
+@export var spawns : Array[Marker2D]
+
 const POINT_LABEL = preload("res://Prefabs/score_label.tscn")
 
-const GAMEPLAY_VIEW = preload("res://Prefabs/Views/gameplay.tscn")
-
-var gameplay_view : View
 var timer : SceneTreeTimer
 var coins : int
 
 func _ready():
 	RenderingServer.set_default_clear_color(background_color)
-	SoundManager.play_music(level_music, 0.0)
+	SoundManager.play_music(level_music)
+	
 	GameSignals.coin_collected.connect(add_coins)
 	GameSignals.add_score.connect(instanciate_points)
-	
-	gameplay_view = GAMEPLAY_VIEW.instantiate()
-	ViewManager.push(gameplay_view)
-	
-	timer = get_tree().create_timer(level_music.get_length())
-	timer.timeout.connect(func(): GameSignals.level_finished.emit())
+	# plus tard, sera gerer par une node parent (qui permetra de handle la coop)
+	setup_player()
 
-func _process(_delta: float) -> void:
-	gameplay_view.set_time_left(timer.time_left)
-	
+func setup_player():
+	for p in get_tree().get_nodes_in_group("Player"):
+		p = p as Player
+		p.setup_player(PlayerInfo.new(-1, true))
+
 func _exit_tree() -> void:
 	GameSignals.coin_collected.disconnect(add_coins)
-	
+	GameSignals.add_score.disconnect(instanciate_points)
 
 func add_coins():
 	coins += 1
-	gameplay_view.set_coins(coins)
-	
 func instanciate_points(point : int, g_pos : Vector2):
 	var instance = POINT_LABEL.instantiate()
 	instance.text = str(point)
 	instance.global_position = g_pos
 	add_child(instance)
 	var tween = create_tween()
-	tween.tween_property(instance, "global_position:y", g_pos.y - 8, 0.3)
-	tween.tween_property(instance, "global_position:y", g_pos.y, 0.3)
+	tween.tween_property(instance, "global_position:y", g_pos.y - 16, 0.4)
 	tween.tween_callback(func(): instance.queue_free())

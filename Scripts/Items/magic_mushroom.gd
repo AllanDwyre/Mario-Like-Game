@@ -27,9 +27,10 @@ func _physics_process(delta: float) -> void:
 func change_direction():
 	direction *= -1
 	
-
 func _on_player_hit(body: Node2D) -> void:
 	if body.is_in_group("Player"):
-		body.power_up()
+		body = body as Player
+		SoundManager.play_sound(load("res://Arts/Audios/Mario SFX/nsmb_power-up.wav"))
+		body.set_size(Player.PlayerSize.Big)
 		GameSignals.add_score.emit(300, global_position)
 		queue_free()

@@ -5,7 +5,8 @@ var currentState : State
 var initialState : State
 
 
-func _init(initialState) -> void:
+func _init(initialState_) -> void:
+	initialState = initialState_
 	if initialState: 
 		initialState.Enter()
 		currentState = initialState

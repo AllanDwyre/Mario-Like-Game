@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ppco4ik7jni5" path="res://Arts/Textures/Items/FlagPole.png" id="1_yhts5"]
 [ext_resource type="Texture2D" uid="uid://c25p7jre3kkx4" path="res://Arts/Textures/Items/Flag.png" id="2_4yne5"]
 [ext_resource type="Texture2D" uid="uid://c8vuxr6jb3nrh" path="res://Arts/Textures/Items/Castle.png" id="2_7k4hk"]
-[ext_resource type="Script" uid="uid://7htfhj1v5a54" path="res://Scripts/flag_pole.gd" id="2_054gr"]
+[ext_resource type="Script" uid="uid://7htfhj1v5a54" path="res://Scripts/Items/flag_pole.gd" id="2_054gr"]
 [ext_resource type="Texture2D" uid="uid://b5kcawpgmt7pq" path="res://Arts/Textures/Environnement/HardBlock.png" id="5_054gr"]
 
 [node name="FlagPole" type="Node2D" unique_id=481864895]
@@ -23,7 +23,7 @@ texture = ExtResource("5_054gr")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=2026635063]
 position = Vector2(0, 80)
-target_position = Vector2(0, -150)
+target_position = Vector2(0, -170)
 collision_mask = 2
 
 [node name="FlagPole" type="Sprite2D" parent="." unique_id=1540435892]

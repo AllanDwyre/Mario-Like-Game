@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://d3cxxyntx7bkx"]
+
+[ext_resource type="Script" uid="uid://fg4rywux5yy3" path="res://Scripts/Core/world.gd" id="1_n7afl"]
+[ext_resource type="PackedScene" uid="uid://bpbe43pckxwld" path="res://Scenes/MultiplayerLevels/m_level_1.tscn" id="2_7ber1"]
+[ext_resource type="Script" uid="uid://bfix42uqmk4wx" path="res://Scripts/Core/wrap_viewport_handler.gd" id="4_xjryo"]
+[ext_resource type="Script" uid="uid://dmx6k2raoc2ne" path="res://Scripts/UI/UI_Handler/split_screen_handler.gd" id="7_erey4"]
+
+[node name="World" type="Node2D" unique_id=305324111 node_paths=PackedStringArray("wrap_handler")]
+script = ExtResource("1_n7afl")
+debug_level = ExtResource("2_7ber1")
+wrap_handler = NodePath("WorldWrapViewports")
+
+[node name="WorldSubViewport" type="SubViewport" parent="." unique_id=796746032]
+disable_3d = true
+
+[node name="SplitScreen" type="Node2D" parent="." unique_id=1486889264 node_paths=PackedStringArray("world_viewport", "word")]
+script = ExtResource("7_erey4")
+world_viewport = NodePath("../WorldSubViewport")
+word = NodePath("..")
+split_strategy = 0
+
+[node name="WorldWrapViewports" type="Node2D" parent="." unique_id=1309146984 node_paths=PackedStringArray("world_viewport")]
+script = ExtResource("4_xjryo")
+world_viewport = NodePath("../WorldSubViewport")
+
+[node name="RightSubViewport" type="SubViewport" parent="WorldWrapViewports" unique_id=1516871364]
+disable_3d = true
+handle_input_locally = false
+anisotropic_filtering_level = 0
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="WorldWrapViewports/RightSubViewport" unique_id=657492736]
+limit_enabled = false
+
+[node name="LeftSubViewport" type="SubViewport" parent="WorldWrapViewports" unique_id=2011286984]
+disable_3d = true
+handle_input_locally = false
+anisotropic_filtering_level = 0
+render_target_update_mode = 4
+
+[node name="Camera2D" type="Camera2D" parent="WorldWrapViewports/LeftSubViewport" unique_id=1683696426]

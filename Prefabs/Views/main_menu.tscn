@@ -1,0 +1,125 @@
+[gd_scene format=3 uid="uid://nxqydo653f14"]
+
+[ext_resource type="Theme" uid="uid://dpv0ah3n52fbe" path="res://Arts/Themes/mario_theme.tres" id="1_ne242"]
+[ext_resource type="Script" uid="uid://cb0mvg4xyjv6m" path="res://Scripts/UI/View/main_menu.gd" id="1_qnxn7"]
+[ext_resource type="PackedScene" uid="uid://ikfiw1uyf04d" path="res://Scenes/levels/level_1.tscn" id="2_dm0fm"]
+[ext_resource type="PackedScene" uid="uid://7axn47r7bt5m" path="res://Prefabs/Views/versus_lobby_view.tscn" id="2_ne242"]
+[ext_resource type="PackedScene" uid="uid://bu5m7g5rru35s" path="res://Prefabs/Views/setting_view.tscn" id="3_qnxn7"]
+[ext_resource type="AudioStream" uid="uid://5d6ytbsgo50v" path="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/01 Title Screen.mp3" id="4_f4nme"]
+
+[sub_resource type="Gradient" id="Gradient_f4nme"]
+interpolation_color_space = 1
+colors = PackedColorArray(2.4065375e-07, 0.62615156, 0.505012, 1, 0.14947498, 0.42229372, 0.3392591, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_dm0fm"]
+gradient = SubResource("Gradient_f4nme")
+
+[node name="MainMenu" type="CanvasLayer" unique_id=481017306]
+script = ExtResource("1_qnxn7")
+solo_scene = ExtResource("2_dm0fm")
+versus_scene = ExtResource("2_ne242")
+setting_scene = ExtResource("3_qnxn7")
+main_menu_music = ExtResource("4_f4nme")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1981180830]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_dm0fm")
+
+[node name="Waves" type="Control" parent="." unique_id=770593079]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Wave" type="TextureRect" parent="Waves" unique_id=1725014080]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Wave2" type="TextureRect" parent="Waves" unique_id=1485758645]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Wave3" type="TextureRect" parent="Waves" unique_id=1724374148]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Wave4" type="TextureRect" parent="Waves" unique_id=1829623711]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=752046635]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 35
+
+[node name="VSplitContainer" type="VSplitContainer" parent="MarginContainer" unique_id=1192544324]
+layout_mode = 2
+theme = ExtResource("1_ne242")
+
+[node name="Title" type="Label" parent="MarginContainer/VSplitContainer" unique_id=292639022]
+layout_mode = 2
+theme = ExtResource("1_ne242")
+theme_type_variation = &"Display"
+theme_override_font_sizes/font_size = 64
+text = "Kenobi"
+horizontal_alignment = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VSplitContainer" unique_id=182017043]
+layout_mode = 2
+theme = ExtResource("1_ne242")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VSplitContainer/CenterContainer" unique_id=1799088167]
+layout_mode = 2
+theme = ExtResource("1_ne242")
+theme_override_constants/separation = 16
+
+[node name="StoryPlayButton" type="Button" parent="MarginContainer/VSplitContainer/CenterContainer/VBoxContainer" unique_id=606843029]
+layout_mode = 2
+focus_next = NodePath("../VersusPlayButton")
+theme = ExtResource("1_ne242")
+text = "Story"
+
+[node name="VersusPlayButton" type="Button" parent="MarginContainer/VSplitContainer/CenterContainer/VBoxContainer" unique_id=170690580]
+layout_mode = 2
+theme = ExtResource("1_ne242")
+text = "Versus"
+
+[node name="Settings" type="Button" parent="MarginContainer/VSplitContainer/CenterContainer/VBoxContainer" unique_id=913839931]
+layout_mode = 2
+theme = ExtResource("1_ne242")
+text = "Settings"
+
+[node name="Quit" type="Button" parent="MarginContainer/VSplitContainer/CenterContainer/VBoxContainer" unique_id=649153621]
+layout_mode = 2
+theme = ExtResource("1_ne242")
+text = "Quit"
+
+[connection signal="pressed" from="MarginContainer/VSplitContainer/CenterContainer/VBoxContainer/StoryPlayButton" to="." method="_on_story_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/CenterContainer/VBoxContainer/VersusPlayButton" to="." method="_on_versus_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/CenterContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/VSplitContainer/CenterContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

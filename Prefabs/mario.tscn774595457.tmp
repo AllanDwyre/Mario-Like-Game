@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://tsyim253dtnr"]
+
+[ext_resource type="Script" uid="uid://bpj5ppdmskadi" path="res://Scripts/Player/player.gd" id="1_4sr14"]
+[ext_resource type="Texture2D" uid="uid://bv5xor7osk183" path="res://Arts/Textures/Mario/Mario_Small_Death.png" id="1_bcy7u"]
+[ext_resource type="Texture2D" uid="uid://c5nef570g8a3j" path="res://Arts/Textures/Mario/Mario_Big_Idle.png" id="1_vtjm4"]
+[ext_resource type="Texture2D" uid="uid://c4foe3lejdxln" path="res://Arts/Textures/Mario/Mario_Small_Idle.png" id="2_7oneb"]
+[ext_resource type="Texture2D" uid="uid://caepttwq0p4ac" path="res://Arts/Textures/Mario/Mario_Big_Jump.png" id="2_l3vmq"]
+[ext_resource type="Texture2D" uid="uid://ypxoy15bh0q1" path="res://Arts/Textures/Mario/Mario_Big_Run1.png" id="3_5ixgl"]
+[ext_resource type="Texture2D" uid="uid://d23pj5hff8l00" path="res://Arts/Textures/Mario/Mario_Small_Jump.png" id="3_nsdvb"]
+[ext_resource type="Texture2D" uid="uid://885fhp61p2e1" path="res://Arts/Textures/Mario/Mario_Small_Run1.png" id="4_3snxw"]
+[ext_resource type="Texture2D" uid="uid://bveehxf8in04f" path="res://Arts/Textures/Mario/Mario_Big_Run2.png" id="4_4sr14"]
+[ext_resource type="Texture2D" uid="uid://dbripxlgcvt0r" path="res://Arts/Textures/Mario/Mario_Big_Run3.png" id="5_aj11e"]
+[ext_resource type="Texture2D" uid="uid://cuafa8f1d64wv" path="res://Arts/Textures/Mario/Mario_Small_Run2.png" id="5_gn83l"]
+[ext_resource type="Texture2D" uid="uid://cq13a736ufc1n" path="res://Arts/Textures/Mario/Mario_Small_Run3.png" id="6_2my7j"]
+[ext_resource type="Texture2D" uid="uid://cywvd2ihpdbcv" path="res://Arts/Textures/Mario/Mario_Big_Slide.png" id="6_54tf2"]
+[ext_resource type="Texture2D" uid="uid://buichcxawtrvv" path="res://Arts/Textures/Mario/Mario_Small_Slide.png" id="7_vtjm4"]
+[ext_resource type="Script" uid="uid://cwlh0jr5cgosy" path="res://Scripts/Player/input_handler.gd" id="15_4sr14"]
+[ext_resource type="Script" uid="uid://c80a2nidib7x0" path="res://Scripts/Player/movement.gd" id="16_aj11e"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l3vmq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vtjm4")
+}],
+"loop": true,
+"name": &"big_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_l3vmq")
+}],
+"loop": true,
+"name": &"big_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_5ixgl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4sr14")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_aj11e")
+}],
+"loop": true,
+"name": &"big_run",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_54tf2")
+}],
+"loop": true,
+"name": &"big_slide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_bcy7u")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7oneb")
+}],
+"loop": true,
+"name": &"small_idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_nsdvb")
+}],
+"loop": true,
+"name": &"small_jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3snxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gn83l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2my7j")
+}],
+"loop": true,
+"name": &"small_run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_vtjm4")
+}],
+"loop": true,
+"name": &"small_slide",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3vmq"]
+size = Vector2(16, 16)
+
+[node name="player" type="CharacterBody2D" unique_id=1426263234 node_paths=PackedStringArray("movement", "input") groups=["Player"]]
+collision_layer = 2
+platform_floor_layers = 1
+platform_wall_layers = 1
+script = ExtResource("1_4sr14")
+movement = NodePath("Movement")
+input = NodePath("Input Handler")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1205049656]
+sprite_frames = SubResource("SpriteFrames_l3vmq")
+animation = &"small_idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1117243301]
+shape = SubResource("RectangleShape2D_l3vmq")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1199989759]
+zoom = Vector2(2.5, 2.5)
+limit_left = -256
+limit_bottom = 32
+position_smoothing_enabled = true
+
+[node name="Input Handler" type="Node" parent="." unique_id=504013216]
+script = ExtResource("15_4sr14")
+
+[node name="Movement" type="Node" parent="." unique_id=818181671]
+script = ExtResource("16_aj11e")
+walk_speed = 80.0
+run_speed = null
+sprint_speed = null
+walk_accel = null
+walk_decel = null
+run_accel = null
+run_decel = null
+stop_decel = null
+p_meter_starting_speed = null
+max_p_meter = null
+jump_force = 350.0
+coyotte_duration = 0.15
+jump_buffer_duration = null
+
+[node name="Health" type="Node" parent="." unique_id=188684440]

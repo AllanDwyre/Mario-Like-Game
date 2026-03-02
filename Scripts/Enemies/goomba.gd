@@ -10,14 +10,20 @@ func _ready() -> void:
 func _change_direction() -> void:
 	super()
 	anim.flip_h = direction > 0
-	
-func take_damage(_body : Node2D) -> void :
-	if died:
+
+func take_damage(body : Node2D) -> void :
+	if not can_take_damage(body):
 		return
+	if body is Player:
+		body.movement.ForceJump()
 	kill()
-	
+
 func kill():
-	died = true
+	get_node("CollisionShape2D").set_deferred("disable", true)
+	
+	set_process(false)
+	set_physics_process(false) # disable the movement during death
+	
 	anim.play("death")
 	GameSignals.add_score.emit(100, global_position)
 	SoundManager.play_sound(STOMPED_SOUND)

@@ -1,5 +1,6 @@
 extends Node2D
 
+const WIN_SOUND = preload("res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/12 Level Clear.mp3")
 @export var duration = 1
 
 @onready var flag = $Flag
@@ -22,9 +23,12 @@ func finish_level():
 	var flag_target_y = player.global_position.y
 	var offset = player.get_node("CollisionShape2D").get_shape().get_size().y / -2.0
 	
+	SoundManager.pause_music()
+	SoundManager.play_sound(WIN_SOUND)
+	
 	tween.tween_property(flag, "global_position:y", flag_target_y, duration)
 	
-	tween.parallel().tween_property(player, "global_position:y", offset, duration).set_delay(duration * 0.1)
+	tween.parallel().tween_property(player, "global_position:y", offset + raycast.global_position.y, duration).set_delay(duration * 0.1)
 	tween.parallel().tween_callback(func(): player.play_anim("slide", true))
 	tween.tween_callback(func(): player.play_anim("run"))
 	tween.tween_property(player, "global_position:x", castle.global_position.x, duration)

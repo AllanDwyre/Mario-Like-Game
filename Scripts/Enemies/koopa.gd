@@ -1,70 +1,98 @@
 extends EnemyBase
 
+@export var shell_speed : float = 80.0 
+
 @onready var reset_state_timer: Timer = $ResetShapeTimer
 @onready var anim : AnimatedSprite2D = $AnimatedSprite2D
+
 const STOMPED_SOUND = preload("res://Arts/Audios/SFX/stomp.wav")
 const KICK_SOUND = preload("res://Arts/Audios/SFX/kick.wav")
-
 var walk_speed : float
-@export var shell_speed : float = 80.0 
+
+enum KoopaState {
+	Wondering,
+	Shell,
+	Moving_shell
+}
+
+var state : KoopaState = KoopaState.Wondering
 
 func _ready() -> void:
 	super()
 	walk_speed = speed
-	anim.play("walk")
-	reset_state_timer.timeout.connect(_revive)
+	go_to_wondering_state()
+	reset_state_timer.timeout.connect(go_to_wondering_state)
 
 func _change_direction() -> void:
 	super()
 	anim.flip_h = direction > 0
 
-func _revive():
-	speed = walk_speed
-	stunned = false
-	set_collision_mask_value(3, true)
-	if direction == 0.0:
-		direction = 1
+func edge_collision():
+	return super() and state == KoopaState.Wondering 
+
+func _on_enemy_collision(body : Node2D):
+	if state == KoopaState.Wondering:
 		_change_direction()
+	else :
+		body.kill()
+
+func _on_inflict_damage(to : Node2D):
+	if state == KoopaState.Shell:
+		return
+	super(to) # to took damage !
+
+func can_take_damage(from : Node2D):
+	# peut toujour prendre des damages
+	if state == KoopaState.Shell:
+		return true
+	return super(from)
+
+func take_damage(from : Node2D):
+	if not can_take_damage(from):
+		return
+
+	SoundManager.play_sound(STOMPED_SOUND)
+	anim.play("shell")
+	match state:
+		KoopaState.Wondering:
+			go_to_shell_state(from)
+		KoopaState.Shell:
+			go_to_moving_shell_state(from)
+		KoopaState.Moving_shell:
+			go_to_shell_state(from)
+
+func go_to_wondering_state():
+	state = KoopaState.Wondering
+	speed = walk_speed
+	direction = [-1,1].pick_random()
+	_change_direction()
 	anim.play("walk")
 	
-func take_damage(from : Node2D):
-	speed = shell_speed
-	anim.play("shell")
+func go_to_shell_state(from : Node2D):
+	if from is Player:
+		from.movement.ForceJump()
+	GameSignals.add_score.emit(100, global_position)
+	speed = 0
+	state = KoopaState.Shell
 	reset_state_timer.start()
-	SoundManager.play_sound(STOMPED_SOUND)
-	
-	# if it was it when stunned, we want the koopa to move
-	if stunned and not direction:
-		direction = sign(global_position.x - from.global_position.x)
-		set_collision_mask_value(3, false)
-	elif stunned and direction :
-		direction = 0.0
-	else :
-		direction = 0.0
-		stunned = true
+
+func go_to_moving_shell_state(from : Node2D):
+	if from is Player and not get_collision_normal(from).y > -COLLISION_NORMAL_THRESHOLD:
+		from.movement.ForceJump()
+	reset_state_timer.start()
+	speed = shell_speed
+	state = KoopaState.Moving_shell
+	direction = sign(global_position.x - from.global_position.x)
+
 
 func kill():
+	get_node("CollisionShape2D").call_deferred("disabled", true)
+	
 	direction = 0.0
 	anim.play("shell")
+	
 	SoundManager.play_sound(KICK_SOUND)
 	GameSignals.add_score.emit(200, global_position)
-	# TODO kill animation
 	
 	await get_tree().create_timer(.2).timeout
 	queue_free()
-
-	
-
-func _give_damage(receiver : Node2D, isPlayer : bool = true):
-	# Si it another enemy while stunned, it will kill the enemy
-	if not isPlayer and stunned and direction != 0.0:
-		receiver.kill()
-		return
-	
-	# On rajoute la condition que la tortue est en mouvement pour donner les damages
-	if direction != 0.0:
-		receiver.take_damage(self)
-	else :
-		# Sinon on considere ça comme si c'est le joueur qui hit la tortue
-		GameSignals.add_score.emit(100, global_position)
-		self.take_damage(receiver)

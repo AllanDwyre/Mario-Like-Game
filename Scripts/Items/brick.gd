@@ -29,20 +29,19 @@ func _colliding():
 		var collider = raycast.get_collider(i)
 		_animate(collider, collider.position.y)
 		
-		if collider is EnemyBase or collider is Mario:
+		if collider is EnemyBase or collider is Player:
 			collider.take_damage(self)
 		elif collider.has_method("change_direction"):
 			collider.change_direction()
 
-func _is_under_brick(body : Mario) -> bool:
-	var under = body.global_position.y > global_position.y;
-	var x_distance = abs(body.global_position.x - global_position.x)
+func _is_under_brick(_player : Player, collision : KinematicCollision2D) -> bool:
+	var under = collision.get_normal().y > 0.5;
 	
-	return under and x_distance <= MAX_X_DIST
+	return under 
 	
 	
-func interact(body : Mario):
-	if not _is_under_brick(body):
+func interact(body : Player, collision : KinematicCollision2D):
+	if not _is_under_brick(body, collision):
 		return
 	
 	raycast.force_shapecast_update()
@@ -50,9 +49,16 @@ func interact(body : Mario):
 		_colliding()
 #	
 	if body.get_size() == "big":
+		sprite.visible = false
+		
+		var particules =$BreakEffectParticule
+		
+		particules.emitting = true
+		await particules.finished
+		
+		particules.queue_free()
 		queue_free()
 		return
-		
 	if is_animating:
 		return
 	

@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dimespradenhp"]
 
-[ext_resource type="FontFile" uid="uid://baj4tjho15mmg" path="res://Arts/Fonts/SuperMario256.ttf" id="1_n701k"]
+[ext_resource type="FontFile" uid="uid://o3adr6xwl7l6" path="res://Arts/Fonts/Averia_Sans_Libre/AveriaSansLibre-Regular.ttf" id="1_n701k"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_qyddi"]
 font = ExtResource("1_n701k")
 font_size = 9
-outline_size = 5
+outline_size = 2
 outline_color = Color(0, 0, 0, 1)
 
 [node name="ScoreLabel" type="Label" unique_id=690771687]

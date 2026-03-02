@@ -1,0 +1,80 @@
+[gd_scene format=3 uid="uid://bu5m7g5rru35s"]
+
+[ext_resource type="Script" uid="uid://cs0us4oucggwk" path="res://Scripts/UI/View/setting_view.gd" id="1_g2ek3"]
+[ext_resource type="Theme" uid="uid://dpv0ah3n52fbe" path="res://Arts/Themes/mario_theme.tres" id="2_5bgwg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xwx14"]
+
+[node name="SettingView" type="CanvasLayer" unique_id=1489750429 node_paths=PackedStringArray("music_slider", "sfx_slider", "controller_vibrations")]
+script = ExtResource("1_g2ek3")
+music_slider = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicSlider")
+sfx_slider = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/SoundEffectSlider")
+controller_vibrations = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer/CheckButton")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=603439899]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"ScreenMargin"
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_right = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2065061160]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=2069695649]
+layout_mode = 2
+theme_type_variation = &"Display"
+text = "Paramètres"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=351286806]
+layout_mode = 2
+theme_override_constants/margin_right = 357
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=818153031]
+layout_mode = 2
+
+[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=219178902]
+layout_mode = 2
+theme = ExtResource("2_5bgwg")
+max_value = 1.0
+step = 0.005
+value = 0.6
+
+[node name="SoundEffectSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1799582104]
+layout_mode = 2
+theme = ExtResource("2_5bgwg")
+max_value = 1.0
+step = 0.005
+value = 0.6
+
+[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1110884585]
+layout_mode = 2
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer" unique_id=1544536982]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Controllers vibrations"
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1850789356]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xwx14")
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer" unique_id=1612721413]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer" unique_id=1559895604]
+layout_mode = 2
+theme_type_variation = &"FlatButton"
+text = "Retour"
+
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/SoundEffectSlider" to="." method="_on_sound_effect_slider_value_changed"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer/CheckButton" to="." method="_on_controller_vibrations_button_toggled"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/BackButton" to="." method="_on_back_button_pressed"]

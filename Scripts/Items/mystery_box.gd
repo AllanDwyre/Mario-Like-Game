@@ -12,9 +12,12 @@ var initial_y : float
 
 func _ready() -> void:
 	initial_y = sprite.position.y  
-	
-func interact(_body : Node2D):
-	if is_empty:
+
+func under_box(collision : KinematicCollision2D) -> bool:
+	return collision.get_normal().y > 0.5
+
+func interact(_body : Player, collision : KinematicCollision2D) -> void:
+	if is_empty or not under_box(collision):
 		return
 	is_empty = true
 	

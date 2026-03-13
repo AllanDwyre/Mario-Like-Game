@@ -11,6 +11,15 @@ func _add(v : View):
 	v.show_view()
 	history.push_back(v)
 
+## Permet la premiere insertion, comme lorsque le jeu commence avec le main_menu
+func insert_view(v : View):
+	if active_view and  v == active_view:
+		push_warning("Tried to push the same view as the active one")
+		return
+	clear_history()
+	v.show_view()
+	history.push_back(v)
+
 func push(v : View, hide : bool = true):
 	if active_view and  v == active_view:
 		push_warning("Tried to push the same view as the active one")

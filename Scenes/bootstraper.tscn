@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dyhp3ucsxaqbi"]
+[gd_scene format=3 uid="uid://dljfkjr3872fy"]
 
 [node name="Bootstraper" type="Node2D" unique_id=112745112]
 editor_description = "Don't contains logic, just let the game manager start"

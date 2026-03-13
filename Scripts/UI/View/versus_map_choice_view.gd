@@ -1,16 +1,16 @@
 class_name VersusMapChoiceView
 extends View
-var lobby_setting : VersusLobbySettings
+var lobby_setting : VersusSettings
 
-var world_scene : PackedScene = preload("res://Scenes/m_world.tscn")
+var level_handler : PackedScene = preload("res://Scenes/level_handler.tscn")
 
 #region Life cycle
 func show_view():
 	super()
 	PlayerManager.enable_joining()
 	if lobby_setting:
-		push_warning("[VersusMapChoiceView] VersusLobbySettings is null, creating default")
-		lobby_setting = VersusLobbySettings.new()
+		push_warning("[VersusMapChoiceView] VersusSettings is null, creating default")
+		lobby_setting = VersusSettings.new()
 
 func hide_view():
 	# NOTE : Hide view ce fait seulement quand il y a un push
@@ -38,7 +38,7 @@ func _on_next_button_pressed() -> void:
 		push_error("Cannot start versus game, settings are null")
 		return
 	
-	GameManager.start_versus_game(world_scene, lobby_setting)
+	GameManager.start_versus_game(level_handler, lobby_setting)
 
 
 func _on_back_button_pressed() -> void:

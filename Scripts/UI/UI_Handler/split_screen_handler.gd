@@ -2,7 +2,7 @@ extends Node
 
 const PlayerPrefab : PackedScene = preload("res://Prefabs/player.tscn")
 @export var world_viewport : SubViewport 
-@export var word : World 
+@export var level_handler : LevelHandler 
 @export var split_strategy : ESplitStrategy = ESplitStrategy.HorizontalSplit
 
 var split_container : SplitContainer
@@ -16,12 +16,12 @@ enum ESplitStrategy {
 # -------------------------------------------------
 
 func _ready() -> void:
-	if word == null:
+	if level_handler == null:
 		printerr("Level is null, SplitScreenHandler is freed")
 		queue_free()
 	
-	if not word.is_node_ready():
-		await word.ready
+	if not level_handler.is_node_ready():
+		await level_handler.ready
 	
 	if world_viewport == null:
 		printerr("WorldViewport is null, SplitScreenHandler is freed")
@@ -41,7 +41,7 @@ func setup_viewports() -> void:
 	for i in range(PlayerManager.get_player_count()):
 		var viewport = _create_viewport(i)
 		spawn_player(viewport, i)
-		word.spawn_seamless_worldedge(viewport)
+		level_handler.spawn_seamless_worldedge(viewport)
 
 # -------------------------------------------------
 func _create_viewport(viewport_id :int) -> SubViewport:
@@ -63,8 +63,8 @@ func _create_viewport(viewport_id :int) -> SubViewport:
 	# --- Add to scene ---
 	split_container.add_child(viewport_container)
 	viewport_container.add_child(viewport)
-
 	return viewport
+
 func _clear_viewports():
 	for c in split_container.get_children():
 		c.queue_free() 
@@ -79,7 +79,7 @@ func spawn_player(viewport : SubViewport, player_id) -> void:
 	viewport.add_child(player_instance)
 	# --- after being ready we can setup it without null value ---
 	player_instance.setup_player(player_info)
-	player_instance.global_position = word.get_spawn_position(player_id)
+	player_instance.global_position = level_handler.get_spawn_position(player_id)
 
 # -------------------------------------------------
 

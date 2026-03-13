@@ -6,11 +6,12 @@ signal scene_changed
 var is_transitioning : bool = false
 
 func change_scene(path : Variant, transition: BaseTransition = InstantTransition.new()):
-	assert(path is String or path is PackedScene, 'Path must be a string or PackedScene')
+	assert(path is StringName or path is PackedScene, 'Path must be a string or PackedScene')
 	if is_transitioning:
 		push_warning("SceneManager: change_scene called while transitioning")
 		return
 	
+	ViewManager.clear_history()
 	is_transitioning = true
 	
 	add_child(transition)
@@ -22,7 +23,6 @@ func change_scene(path : Variant, transition: BaseTransition = InstantTransition
 		path = path.resource_path
 	get_tree().change_scene_to_file(path)
 	await get_tree().process_frame
-	ViewManager.clear_history()
 	
 	transition.play_in()
 	await transition.finished

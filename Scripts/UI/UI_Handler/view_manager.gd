@@ -2,7 +2,7 @@ extends Node
 # Autoload : ViewManager
 
 const DEFAULT_CONTEXT = &"main"
-var contexts: Dictionary = {}  # "player_1" -> ViewContext, etc.
+var contexts: Dictionary[StringName, ViewContext] = {}  # "player_1" -> ViewContext, etc.
 
 func _ready() -> void:
 	var default_ctx = ViewContext.new()
@@ -24,6 +24,11 @@ func unregister_context_by_value(ctx: ViewContext) -> void:
 func get_context(id: StringName) -> ViewContext:
 	return contexts.get(id)
 
+## Clear & Insert, permet d'inseret une view deja existante dans le tree 
+## Comme lorsque le jeu commence avec le main_menu
+func insert(v: View) -> void:
+	get_context(DEFAULT_CONTEXT).insert_view(v)
+	
 func push(v: View, contextName : StringName = DEFAULT_CONTEXT, hide: bool = true) -> void:
 	if contextName == DEFAULT_CONTEXT and hide:
 		_hide_alternative_contexts()

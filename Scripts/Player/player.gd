@@ -1,4 +1,4 @@
-extends CharacterBody2D
+extends Entity
 class_name Player 
 
 #NOTE: this scripts used this documentation to make the movement :
@@ -34,6 +34,7 @@ var is_dead : bool
 var has_been_hitted : bool
 
 func _ready() -> void:
+	super()
 	set_process(false)
 	set_process_input(false)
 	set_physics_process(false)
@@ -151,7 +152,6 @@ func kill() -> void :
 	player_info.joy_vibration(1,1,1)
 	is_dead = true
 	context.can_move = false
-	GameSignals.player_died.emit()
 	SoundManager.pause_music()
 	sprite.play("death")
 	SoundManager.play_sound(DEATH_SOUND)
@@ -161,7 +161,6 @@ func kill() -> void :
 	tween.tween_property(self, "global_position:y", 64, 1)
 	
 	await tween.finished
+	GameSignals.player_died.emit()
 	
-	# return a signal
-	get_tree().reload_current_scene()
 #endregion

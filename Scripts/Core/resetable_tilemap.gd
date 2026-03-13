@@ -1,5 +1,6 @@
 extends TileMapLayer
 class_name ResetableTilemap
+
 var initial_tiles = []
 func _ready() -> void:
 	for cell in get_used_cells():

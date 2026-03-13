@@ -1,5 +1,5 @@
 @abstract
-extends CharacterBody2D
+extends Entity
 class_name EnemyBase
 
 @export var speed : float = 20.0
@@ -64,7 +64,7 @@ func take_damage(body)
 
 func can_take_damage(from : Node2D):
 	var normal = get_collision_normal(from)
-	var is_stomped = normal.y < -.1
+	var is_stomped = normal.y < -.3
 	# faudra l'améliorer via un struct de context du damage : player vs projectile vs manager code
 	if from is Player:
 		return is_stomped

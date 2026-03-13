@@ -1,26 +1,38 @@
 [gd_scene format=4 uid="uid://bpbe43pckxwld"]
 
-[ext_resource type="Script" uid="uid://dokr8t5bwredr" path="res://Scripts/Core/circular_level.gd" id="1_pwnwg"]
-[ext_resource type="AudioStream" uid="uid://b10v2vcwbx3kh" path="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/71 Which Wiggler.mp3" id="2_cbwch"]
+[ext_resource type="Script" uid="uid://bdjgqknel8f15" path="res://Scripts/Core/level.gd" id="1_jldn7"]
 [ext_resource type="TileSet" uid="uid://bi2mb7geb1qjw" path="res://Arts/tileset/mario_set.tres" id="3_8dj4v"]
 [ext_resource type="Script" uid="uid://bo53oewkgprwy" path="res://Scripts/Core/resetable_tilemap.gd" id="4_cdtq8"]
 [ext_resource type="PackedScene" uid="uid://dus6thmxe07jj" path="res://Prefabs/goomba.tscn" id="4_d4mvf"]
 [ext_resource type="PackedScene" uid="uid://cok01xtbqxelm" path="res://Prefabs/koopa.tscn" id="5_33le6"]
 
-[node name="MLevel1" type="Node2D" unique_id=1679758993 node_paths=PackedStringArray("wrapableLevel", "stars_spawns", "spawns")]
-script = ExtResource("1_pwnwg")
-wrapableLevel = NodePath("Environements/LevelLayer")
-stars_spawns = [NodePath("StarsSpawns/Marker2D"), NodePath("StarsSpawns/Marker2D2"), NodePath("StarsSpawns/Marker2D3"), NodePath("StarsSpawns/Marker2D4")]
-level_music = ExtResource("2_cbwch")
-spawns = [NodePath("Spawns/Player1SpawnPos"), NodePath("Spawns/Player2SpawnPos")]
+[node name="MLevel1" type="Node2D" unique_id=1679758993 node_paths=PackedStringArray("player_spawns_root", "stars_spawns_root", "level_tilemap")]
+script = ExtResource("1_jldn7")
+player_spawns_root = NodePath("PlayerSpawns")
+stars_spawns_root = NodePath("StarSpawns")
+level_tilemap = NodePath("Environements/LevelLayer")
 
-[node name="Spawns" type="Node2D" parent="." unique_id=1245001048]
+[node name="PlayerSpawns" type="Node2D" parent="." unique_id=1245001048]
 
-[node name="Player1SpawnPos" type="Marker2D" parent="Spawns" unique_id=738926685]
+[node name="Player1SpawnPos" type="Marker2D" parent="PlayerSpawns" unique_id=738926685]
 position = Vector2(664, -32)
 
-[node name="Player2SpawnPos" type="Marker2D" parent="Spawns" unique_id=1522430569]
+[node name="Player2SpawnPos" type="Marker2D" parent="PlayerSpawns" unique_id=1522430569]
 position = Vector2(696, -32)
+
+[node name="StarSpawns" type="Node2D" parent="." unique_id=45255671]
+
+[node name="Marker2D" type="Marker2D" parent="StarSpawns" unique_id=1844693324]
+position = Vector2(247, -176)
+
+[node name="Marker2D2" type="Marker2D" parent="StarSpawns" unique_id=408499177]
+position = Vector2(528, -32)
+
+[node name="Marker2D3" type="Marker2D" parent="StarSpawns" unique_id=958411300]
+position = Vector2(832, -163)
+
+[node name="Marker2D4" type="Marker2D" parent="StarSpawns" unique_id=543084668]
+position = Vector2(1185, -36)
 
 [node name="Environements" type="Node2D" parent="." unique_id=479513451]
 z_index = -1
@@ -36,30 +48,16 @@ tile_map_data = PackedByteArray("AAAAAP//DwAJAAAAAAAAAAAADwAJAAAAAAABAP//DwAJAAA
 tile_set = ExtResource("3_8dj4v")
 script = ExtResource("4_cdtq8")
 
-[node name="Entity" type="Node2D" parent="." unique_id=158679905]
+[node name="Entities" type="Node2D" parent="." unique_id=158679905]
 
-[node name="Goomba2" parent="Entity" unique_id=945219444 instance=ExtResource("4_d4mvf")]
+[node name="Goomba2" parent="Entities" unique_id=945219444 instance=ExtResource("4_d4mvf")]
 position = Vector2(1048, -32)
 
-[node name="Goomba" parent="Entity" unique_id=1528677254 instance=ExtResource("4_d4mvf")]
+[node name="Goomba" parent="Entities" unique_id=1528677254 instance=ExtResource("4_d4mvf")]
 position = Vector2(792, -32)
 
-[node name="Koopa2" parent="Entity" unique_id=1524848219 instance=ExtResource("5_33le6")]
+[node name="Koopa2" parent="Entities" unique_id=1524848219 instance=ExtResource("5_33le6")]
 position = Vector2(296, -144)
 
-[node name="Koopa" parent="Entity" unique_id=2018862428 instance=ExtResource("5_33le6")]
+[node name="Koopa" parent="Entities" unique_id=2018862428 instance=ExtResource("5_33le6")]
 position = Vector2(392, -32)
-
-[node name="StarsSpawns" type="Node2D" parent="." unique_id=45255671]
-
-[node name="Marker2D" type="Marker2D" parent="StarsSpawns" unique_id=1844693324]
-position = Vector2(247, -176)
-
-[node name="Marker2D2" type="Marker2D" parent="StarsSpawns" unique_id=408499177]
-position = Vector2(528, -32)
-
-[node name="Marker2D3" type="Marker2D" parent="StarsSpawns" unique_id=958411300]
-position = Vector2(832, -163)
-
-[node name="Marker2D4" type="Marker2D" parent="StarsSpawns" unique_id=543084668]
-position = Vector2(1185, -36)

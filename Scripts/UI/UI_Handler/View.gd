@@ -26,11 +26,11 @@ func destroy_view():
 
 ## Override pour jouer une transition d'entrée (pas besoin de super())
 func on_show() -> void:
-	await get_tree().process_fram
+	await get_tree().process_frame
 
 ## Override pour jouer une transition de sortie (pas besoin de super())
 func on_hide() -> void:
-	await get_tree().process_fram
+	await get_tree().process_frame
 
 ## Things to do before the queue free, like close transition, clear memory, disconnect event etc...
 func clean_up():

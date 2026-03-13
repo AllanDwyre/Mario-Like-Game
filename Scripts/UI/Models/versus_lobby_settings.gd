@@ -1,5 +1,5 @@
-class_name VersusLobbySettings
-extends RefCounted
+class_name VersusSettings
+extends BaseGameSetting
 
 enum ESelectionMode {
 	Random,
@@ -20,8 +20,6 @@ var time_limit : int = -1
 var map_selection_mode : ESelectionMode = ESelectionMode.Random
 var match_type : EMatchType = EMatchType.SameParty
 
-## Selected Level Path
-var level: String
 
 func add_player() -> void:
 	pass
@@ -40,10 +38,10 @@ func set_map_selection_mode(mode : String) -> void:
 		"Random" : map_selection_mode = ESelectionMode.Random
 		"Majority Pick" : map_selection_mode = ESelectionMode.Majority
 		"Ban System" : map_selection_mode = ESelectionMode.Ban
-		_ : push_warning("VersusLobbySettings : Current mode selected for map_selection_mode is Unknown")
+		_ : push_warning("VersusSettings : Current mode selected for map_selection_mode is Unknown")
 
 func set_match_type(type : String) -> void:
 	match type:
 		"Tournois" : match_type = EMatchType.Tournois
 		"Same party" : match_type = EMatchType.SameParty
-		_ : push_warning("VersusLobbySettings : Current type selected for match_type is Unknown")
+		_ : push_warning("VersusSettings : Current type selected for match_type is Unknown")

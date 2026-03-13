@@ -8,10 +8,10 @@ extends View
 # TODO: Create better types of ui after the ui is comfirmed, and before doing to much code here*
 @export var map_selection_options : OptionButton
 
-var world_scene : PackedScene = preload("res://Scenes/m_world.tscn")
+var level_handler_scene : PackedScene = preload("res://Scenes/level_handler.tscn")
 
 var players : Dictionary[int, Control] = {}
-var lobby_setting : VersusLobbySettings
+var lobby_setting : VersusSettings
 
 # --- cache view ---
 var map_choice_view : VersusMapChoiceView
@@ -26,12 +26,12 @@ func populate_players() -> void:
 
 func show_view():
 	super()
+	
 	if not PlayerManager.player_joined.is_connected(_on_player_joined):
 		PlayerManager.player_joined.connect(_on_player_joined)
 		PlayerManager.player_left.connect(_on_player_left)
 	PlayerManager.enable_joining()
-	# create a transition
-	lobby_setting = VersusLobbySettings.new()
+	lobby_setting = VersusSettings.new()
 	sync_settings()
 
 func hide_view():
@@ -78,7 +78,7 @@ func _on_next_button_pressed() -> void:
 		map_choice_view.lobby_setting = lobby_setting
 		ViewManager.push(map_choice_view)
 	else:
-		GameManager.start_versus_game(world_scene, lobby_setting)
+		GameManager.start_versus_game(level_handler_scene, lobby_setting)
 
 func _on_back_button_pressed() -> void:
 	ViewManager.pop()

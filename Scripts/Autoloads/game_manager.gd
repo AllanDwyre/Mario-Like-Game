@@ -5,10 +5,20 @@ extends Node2D
 # Setting screen (only ViewManager)
 # gameover (only ViewManager)
 # open pause menu (only ViewManager)
+# go back to main menu
 # ...
+
 var entry_scene : PackedScene = load("res://Prefabs/Views/main_menu.tscn")
 var pending_config : Variant
+
 var rule_set: RuleSet
+
+enum EGameMode {
+	None,
+	Solo,
+	Versus
+}
+var current_gamemode : EGameMode = EGameMode.None
 
 func _ready() -> void:
 	apply_settings()
@@ -23,19 +33,21 @@ func apply_settings():
 		var screen_size = DisplayServer.screen_get_size()
 		get_window().position = (screen_size - get_window().size) / 2.0
 
-func start_solo_game(target_scene : PackedScene, transition : BaseTransition = InstantTransition.new(),):
+func start_solo_game(target_scene : Variant, solo_settings : SoloSettings, transition : BaseTransition = InstantTransition.new(),):
 	if SceneManager.is_transitioning:
 		push_warning("cannot start_versus_game, the scene is already transitionning")
 		return
-	pending_config = null # On consume config
+	pending_config = solo_settings
 	rule_set = SoloRuleSet.new()
+	current_gamemode = EGameMode.Solo
 	SceneManager.change_scene(target_scene, transition)
 
-func start_versus_game(target_scene : PackedScene, lobby_setting : VersusLobbySettings, transition : BaseTransition = InstantTransition.new(),):
+func start_versus_game(target_scene : Variant, lobby_settings : VersusSettings, transition : BaseTransition = InstantTransition.new(),):
 	if SceneManager.is_transitioning:
 		push_warning("cannot start_versus_game, the scene is already transitionning")
 		return
-	pending_config = lobby_setting
+	pending_config = lobby_settings
+	current_gamemode = EGameMode.Versus
 	rule_set = VersusRuleSet.new()
 	SceneManager.change_scene(target_scene, transition)
 

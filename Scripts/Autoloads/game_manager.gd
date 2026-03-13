@@ -10,8 +10,18 @@ var entry_scene : PackedScene = load("res://Prefabs/Views/main_menu.tscn")
 
 var pending_config : Variant
 
-#func _ready() -> void:
-	#SceneManager.change_scene(entry_scene)
+func _ready() -> void:
+	init_game()
+
+func init_game():
+	Settings.load_settings()
+	DisplayServer.window_set_mode(Settings.get_setting("fullscreen"))
+	get_window().size = Settings.get_setting("resolution")
+	if Settings.get_setting("fullscreen") == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		get_window().content_scale_size = get_window().size
+	else:
+		var screen_size = DisplayServer.screen_get_size()
+		get_window().position = (screen_size - get_window().size) / 2
 
 func start_solo_game(target_scene : PackedScene, transition : BaseTransition = InstantTransition.new(),):
 	if SceneManager.is_transitioning:

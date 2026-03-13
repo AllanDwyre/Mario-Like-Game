@@ -1,5 +1,5 @@
 extends Node
-# Settings.gd
+# --- Autoload - Settings.gd ---
 
 const SAVE_PATH = "user://settings.cfg"
 var config := ConfigFile.new()
@@ -10,6 +10,7 @@ var default_settings := {
 	"volume_music": 1.0,
 	"volume_sfx": 1.0,
 	"fullscreen": false,
+	"resolution": Vector2i(1152, 648),
 	"controller_vibrations": true,
 	"screen_shake": true,
 	"language": "en",

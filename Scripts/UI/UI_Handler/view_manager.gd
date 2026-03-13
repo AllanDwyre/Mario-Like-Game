@@ -1,58 +1,53 @@
 extends Node
+# Autoload : ViewManager
 
-var is_transitioning: bool = false
-var history: Array[View] = []
+const DEFAULT_CONTEXT = &"main"
+var contexts: Dictionary = {}  # "player_1" -> ViewContext, etc.
 
-var active_view : View:
-	get: return null if history.is_empty() else history.back()
+func _ready() -> void:
+	var default_ctx = ViewContext.new()
+	add_child(default_ctx)
+	register_context(DEFAULT_CONTEXT, default_ctx)
 
-#NOTE : isn't used. But if something weird happen during calls, it will be the solution
-#NOTE : Why dont use it now ? KISS (Keep it simple stupid.) I want to see beautiful code note safe guard everywhere
-func _safe_guard(callback : Callable):
-	if is_transitioning:
-		return
-	is_transitioning = true
-	callback.call()
-	await get_tree().create_timer(0.1).timeout
-	is_transitioning = false
+func register_context(id: StringName, ctx: ViewContext) -> void:
+	if not ctx.get_parent():
+		push_warning("ViewContext '%s' has no parent, adding to ViewManager by default" % id)
+		add_child(ctx)
+	contexts[id] = ctx
 
-func _add(v : View):
-	add_child(v)
-	v.show_view()
-	history.push_back(v)
+func unregister_context_by_value(ctx: ViewContext) -> void:
+	for id in contexts:
+		if contexts[id] == ctx:
+			contexts.erase(id)
+			return
 
-func push(v : View, hide : bool = true):
-	if active_view and  v == active_view:
-		push_warning("Tried to push the same view as the active one")
-		return
-	
-	if hide and active_view:
-		active_view.hide_view()
-	_add(v)
+func get_context(id: StringName) -> ViewContext:
+	return contexts.get(id)
 
-func replace_with(v : View):
-	pop()
-	_add(v)
+func push(v: View, contextName : StringName = DEFAULT_CONTEXT, hide: bool = true) -> void:
+	if contextName == DEFAULT_CONTEXT and hide:
+		_hide_alternative_contexts()
+	get_context(contextName).push(v, hide)
 
-func pop():
-	if history.is_empty(): 
-		push_warning("Cannot pop no view to be removed")
-		return
-	var toRemoved = active_view
-	history.pop_back()
-	toRemoved.destroy_view()
-	# Après suprimer la vue, on reaffiche celle d'avant
-	if active_view:
-		active_view.show_view()
+func pop(contextName : StringName = DEFAULT_CONTEXT) -> void:
+	var ctx = get_context(contextName)
+	ctx.pop()
+	if contextName == DEFAULT_CONTEXT and not ctx.active_view:
+		_show_alternative_contexts()
 
-func pop_until(target : View):
-	if not history.has(target):
-		push_warning("Cannot pop_until target, target doesnt exist")
-		return
-	
-	while active_view != target:
-		pop()
+func clear_history(contextName : StringName = DEFAULT_CONTEXT) -> void:
+	get_context(contextName).clear_history()
 
-func clear_history():
-	while history.size() > 1:
-		pop()
+func _hide_alternative_contexts() -> void:
+	for id in contexts:
+		if id == DEFAULT_CONTEXT:
+			continue
+		if contexts[id].active_view:
+			contexts[id].active_view.hide_view()
+
+func _show_alternative_contexts() -> void:
+	for id in contexts:
+		if id == DEFAULT_CONTEXT:
+			continue
+		if contexts[id].active_view:
+			contexts[id].active_view.show_view()

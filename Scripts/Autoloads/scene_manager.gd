@@ -22,6 +22,7 @@ func change_scene(path : Variant, transition: BaseTransition = InstantTransition
 		path = path.resource_path
 	get_tree().change_scene_to_file(path)
 	await get_tree().process_frame
+	ViewManager.clear_history()
 	
 	transition.play_in()
 	await transition.finished

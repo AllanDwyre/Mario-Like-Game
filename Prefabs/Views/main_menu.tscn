@@ -6,28 +6,30 @@
 [ext_resource type="PackedScene" uid="uid://7axn47r7bt5m" path="res://Prefabs/Views/versus_lobby_view.tscn" id="2_ne242"]
 [ext_resource type="PackedScene" uid="uid://bu5m7g5rru35s" path="res://Prefabs/Views/setting_view.tscn" id="3_qnxn7"]
 [ext_resource type="AudioStream" uid="uid://5d6ytbsgo50v" path="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/01 Title Screen.mp3" id="4_f4nme"]
+[ext_resource type="Material" uid="uid://cdaao4txa27q7" path="res://Arts/Shaders/scrolling_background.tres" id="6_aq5bi"]
 
-[sub_resource type="Gradient" id="Gradient_f4nme"]
-interpolation_color_space = 1
-colors = PackedColorArray(2.4065375e-07, 0.62615156, 0.505012, 1, 0.14947498, 0.42229372, 0.3392591, 1)
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_aq5bi"]
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_dm0fm"]
-gradient = SubResource("Gradient_f4nme")
-
-[node name="MainMenu" type="CanvasLayer" unique_id=481017306]
+[node name="MainMenu" type="CanvasLayer" unique_id=481017306 node_paths=PackedStringArray("first_focus")]
 script = ExtResource("1_qnxn7")
+first_focus = NodePath("MarginContainer/VSplitContainer/CenterContainer/VBoxContainer/StoryPlayButton")
 solo_scene = ExtResource("2_dm0fm")
 versus_scene = ExtResource("2_ne242")
 setting_scene = ExtResource("3_qnxn7")
 main_menu_music = ExtResource("4_f4nme")
 
-[node name="Background" type="TextureRect" parent="." unique_id=1981180830]
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1904150818]
+texture_repeat = 2
+material = ExtResource("6_aq5bi")
+use_parent_material = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -3.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("GradientTexture1D_dm0fm")
+texture = SubResource("PlaceholderTexture2D_aq5bi")
 
 [node name="Waves" type="Control" parent="." unique_id=770593079]
 layout_mode = 3
@@ -86,7 +88,7 @@ layout_mode = 2
 theme = ExtResource("1_ne242")
 theme_type_variation = &"Display"
 theme_override_font_sizes/font_size = 64
-text = "Kenobi"
+text = "Shinobi"
 horizontal_alignment = 1
 
 [node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VSplitContainer" unique_id=182017043]
@@ -100,22 +102,37 @@ theme_override_constants/separation = 16
 
 [node name="StoryPlayButton" type="Button" parent="MarginContainer/VSplitContainer/CenterContainer/VBoxContainer" unique_id=606843029]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Quit")
+focus_neighbor_bottom = NodePath("../VersusPlayButton")
 focus_next = NodePath("../VersusPlayButton")
+focus_previous = NodePath("../Quit")
 theme = ExtResource("1_ne242")
 text = "Story"
 
 [node name="VersusPlayButton" type="Button" parent="MarginContainer/VSplitContainer/CenterContainer/VBoxContainer" unique_id=170690580]
 layout_mode = 2
+focus_neighbor_top = NodePath("../StoryPlayButton")
+focus_neighbor_bottom = NodePath("../Settings")
+focus_next = NodePath("../Settings")
+focus_previous = NodePath("../StoryPlayButton")
 theme = ExtResource("1_ne242")
 text = "Versus"
 
 [node name="Settings" type="Button" parent="MarginContainer/VSplitContainer/CenterContainer/VBoxContainer" unique_id=913839931]
 layout_mode = 2
+focus_neighbor_top = NodePath("../VersusPlayButton")
+focus_neighbor_bottom = NodePath("../Quit")
+focus_next = NodePath("../Quit")
+focus_previous = NodePath("../VersusPlayButton")
 theme = ExtResource("1_ne242")
 text = "Settings"
 
 [node name="Quit" type="Button" parent="MarginContainer/VSplitContainer/CenterContainer/VBoxContainer" unique_id=649153621]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Settings")
+focus_neighbor_bottom = NodePath("../StoryPlayButton")
+focus_next = NodePath("../StoryPlayButton")
+focus_previous = NodePath("../Settings")
 theme = ExtResource("1_ne242")
 text = "Quit"
 

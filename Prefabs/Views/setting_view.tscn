@@ -5,11 +5,13 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xwx14"]
 
-[node name="SettingView" type="CanvasLayer" unique_id=1489750429 node_paths=PackedStringArray("music_slider", "sfx_slider", "controller_vibrations")]
+[node name="SettingView" type="CanvasLayer" unique_id=1489750429 node_paths=PackedStringArray("music_slider", "sfx_slider", "controller_vibrations", "fullscreen_toggle", "resolution_btn")]
 script = ExtResource("1_g2ek3")
 music_slider = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicSlider")
 sfx_slider = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/SoundEffectSlider")
-controller_vibrations = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer/CheckButton")
+controller_vibrations = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CheckButton")
+fullscreen_toggle = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/FullscreenButton")
+resolution_btn = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ResolutionButton")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=603439899]
 anchors_preset = 15
@@ -53,13 +55,18 @@ max_value = 1.0
 step = 0.005
 value = 0.6
 
-[node name="HSplitContainer" type="HSplitContainer" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1110884585]
-layout_mode = 2
-
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer" unique_id=1544536982]
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1544536982]
 layout_mode = 2
 size_flags_horizontal = 0
 text = "Controllers vibrations"
+
+[node name="FullscreenButton" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1451883752]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Fullscreen"
+
+[node name="ResolutionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1829904510]
+layout_mode = 2
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1850789356]
 layout_mode = 2
@@ -76,5 +83,7 @@ text = "Retour"
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/SoundEffectSlider" to="." method="_on_sound_effect_slider_value_changed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HSplitContainer/CheckButton" to="." method="_on_controller_vibrations_button_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CheckButton" to="." method="_on_controller_vibrations_button_toggled"]
+[connection signal="toggled" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
+[connection signal="item_selected" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ResolutionButton" to="." method="_on_resolution_button_item_selected"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/BackButton" to="." method="_on_back_button_pressed"]

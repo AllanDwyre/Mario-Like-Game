@@ -1,15 +1,19 @@
 class_name MainMenuView
 extends View
 
+@export var first_focus : Control
 @export var solo_scene : PackedScene
 @export var versus_scene : PackedScene
 @export var setting_scene : PackedScene
 @export var main_menu_music : AudioStream
 
 func _ready() -> void:
-	# Je sais pas si c'est sale
 	ViewManager.history.append(self)
 	SoundManager.play_music(main_menu_music)
+
+func show_view():
+	super()
+	first_focus.grab_focus()
 
 func _on_story_play_button_pressed() -> void:
 	GameManager.start_solo_game(solo_scene, InstantTransition.new())

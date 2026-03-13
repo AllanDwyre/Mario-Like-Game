@@ -44,6 +44,7 @@ animation = &"shell"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=88045520]
 position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_63e3i")
+debug_color = Color(0.82805866, 0.32634804, 0.6401197, 0.41960785)
 
 [node name="ResetShapeTimer" type="Timer" parent="." unique_id=1752235328]
 wait_time = 6.0

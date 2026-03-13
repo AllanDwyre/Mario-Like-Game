@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://cdaao4txa27q7"]
+
+[ext_resource type="Shader" uid="uid://5qj2pbuvfa8a" path="res://Arts/Shaders/scrolling_background.gdshader" id="1_tt5e7"]
+[ext_resource type="Texture2D" uid="uid://7crdyudv0qyw" path="res://icon.svg" id="2_102si"]
+
+[resource]
+shader = ExtResource("1_tt5e7")
+shader_parameter/time_speed = 0.50000002049012
+shader_parameter/pattern = ExtResource("2_102si")
+shader_parameter/tilling = 1.0

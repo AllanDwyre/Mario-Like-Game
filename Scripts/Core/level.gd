@@ -1,10 +1,15 @@
-extends Node	
+extends Node
 class_name Level
+
+static var _rule_set: RuleSet
+static func get_rule_set():
+	if _rule_set == null:
+		_rule_set = GameManager.rule_set
+	return _rule_set
 
 @export var background_color: Color = Color.SKY_BLUE
 @export var level_music : AudioStream
 @export var spawns : Array[Marker2D]
-
 const POINT_LABEL = preload("res://Prefabs/score_label.tscn")
 
 var timer : SceneTreeTimer
@@ -27,6 +32,7 @@ func setup_player():
 func _exit_tree() -> void:
 	GameSignals.coin_collected.disconnect(add_coins)
 	GameSignals.add_score.disconnect(instanciate_points)
+	_rule_set = null
 
 func add_coins():
 	coins += 1

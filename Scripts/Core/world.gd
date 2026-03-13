@@ -25,7 +25,6 @@ func instanciate_level() -> void:
 
 func _on_star_took(player_id : int):
 	print("player %d took the star !!!" %player_id)
-	
 
 func get_config():
 	config = GameManager.consume_config()

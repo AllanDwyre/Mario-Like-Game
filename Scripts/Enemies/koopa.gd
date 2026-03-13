@@ -1,4 +1,5 @@
 extends EnemyBase
+class_name Koopa
 
 @export var shell_speed : float = 80.0 
 
@@ -22,6 +23,7 @@ func _ready() -> void:
 	walk_speed = speed
 	go_to_wondering_state()
 	reset_state_timer.timeout.connect(go_to_wondering_state)
+	
 
 func _change_direction() -> void:
 	super()
@@ -67,7 +69,7 @@ func go_to_wondering_state():
 	direction = [-1,1].pick_random()
 	_change_direction()
 	anim.play("walk")
-	
+
 func go_to_shell_state(from : Node2D):
 	if from is Player:
 		from.movement.ForceJump()
@@ -83,7 +85,6 @@ func go_to_moving_shell_state(from : Node2D):
 	speed = shell_speed
 	state = KoopaState.Moving_shell
 	direction = sign(global_position.x - from.global_position.x)
-
 
 func kill():
 	get_node("CollisionShape2D").call_deferred("disabled", true)

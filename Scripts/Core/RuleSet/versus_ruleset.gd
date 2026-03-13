@@ -1,0 +1,2 @@
+extends RuleSet
+class_name VersusRuleSet

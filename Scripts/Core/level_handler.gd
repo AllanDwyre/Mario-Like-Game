@@ -93,7 +93,7 @@ func setup_all_stars():
 		var star = star_scn.instantiate() as Starman
 		star.star_tooked.connect(on_star_took, CONNECT_ONE_SHOT)
 		star.global_position = star_spawn.global_position
-		add_child.call_deferred(star)
+		$WorldSubViewport.add_child.call_deferred(star)
 
 func setup_one_star():
 	var stars_spawns = level.stars_spawns
@@ -108,7 +108,7 @@ func setup_one_star():
 	var star = star_scn.instantiate() as Starman
 	star.star_tooked.connect(on_star_took, CONNECT_ONE_SHOT)
 	star.global_position = star_pos
-	add_child.call_deferred(star)
+	$WorldSubViewport.add_child.call_deferred(star)
 
 func on_star_took(player_id : int):
 	GameManager.rule_set.on_star_collected(player_id, self)

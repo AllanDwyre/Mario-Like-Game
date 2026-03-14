@@ -12,9 +12,7 @@ func init_level_handler(levelHandler: LevelHandler) -> void:
 	levelHandler.wrap_handler.setup(level.map_info, level.wrap_margin)
 
 func on_player_die(player : Player, levelHandler : LevelHandler):
-#	TODO : respawn
 	levelHandler.respawn(player)
-	pass
 
 func on_enemy_die(enemy : EnemyBase):
 #	TODO : hide et attend on_star_collected

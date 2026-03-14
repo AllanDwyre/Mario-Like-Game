@@ -1,5 +1,5 @@
 extends Node
-
+# --- Autoloads : PlayerManager ---
 const MAX_PLAYERS := 2
 const IS_KEYBOARD_ELIGIBLE = false
 var connected_players: Dictionary[int, PlayerInfo] = {}
@@ -61,6 +61,7 @@ func _join_player(device_id: int) -> void:
 	print("[PlayerManager] Player %d joined (device %d)" % [device_id, device_id])
 	player_joined.emit(device_id, connected_players[device_id])
 
+# -------------------------------------------------
 #region Helpers
 func get_all_player_info() -> Array[PlayerInfo]:
 	return connected_players.values()
@@ -68,12 +69,16 @@ func get_all_player_info() -> Array[PlayerInfo]:
 func get_player_info(player_id: int) -> PlayerInfo:
 	return connected_players.get(player_id, null)
 
+func get_all_player_ids() -> Array[int]:
+	return connected_players.keys()
+
 func get_player_count() -> int:
 	return connected_players.size()
 
 func is_full() -> bool:
 	return connected_players.size() >= MAX_PLAYERS
 
+# -------------------------------------------------
 func _get_device_from_event(event: InputEvent) -> int:
 	# Keyboard: device -1 (player 0 only)
 	if event is InputEventKey and event.pressed and not event.echo:

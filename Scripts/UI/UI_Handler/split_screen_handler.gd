@@ -1,56 +1,35 @@
+class_name SplitScreenHandler
 extends Node
 
-const PlayerPrefab : PackedScene = preload("res://Prefabs/player.tscn")
+@onready var grid_container : GridContainer = $GridContainer
 @export var world_viewport : SubViewport 
-@export var level_handler : LevelHandler 
-@export var split_strategy : ESplitStrategy = ESplitStrategy.HorizontalSplit
 
-var split_container : SplitContainer
+var _player_viewports : Dictionary[int, SubViewport] = {}
 
 # -------------------------------------------------
-
-enum ESplitStrategy {
-	VerticalSplit,
-	HorizontalSplit,
-}
-# -------------------------------------------------
-
 func _ready() -> void:
-	if level_handler == null:
-		printerr("Level is null, SplitScreenHandler is freed")
-		queue_free()
-	
-	if not level_handler.is_node_ready():
-		await level_handler.ready
-	
 	if world_viewport == null:
 		printerr("WorldViewport is null, SplitScreenHandler is freed")
 		queue_free()
-		
-	setup_split_container()
-	setup_viewports()
+
+# -------------------------------------------------
+
+func get_player_viewport(player_id: int) -> SubViewport:
+	return _player_viewports.get(player_id, null)
+
+# -------------------------------------------------
+func create_viewport_for(player_id :int) -> SubViewport:
+	if _player_viewports.has(player_id):
+		push_warning("Try to create a viewport for a player with already a viewport")
+		return null
 	
-	#temporary, (remove when will have a lobby screen)
-	PlayerManager.player_joined.connect(func(_device_id: int, _player_info: PlayerInfo) : setup_viewports())
-	PlayerManager.player_left.connect(func(_device_id: int) : setup_viewports())
-
-# -------------------------------------------------
-
-func setup_viewports() -> void:
-	_clear_viewports()
-	for i in range(PlayerManager.get_player_count()):
-		var viewport = _create_viewport(i)
-		spawn_player(viewport, i)
-		level_handler.spawn_seamless_worldedge(viewport)
-
-# -------------------------------------------------
-func _create_viewport(viewport_id :int) -> SubViewport:
 	# --- ViewportContainer ---
 	var viewport_container : SubViewportContainer = SubViewportContainer.new()
+	viewport_container.name = "viewport_container_P%d" %player_id
 	viewport_container.size_flags_vertical = Control.SIZE_EXPAND_FILL
 	viewport_container.size_flags_horizontal = Control.SIZE_EXPAND_FILL
-	viewport_container.name = "viewport_container_P%d" %viewport_id
 	viewport_container.stretch = true
+	
 	# --- Viewport ---
 	var viewport : SubViewport = SubViewport.new()
 	viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
@@ -59,37 +38,30 @@ func _create_viewport(viewport_id :int) -> SubViewport:
 
 	viewport.disable_3d = true
 	viewport.world_2d = world_viewport.world_2d
-	viewport.name = "Viewport_P%d" %viewport_id
+	viewport.name = "Viewport_P%d" %player_id
 	# --- Add to scene ---
-	split_container.add_child(viewport_container)
 	viewport_container.add_child(viewport)
+	grid_container.add_child(viewport_container)
+	
+	_player_viewports[player_id] = viewport
+	_update_grid_columns()
+	
 	return viewport
 
-func _clear_viewports():
-	for c in split_container.get_children():
-		c.queue_free() 
-
-# -------------------------------------------------
-
-func spawn_player(viewport : SubViewport, player_id) -> void:
-	var player_info : PlayerInfo = PlayerManager.get_player_info(player_id)
-	var player_instance : Player = PlayerPrefab.instantiate()
-	player_instance.name += "_P%d" %player_id
-	# --- Add to the scene to be ready ---
-	viewport.add_child(player_instance)
-	# --- after being ready we can setup it without null value ---
-	player_instance.setup_player(player_info)
-	player_instance.global_position = level_handler.get_spawn_position(player_id)
-
-# -------------------------------------------------
-
-func setup_split_container() -> void:
-	match split_strategy:
-		ESplitStrategy.VerticalSplit:
-			split_container = VSplitContainer.new()
-		ESplitStrategy.HorizontalSplit:
-			split_container = HSplitContainer.new()
+func remove_viewport_for(player_id: int) -> void:
+	if not _player_viewports.has(player_id):
+		push_warning("Try to remove viewport for a player that doesnt have a viewport")
+		return
 	
-	split_container.set_anchors_preset(Control.PRESET_FULL_RECT)
-	split_container.set_deferred("size", get_viewport().get_visible_rect().size)
-	add_child(split_container)
+	_player_viewports[player_id].get_parent().queue_free()
+	_player_viewports.erase(player_id)
+	_update_grid_columns()
+
+# -------------------------------------------------
+
+func _update_grid_columns() -> void:
+	match _player_viewports.size():
+		1:    grid_container.columns = 1
+		2:    grid_container.columns = 1
+		3, 4: grid_container.columns = 2
+		_:    grid_container.columns = 3

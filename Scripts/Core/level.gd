@@ -3,6 +3,7 @@ class_name Level
 
 static var _current : Level
 static func get_current_level(): return _current
+# -------------------------------------------------
 
 @export_category("Spawners")
 @export var player_spawns_root : Node
@@ -15,9 +16,11 @@ static func get_current_level(): return _current
 @export_category("Environnement")
 @export var background_color: Color = Color.SKY_BLUE
 @export var level_music : AudioStream
+# -------------------------------------------------
 
 var player_spawns : Array[Marker2D]
 var stars_spawns : Array[Marker2D]
+# -------------------------------------------------
 
 var map_info = {
 	"height" : 0,
@@ -25,12 +28,18 @@ var map_info = {
 	"start_pos" : Vector2.ZERO,
 	"end_pos" : Vector2.ZERO,
 }
+# -------------------------------------------------
 
 func _ready() -> void:
 	_current = self
 	player_spawns = _collect_markers(player_spawns_root)
 	stars_spawns = _collect_markers(stars_spawns_root)
 	setup_map_info()
+
+func _exit_tree() -> void:
+	_current = null
+	
+# -------------------------------------------------
 
 func _collect_markers(root: Node) -> Array[Marker2D]:
 	var result : Array[Marker2D] = []
@@ -41,6 +50,7 @@ func _collect_markers(root: Node) -> Array[Marker2D]:
 		if child is Marker2D:
 			result.append(child)
 	return result
+# -------------------------------------------------
 
 func setup_map_info():
 	var rect: Rect2i = level_tilemap.get_used_rect()
@@ -55,6 +65,3 @@ func setup_map_info():
 	var half_tile = Vector2(tile_size) / 2.0
 	map_info["start_pos"] = tile_origin - half_tile
 	map_info["end_pos"] = map_info["start_pos"] + Vector2(map_info["width"], map_info["height"])
-
-func _exit_tree() -> void:
-	_current = null

@@ -5,37 +5,56 @@
 [ext_resource type="Script" uid="uid://dmx6k2raoc2ne" path="res://Scripts/UI/UI_Handler/split_screen_handler.gd" id="3_t3dhp"]
 [ext_resource type="Script" uid="uid://bfix42uqmk4wx" path="res://Scripts/Core/wrap_viewport_handler.gd" id="4_pekhv"]
 
-[node name="LevelHandler" type="Node2D" unique_id=305324111 node_paths=PackedStringArray("wrap_handler")]
+[node name="LevelHandler" type="Node" unique_id=1349000792 node_paths=PackedStringArray("split_screen_handler", "wrap_handler")]
 script = ExtResource("1_mq6nj")
 debug_level = ExtResource("2_hy7hh")
-wrap_handler = NodePath("WorldWrapViewports")
+split_screen_handler = NodePath("SplitScreen")
+wrap_handler = NodePath("WrapHandler")
 
 [node name="WorldSubViewport" type="SubViewport" parent="." unique_id=796746032]
 disable_3d = true
 
-[node name="SplitScreen" type="Node2D" parent="." unique_id=1486889264 node_paths=PackedStringArray("world_viewport", "level_handler")]
+[node name="SplitScreen" type="Node" parent="." unique_id=177274186 node_paths=PackedStringArray("world_viewport")]
 script = ExtResource("3_t3dhp")
 world_viewport = NodePath("../WorldSubViewport")
-level_handler = NodePath("..")
-split_strategy = 0
 
-[node name="WorldWrapViewports" type="Node2D" parent="." unique_id=1309146984 node_paths=PackedStringArray("world_viewport")]
+[node name="ColorRect" type="ColorRect" parent="SplitScreen" unique_id=388549933]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="GridContainer" type="GridContainer" parent="SplitScreen" unique_id=1166894009]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 6
+theme_override_constants/v_separation = 6
+columns = 2
+
+[node name="WrapHandler" type="Node" parent="." unique_id=1806365489 node_paths=PackedStringArray("world_viewport")]
 script = ExtResource("4_pekhv")
 world_viewport = NodePath("../WorldSubViewport")
 
-[node name="RightSubViewport" type="SubViewport" parent="WorldWrapViewports" unique_id=1516871364]
+[node name="RightSubViewport" type="SubViewport" parent="WrapHandler" unique_id=1516871364]
 disable_3d = true
 handle_input_locally = false
 anisotropic_filtering_level = 0
 render_target_update_mode = 4
 
-[node name="Camera2D" type="Camera2D" parent="WorldWrapViewports/RightSubViewport" unique_id=657492736]
+[node name="Camera2D" type="Camera2D" parent="WrapHandler/RightSubViewport" unique_id=657492736]
 limit_enabled = false
 
-[node name="LeftSubViewport" type="SubViewport" parent="WorldWrapViewports" unique_id=2011286984]
+[node name="LeftSubViewport" type="SubViewport" parent="WrapHandler" unique_id=2011286984]
 disable_3d = true
 handle_input_locally = false
 anisotropic_filtering_level = 0
 render_target_update_mode = 4
 
-[node name="Camera2D" type="Camera2D" parent="WorldWrapViewports/LeftSubViewport" unique_id=1683696426]
+[node name="Camera2D" type="Camera2D" parent="WrapHandler/LeftSubViewport" unique_id=1683696426]

@@ -161,6 +161,6 @@ func kill() -> void :
 	tween.tween_property(self, "global_position:y", 64, 1)
 	
 	await tween.finished
-	GameSignals.player_died.emit()
+	GameSignals.player_died.emit(self)
 	
 #endregion

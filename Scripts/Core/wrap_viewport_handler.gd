@@ -27,14 +27,14 @@ func setup(map_info_ : Dictionary, wrap_margin_ : int):
 	print("[WrapViewportHandler] All Setup")
 	
 func generate_viewers(node : Node):
-	var viewer_left = Sprite2D.new()
-	var viewer_right = Sprite2D.new()
-	
 	var map_center_y = map_info["start_pos"].y + map_info["height"] / 2.0
-	viewer_left.global_position = Vector2(map_info["start_pos"].x - margin_px / 2.0, map_center_y)
-	viewer_right.global_position = Vector2(map_info["end_pos"].x + margin_px / 2.0, map_center_y)
 	
+	var viewer_left = Sprite2D.new()
+	viewer_left.global_position = Vector2(map_info["start_pos"].x - margin_px / 2.0, map_center_y)
 	viewer_left.texture = viewport_left.get_texture()
+	
+	var viewer_right = Sprite2D.new()
+	viewer_right.global_position = Vector2(map_info["end_pos"].x + margin_px / 2.0, map_center_y)
 	viewer_right.texture = viewport_right.get_texture()
 	
 	node.add_child(viewer_left)

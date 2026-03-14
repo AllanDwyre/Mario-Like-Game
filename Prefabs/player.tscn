@@ -140,7 +140,6 @@ shape = SubResource("RectangleShape2D_4sr14")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1199989759 node_paths=PackedStringArray("player")]
 zoom = Vector2(2.5, 2.5)
-limit_left = -256
 limit_bottom = 32
 position_smoothing_speed = 10.0
 drag_vertical_enabled = true

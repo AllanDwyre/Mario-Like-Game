@@ -153,6 +153,10 @@ func _spawn_player(viewport : SubViewport, player_id) -> void:
 	# --- after being ready we can setup it without null value ---
 	player_instance.setup_player(player_info)
 	player_instance.global_position = _get_spawn_position(player_id)
+	if GameManager.current_gamemode == GameManager.EGameMode.Solo:
+		var cam : Camera2D = player_instance.get_node("Camera2D")
+		cam.limit_left = level.map_info["start_pos"]
+		cam.limit_right= level.map_info["end_pos"]
 
 func _get_spawn_position(player_id : int) -> Vector2:
 	if level.player_spawns.size() < player_id:

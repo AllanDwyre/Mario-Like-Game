@@ -25,7 +25,6 @@ func handle_teleportation():
 	var distance = flat_cam_pos.distance_to(player.global_position)
 	if distance < snap_distance:
 		return
-	
 	print("[CameraPlayer] Player wrap teleported")
 	reset_smoothing()
 	force_update_scroll()

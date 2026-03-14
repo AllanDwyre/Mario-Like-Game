@@ -4,6 +4,8 @@ class_name RuleSet
 
 # ALL Events rules
 
+var player_damage_player : bool
+ 
 @abstract
 func init_level_handler(levelHandler: LevelHandler) -> void
 

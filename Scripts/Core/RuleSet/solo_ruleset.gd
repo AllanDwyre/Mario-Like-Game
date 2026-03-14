@@ -1,6 +1,9 @@
 extends RuleSet
 class_name SoloRuleSet
 
+func _init() -> void:
+	player_damage_player = false
+	
 func init_level_handler(levelHandler: LevelHandler) -> void:
 	assert(levelHandler.config is SoloSettings)
 	levelHandler.instanciate_level()

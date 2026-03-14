@@ -4,9 +4,8 @@ class_name PlayerInfo
 var device_id = -1
 var _allow_all_device = false
 var _player_color : Color
-# TODO : add player name, appareances, (?current_win_streak)
+# TODO : add player name, appareances, (?current_win_streak), player solo life left
 signal player_leaved
-
 
 
 func _init(device_id_ : int, allow_all_device_ = false) -> void:
@@ -14,7 +13,6 @@ func _init(device_id_ : int, allow_all_device_ = false) -> void:
 	_allow_all_device = allow_all_device_
 	set_player_color(Color.WHITE) # by default all white
 	
-
 func on_leave():
 	player_leaved.emit()
 

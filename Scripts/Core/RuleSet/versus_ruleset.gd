@@ -1,6 +1,9 @@
 extends RuleSet
 class_name VersusRuleSet
 
+func _init() -> void:
+	player_damage_player = true
+
 func init_level_handler(levelHandler: LevelHandler) -> void:
 	assert(levelHandler.config is VersusSettings)
 	var config = levelHandler.config

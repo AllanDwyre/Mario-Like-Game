@@ -47,10 +47,12 @@ func _handle_run(event: InputEvent) -> void:
 		player_context.run_pressed = false
 
 func _handle_direction(event: InputEvent) -> void:
-	if event.is_action_pressed("left"):
+	if not (event.is_action("left") or event.is_action("right")):
+		return  # On ignore les événements non liés
+
+	if Input.is_action_pressed("left"):
 		player_context.direction = -1.0
-	elif event.is_action_pressed("right"):
+	elif Input.is_action_pressed("right"):
 		player_context.direction = 1.0
-	
-	elif not Input.is_action_pressed("left") and not Input.is_action_pressed("right"):
+	else:
 		player_context.direction = 0.0

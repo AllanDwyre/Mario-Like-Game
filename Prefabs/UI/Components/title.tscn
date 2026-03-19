@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://deu8k1pnqqjx3"]
+
+[ext_resource type="Theme" uid="uid://dpv0ah3n52fbe" path="res://Preset/mario_theme.tres" id="1_easa7"]
+
+[node name="TitleContainerMargin" type="MarginContainer" unique_id=687155854]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 103.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 30
+
+[node name="Title" type="Label" parent="." unique_id=2072422795]
+layout_mode = 2
+size_flags_vertical = 0
+theme = ExtResource("1_easa7")
+theme_type_variation = &"Display"
+text = "Versus Settings"
+horizontal_alignment = 1
+vertical_alignment = 1

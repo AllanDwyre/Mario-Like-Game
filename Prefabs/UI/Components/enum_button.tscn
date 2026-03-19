@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://c0d2jjv6j6f5d"]
+
+[ext_resource type="Script" uid="uid://5cppwexejcai" path="res://Scripts/UI/Components/enum_button.gd" id="1_4srma"]
+
+[node name="EnumButton" type="HBoxContainer" unique_id=935061389]
+offset_right = 392.0
+offset_bottom = 30.0
+focus_mode = 2
+theme_override_constants/separation = 50
+script = ExtResource("1_4srma")
+
+[node name="Label" type="Label" parent="." unique_id=1810778751]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 30)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+text = "Label"
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1154740363]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
+theme_override_constants/separation = 20
+
+[node name="Left" type="Button" parent="HBoxContainer" unique_id=1972271439]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+text = "<"
+flat = true
+
+[node name="Value" type="Label" parent="HBoxContainer" unique_id=2042127534]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "-"
+horizontal_alignment = 1
+
+[node name="Right" type="Button" parent="HBoxContainer" unique_id=1549012047]
+unique_name_in_owner = true
+layout_mode = 2
+focus_mode = 0
+text = ">"
+flat = true

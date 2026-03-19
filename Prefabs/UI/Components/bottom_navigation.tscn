@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://b4jgy7te7ssnc"]
+
+[ext_resource type="Script" uid="uid://choywt1yqa78f" path="res://Scripts/UI/Components/bottom_navigation.gd" id="1_0rv6k"]
+[ext_resource type="Theme" uid="uid://dpv0ah3n52fbe" path="res://Preset/mario_theme.tres" id="1_yamd0"]
+
+[sub_resource type="InputEventJoypadButton" id="InputEventJoypadButton_0rv6k"]
+device = -1
+button_index = 1
+
+[sub_resource type="InputEventKey" id="InputEventKey_0rv6k"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_nvfn3"]
+events = [SubResource("InputEventJoypadButton_0rv6k"), SubResource("InputEventKey_0rv6k")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_nvfn3"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_w5na0"]
+events = [SubResource("InputEventKey_nvfn3")]
+
+[node name="BottomNavigation" type="MarginContainer" unique_id=519169999]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -28.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_behavior_recursive = 2
+theme_override_constants/margin_bottom = 20
+script = ExtResource("1_0rv6k")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1966524120]
+layout_mode = 2
+size_flags_vertical = 10
+theme = ExtResource("1_yamd0")
+theme_override_constants/separation = 60
+alignment = 1
+
+[node name="BackButton" type="Button" parent="HBoxContainer" unique_id=856230670]
+unique_name_in_owner = true
+layout_mode = 2
+focus_next = NodePath("../NextButton")
+theme = ExtResource("1_yamd0")
+theme_type_variation = &"FlatButton"
+shortcut = SubResource("Shortcut_nvfn3")
+text = "Back"
+flat = true
+
+[node name="NextButton" type="Button" parent="HBoxContainer" unique_id=1565116263]
+unique_name_in_owner = true
+layout_mode = 2
+focus_previous = NodePath("../BackButton")
+theme = ExtResource("1_yamd0")
+theme_type_variation = &"FlatButton"
+shortcut = SubResource("Shortcut_w5na0")
+text = "Next"
+flat = true

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cy42ser7kt5uk"]
 
 [ext_resource type="Script" uid="uid://bjja4nssq5x12" path="res://Scripts/UI/View/versus_map_choice_view.gd" id="1_axdcr"]
-[ext_resource type="Theme" uid="uid://dpv0ah3n52fbe" path="res://Arts/Themes/mario_theme.tres" id="1_k5ov6"]
+[ext_resource type="Theme" uid="uid://dpv0ah3n52fbe" path="res://Preset/mario_theme.tres" id="1_k5ov6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_axdcr"]
 content_margin_top = 30.0

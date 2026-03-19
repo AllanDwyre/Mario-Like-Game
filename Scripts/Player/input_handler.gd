@@ -25,34 +25,21 @@ func enable(active : bool) -> void:
 func _input(event: InputEvent) -> void:
 	if not player_context:
 		return
-	
-	if not info.get_autorisation_from_device(event.device):
+	# --- on normalise pour avoir un index de keyboard toujours différent par rapport au manette et
+	var normalised_device = -1 if event is InputEventKey else event.device
+	if not info.refresh_device(normalised_device):
+		return
+	_handle_jump(event)
+
+func _physics_process(_delta: float) -> void:
+	if not info.is_device_valid():
 		return
 	
-	_handle_jump(event)
-	_handle_run(event)
-	_handle_direction(event)
-
+	player_context.run_pressed = MultiplayerInput.is_action_pressed(info.last_used_device, "run")
+	player_context.direction = MultiplayerInput.get_axis(info.last_used_device, "left", "right")
 
 func _handle_jump(event: InputEvent) -> void:
 	if event.is_action_pressed("jump"):
 		player_context.jump_pressed = true
 		player_context.buffered_timer = player_context.player.movement.jump_buffer_duration
 	player_context.jump_released = event.is_action_released("jump")
-
-func _handle_run(event: InputEvent) -> void:
-	if event.is_action_pressed("run"):
-		player_context.run_pressed = true
-	elif event.is_action_released("run"):
-		player_context.run_pressed = false
-
-func _handle_direction(event: InputEvent) -> void:
-	if not (event.is_action("left") or event.is_action("right")):
-		return  # On ignore les événements non liés
-
-	if Input.is_action_pressed("left"):
-		player_context.direction = -1.0
-	elif Input.is_action_pressed("right"):
-		player_context.direction = 1.0
-	else:
-		player_context.direction = 0.0

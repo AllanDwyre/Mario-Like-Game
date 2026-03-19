@@ -8,7 +8,8 @@ func init_level_handler(levelHandler: LevelHandler) -> void:
 	assert(levelHandler.config is SoloSettings)
 	levelHandler.instanciate_level()
 	levelHandler.wrap_handler.queue_free()
-
+	PlayerManager.enable_auto_leave(false)
+	PlayerManager.join_player(-1)
 
 func on_player_die(player : Player, levelHandler : LevelHandler):
 #	TODO : relancer le niveau avec la derniere sauvegarde (drapeau)

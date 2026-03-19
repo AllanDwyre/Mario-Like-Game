@@ -155,8 +155,8 @@ func _spawn_player(viewport : SubViewport, player_id) -> void:
 	player_instance.global_position = _get_spawn_position(player_id)
 	if GameManager.current_gamemode == GameManager.EGameMode.Solo:
 		var cam : Camera2D = player_instance.get_node("Camera2D")
-		cam.limit_left = level.map_info["start_pos"]
-		cam.limit_right= level.map_info["end_pos"]
+		cam.limit_left = level.map_info["start_pos"].x
+		cam.limit_right= level.map_info["end_pos"].x
 
 func _get_spawn_position(player_id : int) -> Vector2:
 	if level.player_spawns.size() < player_id:
@@ -175,7 +175,7 @@ func on_player_die(player : Player) -> void:
 	GameManager.rule_set.on_player_die(player, self)
 
 func respawn(player : Player) -> void:
-	var player_id = player.player_info.device_id
+	var player_id = player.player_info.primary_device_id
 	var viewport = split_screen_handler.get_player_viewport(player_id)
 	player.queue_free()
 	_spawn_player.call_deferred(viewport, player_id)

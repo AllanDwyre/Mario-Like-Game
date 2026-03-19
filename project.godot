@@ -30,7 +30,7 @@ ViewManager="*uid://vog8indnd4lm"
 SoundManager="*uid://c76cameer0kqy"
 PlayerManager="*uid://d16mpqjqyv6nc"
 GameSignals="*uid://bjv5pkevogfmt"
-InputHelper="*uid://cholww48njaeh"
+MultiplayerInput="*uid://dac1jp4ssjq84"
 
 [debug]
 
@@ -46,7 +46,7 @@ window/size/mode=3
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/input_helper/plugin.cfg", "res://addons/shader-previewer/plugin.cfg", "res://addons/yard/plugin.cfg")
+enabled=PackedStringArray("res://addons/multiplayer_input/plugin.cfg", "res://addons/shader-previewer/plugin.cfg", "res://addons/yard/plugin.cfg")
 
 [global_group]
 

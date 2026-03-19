@@ -1,8 +1,8 @@
 [gd_resource type="Theme" format=3 uid="uid://dpv0ah3n52fbe"]
 
-[ext_resource type="FontFile" uid="uid://hhsfhuj6hgau" path="res://Arts/Fonts/Baloo_2/static/Baloo2-Bold.ttf" id="1_m17kc"]
-[ext_resource type="FontFile" uid="uid://r0qhsa7okycc" path="res://Arts/Fonts/Averia_Sans_Libre/AveriaSansLibre-Bold.ttf" id="2_d1g2h"]
-[ext_resource type="FontFile" uid="uid://o3adr6xwl7l6" path="res://Arts/Fonts/Averia_Sans_Libre/AveriaSansLibre-Regular.ttf" id="2_koayx"]
+[ext_resource type="FontFile" uid="uid://hhsfhuj6hgau" path="res://Arts/Fonts/Baloo_2/static/Baloo2-Bold.ttf" id="1_h8fmt"]
+[ext_resource type="FontFile" uid="uid://r0qhsa7okycc" path="res://Arts/Fonts/Averia_Sans_Libre/AveriaSansLibre-Bold.ttf" id="2_qjnrt"]
+[ext_resource type="FontFile" uid="uid://o3adr6xwl7l6" path="res://Arts/Fonts/Averia_Sans_Libre/AveriaSansLibre-Regular.ttf" id="3_4xyui"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_koayx"]
 bg_color = Color(0.9033794, 0.53206104, 0.8192965, 1)
@@ -12,13 +12,13 @@ color = Color(0.64, 0.512, 0.608, 1)
 thickness = 26
 
 [resource]
-default_font = ExtResource("2_koayx")
+default_font = ExtResource("3_4xyui")
 default_font_size = 16
 Display/base_type = &"Label"
 Display/font_sizes/font_size = 64
-Display/fonts/font = ExtResource("1_m17kc")
+Display/fonts/font = ExtResource("1_h8fmt")
 FlatButton/font_sizes/font_size = 32
-FlatButton/fonts/font = ExtResource("2_d1g2h")
+FlatButton/fonts/font = ExtResource("2_qjnrt")
 HSlider/icons/grabber = null
 HSlider/icons/grabber_disabled = null
 HSlider/icons/grabber_highlight = null
@@ -28,7 +28,7 @@ HSlider/styles/grabber_area_highlight = null
 HSlider/styles/slider = SubResource("StyleBoxLine_m17kc")
 Label/font_sizes/font_size = 24
 ScreenMargin/base_type = &"MarginContainer"
-ScreenMargin/constants/margin_bottom = 20
-ScreenMargin/constants/margin_left = 30
-ScreenMargin/constants/margin_right = 30
-ScreenMargin/constants/margin_top = 20
+ScreenMargin/constants/margin_bottom = 60
+ScreenMargin/constants/margin_left = 20
+ScreenMargin/constants/margin_right = 20
+ScreenMargin/constants/margin_top = 30

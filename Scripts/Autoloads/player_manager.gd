@@ -1,12 +1,18 @@
 extends Node
 # --- Autoloads : PlayerManager ---
-const MAX_PLAYERS := 2
-const IS_KEYBOARD_ELIGIBLE = false
+const MAX_PLAYERS := 4
+const KEYBOARD_ID = -1
 var connected_players: Dictionary[int, PlayerInfo] = {}
+
+var _enable_keyboard = true
+var _enable_auto_leave = true
 
 # --- Signals ---
 signal player_joined(device_id: int, player_info: PlayerInfo)
 signal player_left(device_id: int)
+
+signal player_connection_lost(device_id: int)
+signal player_reconnected(device_id: int)
 
 # -------------------------------------------------
 func _ready() -> void:
@@ -14,37 +20,68 @@ func _ready() -> void:
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
 
 # -------------------------------------------------
+func enable_auto_leave(auto_leave):
+	_enable_auto_leave = auto_leave
+
+func enable_keyboard(enable = true):
+	_enable_keyboard = enable
+	# --- refresh the keyboard player if he exist ---
+	if _enable_keyboard == false and connected_players.has(KEYBOARD_ID):
+		var kb_player = connected_players[KEYBOARD_ID]
+		var using_controller = kb_player.last_used_device != KEYBOARD_ID
+		# --- Si le player utilise autre chose qu'un keyboard on l'assigne a cette autrechose ---
+		if using_controller:
+			kb_player.primary_device_id = kb_player.last_used_device
+			kb_player.listen_mode = PlayerInfo.ListenMode.EXCLUSIVE
+			connected_players.erase(KEYBOARD_ID)
+			connected_players[kb_player.primary_device_id] = kb_player
+		# --- Sinon, on le remove de la liste des participant ---
+		else:
+			leave_player(KEYBOARD_ID)
+
 # Call this from your main menu or lobby scene
-func enable_joining() -> void:
+func enable_joining(enable_keyboard_ = true) -> void:
 	print("joining enabled")
 	set_process_input(true)
+	enable_keyboard(enable_keyboard_)
 
 func disable_joining() -> void:
 	print("joining disabled")
 	set_process_input(false)
+	change_players_listen_mode(PlayerInfo.ListenMode.EXCLUSIVE)
+
+func change_players_listen_mode(mode : PlayerInfo.ListenMode):
+	for player in connected_players.values():
+		player.listen_mode = mode
 # -------------------------------------------------
 
 func _input(event: InputEvent) -> void:
 	if is_full():
 		return
-
+	
 	# Accept any controller button press or keyboard key
 	var device_id := _get_device_from_event(event)
 	if device_id == -99:
 		return  # Not a join-eligible event
-
+	
 	# Already joined?
 	if connected_players.has(device_id):
 		return
-
-	_join_player(device_id)
+	
+	join_player(device_id)
 
 ## Auto-remove player if controller is physically disconnected
 func _on_joy_connection_changed(device: int, connected: bool) -> void:
-	if not connected:
+	if connected:
 		if connected_players.has(device):
-			print("[PlayerManager] Controller %d disconnected." % device)
-			leave_player(device)
+			player_reconnected.emit(device)
+		return
+	# --- si disconnected & known device then :
+	print("[PlayerManager] Controller %d disconnected." % device)
+	player_connection_lost.emit(device)
+	if _enable_auto_leave:
+		leave_player(device)
+# -------------------------------------------------
 
 func leave_player(device_id: int) -> void:
 	if not connected_players.has(device_id):
@@ -56,11 +93,10 @@ func leave_player(device_id: int) -> void:
 	print("[PlayerManager] Player %d left (device %d)" % [device_id, device_id])
 	player_left.emit(device_id) # notify system wide
 
-func _join_player(device_id: int) -> void:
+func join_player(device_id: int) -> void:
 	connected_players[device_id] = PlayerInfo.new(device_id)
 	print("[PlayerManager] Player %d joined (device %d)" % [device_id, device_id])
 	player_joined.emit(device_id, connected_players[device_id])
-
 # -------------------------------------------------
 #region Helpers
 func get_all_player_info() -> Array[PlayerInfo]:
@@ -80,14 +116,15 @@ func is_full() -> bool:
 
 # -------------------------------------------------
 func _get_device_from_event(event: InputEvent) -> int:
-	# Keyboard: device -1 (player 0 only)
 	if event is InputEventKey and event.pressed and not event.echo:
-		if not connected_players.has(-1):
-			return -1 if IS_KEYBOARD_ELIGIBLE else -99
+		if _enable_keyboard and not connected_players.has(KEYBOARD_ID):
+			return KEYBOARD_ID
 
-	# Controller: any button press
-	if event is InputEventJoypadButton and event.pressed:
+	if (event is InputEventJoypadButton and event.pressed) \
+			or (event is InputEventJoypadMotion and abs(event.axis_value) > 0.2):
 		return event.device
 
 	return -99  # Not eligible
+# -------------------------------------------------
+
 #endregion 

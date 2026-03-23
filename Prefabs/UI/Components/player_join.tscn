@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://yv8i8rnhkjs0"]
+
+[ext_resource type="Material" uid="uid://cdaao4txa27q7" path="res://Arts/Shaders/scrolling_background.tres" id="1_em257"]
+[ext_resource type="Script" uid="uid://d368xvbji4jg7" path="res://Scripts/UI/Components/player_join_container.gd" id="2_j34k6"]
+[ext_resource type="Script" uid="uid://70m4gq13pmg1" path="res://Scripts/UI/UI_Handler/focus_group.gd" id="3_5o2gc"]
+[ext_resource type="PackedScene" uid="uid://cb2hxai6xlalh" path="res://Prefabs/UI/Components/prompt.tscn" id="3_bcy7f"]
+[ext_resource type="Texture2D" uid="uid://diwlqtf5awg1t" path="res://Arts/Textures/kenney_input-prompts_1.4.1/PlayStation Series/Vector/playstation_button_color_circle.svg" id="4_bcy7f"]
+
+[node name="PlayerJoinContainer" type="ColorRect" unique_id=1489132944]
+material = ExtResource("1_em257")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_j34k6")
+
+[node name="FocusGroup" type="Control" parent="." unique_id=1197071157]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_5o2gc")
+metadata/_custom_type_script = "uid://70m4gq13pmg1"
+
+[node name="MainContentMargin" type="MarginContainer" parent="FocusGroup" unique_id=1764385498]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 60
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FocusGroup/MainContentMargin" unique_id=538483582]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="PlayerName" type="Label" parent="FocusGroup/MainContentMargin/VBoxContainer" unique_id=45742467]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"Display"
+text = "Player 1"
+horizontal_alignment = 1
+
+[node name="DeviceType" type="Label" parent="FocusGroup/MainContentMargin/VBoxContainer" unique_id=1730906395]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 0.78431374)
+theme_override_font_sizes/font_size = 16
+text = "PS4 controller"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="FocusGroup/MainContentMargin/VBoxContainer" unique_id=617537331]
+layout_mode = 2
+size_flags_vertical = 6
+text = "[PLAYER WILL CHOOSE CHARACTER]"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ReadyPrompt" parent="FocusGroup/MainContentMargin/VBoxContainer" unique_id=166447748 instance=ExtResource("3_bcy7f")]
+unique_name_in_owner = true
+layout_mode = 2
+after = "Ready ?"
+
+[node name="LeaveMarginContainer" type="MarginContainer" parent="FocusGroup" unique_id=570604750]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -215.0
+offset_top = -84.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="LeavePrompt" parent="FocusGroup/LeaveMarginContainer" unique_id=267499362 instance=ExtResource("3_bcy7f")]
+layout_mode = 2
+before = " "
+after = "Leave"
+icon = ExtResource("4_bcy7f")

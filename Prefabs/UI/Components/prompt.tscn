@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://cb2hxai6xlalh"]
+
+[ext_resource type="Texture2D" uid="uid://gjcepqi1frhr" path="res://Arts/Textures/kenney_input-prompts_1.4.1/PlayStation Series/Vector/playstation_button_color_square.svg" id="1_5aep2"]
+[ext_resource type="Script" uid="uid://crpvl2yvko8kf" path="res://Scripts/UI/Components/prompt.gd" id="1_8qaya"]
+
+[node name="Prompt" type="HBoxContainer" unique_id=166447748]
+offset_right = 131.0
+offset_bottom = 58.0
+alignment = 1
+script = ExtResource("1_8qaya")
+
+[node name="BeforeLabel" type="Label" parent="." unique_id=1181986777]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="IconResizer" type="MarginContainer" parent="." unique_id=48813995]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="IconResizer" unique_id=53197064]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("1_5aep2")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="AfterLabel" type="Label" parent="." unique_id=2000964652]
+unique_name_in_owner = true
+layout_mode = 2

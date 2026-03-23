@@ -1,0 +1,37 @@
+[gd_scene format=3 uid="uid://0m0i178dyusj"]
+
+[ext_resource type="Script" uid="uid://blm7d4j7y5ags" path="res://Scripts/UI/Components/map_selection_container.gd" id="1_nq7db"]
+[ext_resource type="PackedScene" uid="uid://c0d2jjv6j6f5d" path="res://Prefabs/UI/Components/enum_button.tscn" id="2_2ntj5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ntj5"]
+
+[node name="MapSelectionContainer" type="VBoxContainer" unique_id=923393624]
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_nq7db")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=954377349]
+clip_contents = true
+custom_minimum_size = Vector2(270, 360)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_2ntj5")
+
+[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1149402641]
+layout_mode = 2
+theme_override_constants/margin_bottom = 22
+
+[node name="MapSelectionEnum" parent="PanelContainer/MarginContainer" unique_id=935061389 instance=ExtResource("2_2ntj5")]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 8
+label_name = &""
+options = Array[String](["Plains", "Industry"])
+
+[node name="PlayerLabel" type="Label" parent="." unique_id=1072938409]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 6
+text = "Player 1"
+horizontal_alignment = 1

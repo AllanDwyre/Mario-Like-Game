@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="MapData" format=3 uid="uid://cthvmfeo8wjmd"]
+
+[ext_resource type="PackedScene" uid="uid://bpbe43pckxwld" path="res://Scenes/MultiplayerLevels/m_level_1.tscn" id="1_tifn0"]
+[ext_resource type="Script" uid="uid://cirf7jmjn8fja" path="res://Scripts/Core/Models/map_data.gd" id="2_ea4o5"]
+[ext_resource type="Texture2D" uid="uid://c18xbujio4b76" path="res://assets/previews/plains.png" id="3_pgqgi"]
+
+[resource]
+script = ExtResource("2_ea4o5")
+display_name = "Industry"
+scene = ExtResource("1_tifn0")
+thumbnail = ExtResource("3_pgqgi")
+metadata/_custom_type_script = "uid://cirf7jmjn8fja"

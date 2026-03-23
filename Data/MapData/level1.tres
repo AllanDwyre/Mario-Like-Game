@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="MapData" format=3 uid="uid://dic31yjqnh4k0"]
+
+[ext_resource type="PackedScene" uid="uid://bpbe43pckxwld" path="res://Scenes/MultiplayerLevels/m_level_1.tscn" id="1_ohnjr"]
+[ext_resource type="Script" uid="uid://cirf7jmjn8fja" path="res://Scripts/Core/Models/map_data.gd" id="2_l6jdb"]
+[ext_resource type="Texture2D" uid="uid://c18xbujio4b76" path="res://assets/previews/plains.png" id="3_tmmon"]
+
+[resource]
+script = ExtResource("2_l6jdb")
+display_name = "Plains"
+scene = ExtResource("1_ohnjr")
+ready_prod = true
+thumbnail = ExtResource("3_tmmon")
+metadata/_custom_type_script = "uid://cirf7jmjn8fja"

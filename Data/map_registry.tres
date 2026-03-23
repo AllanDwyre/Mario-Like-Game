@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="Registry" format=3 uid="uid://byfi3mipy6e7o"]
+
+[ext_resource type="Script" uid="uid://dqtv77mng5dyh" path="res://addons/yard/registry.gd" id="1_xj2da"]
+
+[resource]
+script = ExtResource("1_xj2da")
+_class_restriction = &"MapData"
+_scan_directory = "res://Ressources/MapData/"
+_uids_to_string_ids = Dictionary[StringName, StringName]({
+&"uid://cthvmfeo8wjmd": &"level2",
+&"uid://dic31yjqnh4k0": &"level1"
+})
+_string_ids_to_uids = Dictionary[StringName, StringName]({
+&"level1": &"uid://dic31yjqnh4k0",
+&"level2": &"uid://cthvmfeo8wjmd"
+})

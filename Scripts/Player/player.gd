@@ -117,7 +117,7 @@ func detect_collision(body : Node2D):
 	var is_stomped = normal.y < COLLISION_NORMAL_THRESHOLD
 	
 	if is_stomped:
-		print(player.player_info.device_id, "hit player", player_info.device_id)
+		print(player.player_info.primary_device_id, "hit player", player_info.primary_device_id)
 		player.player_info.joy_vibration(1,0,1)
 		#take_damage(player)
 		player.movement.ForceJump()

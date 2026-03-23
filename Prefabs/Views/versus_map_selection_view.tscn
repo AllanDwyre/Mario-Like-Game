@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://d2a7awwr1ve68"]
+
+[ext_resource type="Script" uid="uid://bjja4nssq5x12" path="res://Scripts/UI/View/versus_map_selection_view.gd" id="1_e3dv3"]
+[ext_resource type="Material" uid="uid://cdaao4txa27q7" path="res://Arts/Shaders/scrolling_background.tres" id="2_nx24l"]
+[ext_resource type="PackedScene" uid="uid://deu8k1pnqqjx3" path="res://Prefabs/UI/Components/title.tscn" id="4_drhtr"]
+[ext_resource type="PackedScene" uid="uid://0m0i178dyusj" path="res://Prefabs/UI/Components/map_selection_container.tscn" id="4_nx24l"]
+[ext_resource type="PackedScene" uid="uid://b4jgy7te7ssnc" path="res://Prefabs/UI/Components/bottom_navigation.tscn" id="5_24phx"]
+
+[node name="VersusMapSelectionView" type="CanvasLayer" unique_id=1764979966 node_paths=PackedStringArray("containers_parent")]
+script = ExtResource("1_e3dv3")
+containers_parent = NodePath("VBoxContainer/MarginContainer/PlayersContainers")
+selection_container_scene = ExtResource("4_nx24l")
+metadata/_custom_type_script = "uid://bjja4nssq5x12"
+
+[node name="TextureRect" type="ColorRect" parent="." unique_id=1575656401]
+texture_repeat = 2
+material = ExtResource("2_nx24l")
+use_parent_material = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0050696, 1.0019226)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1778072498]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleContainerMargin" parent="VBoxContainer" unique_id=687155854 instance=ExtResource("4_drhtr")]
+layout_mode = 2
+
+[node name="Title" parent="VBoxContainer/TitleContainerMargin" index="0" unique_id=2072422795]
+text = "Map Selection"
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer" unique_id=484814119]
+layout_mode = 2
+size_flags_vertical = 3
+theme_type_variation = &"ScreenMargin"
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="PlayersContainers" type="HBoxContainer" parent="VBoxContainer/MarginContainer" unique_id=1129477249]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="BottomNavigation" parent="VBoxContainer" unique_id=519169999 instance=ExtResource("5_24phx")]
+unique_name_in_owner = true
+layout_mode = 2
+has_next = false
+
+[editable path="VBoxContainer/TitleContainerMargin"]

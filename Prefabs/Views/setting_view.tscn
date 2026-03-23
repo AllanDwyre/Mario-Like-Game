@@ -1,89 +1,203 @@
 [gd_scene format=3 uid="uid://bu5m7g5rru35s"]
 
 [ext_resource type="Script" uid="uid://cs0us4oucggwk" path="res://Scripts/UI/View/setting_view.gd" id="1_g2ek3"]
-[ext_resource type="Theme" uid="uid://dpv0ah3n52fbe" path="res://Arts/Themes/mario_theme.tres" id="2_5bgwg"]
+[ext_resource type="Material" uid="uid://cdaao4txa27q7" path="res://Arts/Shaders/scrolling_background.tres" id="2_8jua2"]
+[ext_resource type="PackedScene" uid="uid://c0d2jjv6j6f5d" path="res://Prefabs/UI/Components/enum_button.tscn" id="3_8jua2"]
+[ext_resource type="PackedScene" uid="uid://deu8k1pnqqjx3" path="res://Prefabs/UI/Components/title.tscn" id="3_qnrnj"]
+[ext_resource type="Script" uid="uid://cswpb84e3hyg7" path="res://Scripts/UI/Components/custom_tabs.gd" id="4_1falg"]
+[ext_resource type="PackedScene" uid="uid://b4jgy7te7ssnc" path="res://Prefabs/UI/Components/bottom_navigation.tscn" id="5_hx87p"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xwx14"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_hx87p"]
 
-[node name="SettingView" type="CanvasLayer" unique_id=1489750429 node_paths=PackedStringArray("music_slider", "sfx_slider", "controller_vibrations", "fullscreen_toggle", "resolution_btn")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qnrnj"]
+
+[node name="SettingView" type="CanvasLayer" unique_id=1489750429]
 script = ExtResource("1_g2ek3")
-music_slider = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicSlider")
-sfx_slider = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/SoundEffectSlider")
-controller_vibrations = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CheckButton")
-fullscreen_toggle = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/FullscreenButton")
-resolution_btn = NodePath("MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ResolutionButton")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=603439899]
+[node name="TextureRect" type="ColorRect" parent="." unique_id=993076424]
+texture_repeat = 2
+material = ExtResource("2_8jua2")
+use_parent_material = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_type_variation = &"ScreenMargin"
-theme_override_constants/margin_left = 0
-theme_override_constants/margin_right = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2065061160]
+[node name="Setting Control" type="VBoxContainer" parent="." unique_id=2065061160]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleContainerMargin" parent="Setting Control" unique_id=687155854 instance=ExtResource("3_qnrnj")]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=2069695649]
-layout_mode = 2
-theme_type_variation = &"Display"
-text = "Paramètres"
-horizontal_alignment = 1
-vertical_alignment = 1
-uppercase = true
+[node name="Title" parent="Setting Control/TitleContainerMargin" index="0" unique_id=2072422795]
+text = "Settings"
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer" unique_id=351286806]
+[node name="VBoxContainer" type="VBoxContainer" parent="Setting Control" unique_id=1210534904]
 layout_mode = 2
-theme_override_constants/margin_right = 357
+theme_override_constants/separation = 60
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/MarginContainer" unique_id=818153031]
+[node name="Tabs" type="HBoxContainer" parent="Setting Control/VBoxContainer" unique_id=1788584190 node_paths=PackedStringArray("tab_controller")]
 layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+script = ExtResource("4_1falg")
+tab_controller = NodePath("../MarginContainer/TabContainer")
+button_group = SubResource("ButtonGroup_hx87p")
 
-[node name="MusicSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=219178902]
+[node name="Audio" type="Button" parent="Setting Control/VBoxContainer/Tabs" unique_id=1319434705]
 layout_mode = 2
-theme = ExtResource("2_5bgwg")
-max_value = 1.0
-step = 0.005
-value = 0.6
+focus_mode = 1
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 0.627)
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hx87p")
+text = "Audio"
+flat = true
 
-[node name="SoundEffectSlider" type="HSlider" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1799582104]
+[node name="Display" type="Button" parent="Setting Control/VBoxContainer/Tabs" unique_id=1178485787]
 layout_mode = 2
-theme = ExtResource("2_5bgwg")
-max_value = 1.0
-step = 0.005
-value = 0.6
+focus_mode = 1
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hx87p")
+text = "Display"
+flat = true
 
-[node name="CheckButton" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1544536982]
+[node name="Game" type="Button" parent="Setting Control/VBoxContainer/Tabs" unique_id=361785041]
 layout_mode = 2
-size_flags_horizontal = 0
-text = "Controllers vibrations"
+focus_mode = 1
+theme_type_variation = &"FlatButton"
+theme_override_colors/font_color = Color(1, 1, 1, 0.627451)
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hx87p")
+text = "Game
+"
+flat = true
 
-[node name="FullscreenButton" type="CheckButton" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1451883752]
+[node name="Input" type="Button" parent="Setting Control/VBoxContainer/Tabs" unique_id=1895313021]
 layout_mode = 2
-size_flags_horizontal = 0
-text = "Fullscreen"
+focus_mode = 1
+theme_type_variation = &"FlatButton"
+disabled = true
+toggle_mode = true
+button_group = SubResource("ButtonGroup_hx87p")
+text = "Input"
+flat = true
 
-[node name="ResolutionButton" type="OptionButton" parent="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1829904510]
+[node name="MarginContainer" type="MarginContainer" parent="Setting Control/VBoxContainer" unique_id=603439899]
+layout_direction = 2
 layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 350
 
-[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer" unique_id=1850789356]
+[node name="TabContainer" type="TabContainer" parent="Setting Control/VBoxContainer/MarginContainer" unique_id=1064877537]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_styles/separator = SubResource("StyleBoxEmpty_xwx14")
+theme_override_constants/side_margin = 8
+theme_override_styles/panel = SubResource("StyleBoxEmpty_qnrnj")
+current_tab = 1
+clip_tabs = false
+tabs_visible = false
 
-[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer" unique_id=1612721413]
+[node name="Audio" type="VBoxContainer" parent="Setting Control/VBoxContainer/MarginContainer/TabContainer" unique_id=818153031]
+visible = false
 layout_mode = 2
+theme_override_constants/separation = 15
+metadata/_tab_index = 0
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer/CenterContainer" unique_id=1559895604]
+[node name="GeneralSlider" parent="Setting Control/VBoxContainer/MarginContainer/TabContainer/Audio" unique_id=935061389 instance=ExtResource("3_8jua2")]
+unique_name_in_owner = true
 layout_mode = 2
-theme_type_variation = &"FlatButton"
-text = "Retour"
+focus_next = NodePath("../MusicSlider")
+focus_previous = NodePath("../../../../Tabs/Audio")
+label_name = &"Main Volume"
+value_type = 2
+wrap_value = false
+range_max = 100
+range_step = 5
 
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MusicSlider" to="." method="_on_music_slider_value_changed"]
-[connection signal="value_changed" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/SoundEffectSlider" to="." method="_on_sound_effect_slider_value_changed"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/CheckButton" to="." method="_on_controller_vibrations_button_toggled"]
-[connection signal="toggled" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_toggled"]
-[connection signal="item_selected" from="MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/ResolutionButton" to="." method="_on_resolution_button_item_selected"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/CenterContainer/BackButton" to="." method="_on_back_button_pressed"]
+[node name="MusicSlider" parent="Setting Control/VBoxContainer/MarginContainer/TabContainer/Audio" unique_id=1755145202 instance=ExtResource("3_8jua2")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_next = NodePath("../SFXSlider")
+focus_previous = NodePath("../GeneralSlider")
+label_name = &"Music Volume"
+value_type = 2
+wrap_value = false
+range_max = 100
+range_step = 5
+
+[node name="SFXSlider" parent="Setting Control/VBoxContainer/MarginContainer/TabContainer/Audio" unique_id=1424376282 instance=ExtResource("3_8jua2")]
+unique_name_in_owner = true
+layout_mode = 2
+focus_next = NodePath("../../../../../../BottomNavigation")
+label_name = &"Sfx Volume"
+value_type = 2
+wrap_value = false
+range_max = 100
+range_step = 5
+
+[node name="Display" type="VBoxContainer" parent="Setting Control/VBoxContainer/MarginContainer/TabContainer" unique_id=1902241075]
+layout_mode = 2
+theme_override_constants/separation = 15
+metadata/_tab_index = 1
+
+[node name="Langage" parent="Setting Control/VBoxContainer/MarginContainer/TabContainer/Display" unique_id=158162318 instance=ExtResource("3_8jua2")]
+unique_name_in_owner = true
+layout_mode = 2
+label_name = &"Langage"
+wrap_value = true
+options = Array[String](["English", "French", "Spanish", "Japanese"])
+
+[node name="Fullscreen" parent="Setting Control/VBoxContainer/MarginContainer/TabContainer/Display" unique_id=1203663769 instance=ExtResource("3_8jua2")]
+unique_name_in_owner = true
+layout_mode = 2
+label_name = &"Fullscreen"
+value_type = 0
+wrap_value = true
+range_min = 1
+range_max = 100
+
+[node name="Resolution" parent="Setting Control/VBoxContainer/MarginContainer/TabContainer/Display" unique_id=2049903976 instance=ExtResource("3_8jua2")]
+unique_name_in_owner = true
+layout_mode = 2
+label_name = &"Resolution"
+wrap_value = true
+range_min = 1
+range_max = 100
+
+[node name="Game" type="VBoxContainer" parent="Setting Control/VBoxContainer/MarginContainer/TabContainer" unique_id=2014489391]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 15
+metadata/_tab_index = 2
+
+[node name="ControllerVibrations" parent="Setting Control/VBoxContainer/MarginContainer/TabContainer/Game" unique_id=281981893 instance=ExtResource("3_8jua2")]
+unique_name_in_owner = true
+layout_mode = 2
+label_name = &"Controllers Vibrations"
+value_type = 0
+wrap_value = true
+range_min = 1
+range_max = 100
+
+[node name="ScreenShake" parent="Setting Control/VBoxContainer/MarginContainer/TabContainer/Game" unique_id=1277808803 instance=ExtResource("3_8jua2")]
+unique_name_in_owner = true
+layout_mode = 2
+label_name = &"Screen Shake"
+value_type = 0
+wrap_value = true
+range_min = 1
+range_max = 100
+
+[node name="BottomNavigation" parent="." unique_id=519169999 instance=ExtResource("5_hx87p")]
+unique_name_in_owner = true
+has_next = false
+
+[editable path="Setting Control/TitleContainerMargin"]

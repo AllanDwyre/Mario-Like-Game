@@ -29,7 +29,7 @@ func _input(event: InputEvent) -> void:
 	var normalised_device = -1 if event is InputEventKey else event.device
 	if not info.refresh_device(normalised_device):
 		return
-	_handle_jump(event)
+	_handle_jump()
 
 func _physics_process(_delta: float) -> void:
 	if not info.is_device_valid():
@@ -38,8 +38,8 @@ func _physics_process(_delta: float) -> void:
 	player_context.run_pressed = MultiplayerInput.is_action_pressed(info.last_used_device, "run")
 	player_context.direction = MultiplayerInput.get_axis(info.last_used_device, "left", "right")
 
-func _handle_jump(event: InputEvent) -> void:
-	if event.is_action_pressed("jump"):
+func _handle_jump() -> void:
+	if MultiplayerInput.is_action_just_pressed(info.last_used_device, "jump"):
 		player_context.jump_pressed = true
 		player_context.buffered_timer = player_context.player.movement.jump_buffer_duration
-	player_context.jump_released = event.is_action_released("jump")
+	player_context.jump_released = MultiplayerInput.is_action_just_released(info.last_used_device, "jump")

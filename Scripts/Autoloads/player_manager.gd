@@ -2,6 +2,7 @@ extends Node
 # --- Autoloads : PlayerManager ---
 const MAX_PLAYERS := 4
 const KEYBOARD_ID = -1
+const NOT_ELIGIBLE = -99
 var connected_players: Dictionary[int, PlayerInfo] = {}
 
 var _enable_keyboard = true
@@ -61,7 +62,7 @@ func _input(event: InputEvent) -> void:
 	
 	# Accept any controller button press or keyboard key
 	var device_id := _get_device_from_event(event)
-	if device_id == -99:
+	if device_id == NOT_ELIGIBLE:
 		return  # Not a join-eligible event
 	
 	# Already joined?
@@ -94,7 +95,9 @@ func leave_player(device_id: int) -> void:
 	player_left.emit(device_id) # notify system wide
 
 func join_player(device_id: int) -> void:
-	connected_players[device_id] = PlayerInfo.new(device_id)
+	var player_info = PlayerInfo.new(device_id)
+	connected_players[device_id] = player_info
+	player_info.set_player_id(get_player_count())
 	print("[PlayerManager] Player %d joined (device %d)" % [device_id, device_id])
 	player_joined.emit(device_id, connected_players[device_id])
 # -------------------------------------------------
@@ -114,8 +117,22 @@ func get_player_count() -> int:
 func is_full() -> bool:
 	return connected_players.size() >= MAX_PLAYERS
 
+func get_host_id() -> int:
+	var ids := get_all_player_ids()
+	if ids.is_empty():
+		return -1
+	return ids.min()
+
+func reset() -> void:
+	print("Player Manager has been reset")
+	for player in get_all_player_ids():
+		leave_player(player)
+
 # -------------------------------------------------
 func _get_device_from_event(event: InputEvent) -> int:
+	if event.is_action_pressed("ui_cancel"):
+		return NOT_ELIGIBLE
+	
 	if event is InputEventKey and event.pressed and not event.echo:
 		if _enable_keyboard and not connected_players.has(KEYBOARD_ID):
 			return KEYBOARD_ID
@@ -124,7 +141,7 @@ func _get_device_from_event(event: InputEvent) -> int:
 			or (event is InputEventJoypadMotion and abs(event.axis_value) > 0.2):
 		return event.device
 
-	return -99  # Not eligible
+	return NOT_ELIGIBLE
 # -------------------------------------------------
 
 #endregion 

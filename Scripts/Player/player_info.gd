@@ -11,6 +11,7 @@ var current_power_up_status
 enum ListenMode { EXCLUSIVE, KEYBOARD_OR_JOY,  NONE}
 var listen_mode : ListenMode
 
+var player_id : int
 var primary_device_id : int
 var last_used_device : int  # mis à jour à chaque input valide
 #------------------------------------------------------
@@ -22,13 +23,17 @@ func _init(device_id_ : int, listen_mode_ = ListenMode.KEYBOARD_OR_JOY) -> void:
 	primary_device_id = device_id_
 	last_used_device = -99
 	listen_mode = listen_mode_
-	
+
+func set_player_id(player_id_ :int):
+	player_id = player_id_
+
 func on_leave():
 	player_leaved.emit()
 
 func is_device_valid() -> bool:
 	return refresh_device(last_used_device)
 
+## Permet via le dernier input appuyé savoir si celui ci est valid
 func refresh_device(device : int) -> bool:
 	match listen_mode:
 		ListenMode.EXCLUSIVE : 

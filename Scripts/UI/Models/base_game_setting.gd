@@ -1,5 +1,5 @@
 class_name BaseGameSetting
 extends RefCounted
 
-## Selected Level Path
-var level: StringName
+## Map chosen for the start of the game
+var chosen_map : MapData

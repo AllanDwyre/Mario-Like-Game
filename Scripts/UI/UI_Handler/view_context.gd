@@ -16,6 +16,7 @@ func insert_view(v : View):
 	if active_view and  v == active_view:
 		push_warning("Tried to push the same view as the active one")
 		return
+	v.reparent(self)
 	clear_history()
 	v.show_view()
 	history.push_back(v)

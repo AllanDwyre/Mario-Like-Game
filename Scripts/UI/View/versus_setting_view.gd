@@ -1,86 +1,132 @@
 class_name VersusSettingView
 extends View
 
-@export var players_container : Container
-@export var map_choice_scene : PackedScene
+@export var map_selection_scene : PackedScene
 
-@export_category("UI Elements")
-# TODO: Create better types of ui after the ui is comfirmed, and before doing to much code here*
-@export var map_selection_options : OptionButton
+@onready var stars : EnumButton = %Stars
+@onready var lives : EnumButton = %Lives
+@onready var time_limit : EnumButton = %TimeLimit
+@onready var map_selection : EnumButton = %MapSelection
+@onready var match_type : EnumButton = %GameMode
 
 var level_handler_scene : PackedScene = preload("res://Scenes/level_handler.tscn")
-
-var players : Dictionary[int, Control] = {}
 var lobby_setting : VersusSettings
 
 # --- cache view ---
-var map_choice_view : VersusMapChoiceView
+var map_selection_view : VersusMapSelectionView
 
 #region Life cycle
+
 func _ready() -> void:
-	populate_players()
-
-func populate_players() -> void:
-	for id in PlayerManager.connected_players.keys():
-		_on_player_joined(id, PlayerManager.connected_players[id])
-
-func show_view():
-	super()
+	%FocusGroup.activate(stars)
+	%BottomNavigation.next_btn_pressed.connect(_on_next_button_pressed)
+	%BottomNavigation.back_btn_pressed.connect(_on_back_button_pressed)
 	
-	if not PlayerManager.player_joined.is_connected(_on_player_joined):
-		PlayerManager.player_joined.connect(_on_player_joined)
-		PlayerManager.player_left.connect(_on_player_left)
-	PlayerManager.enable_joining()
 	lobby_setting = VersusSettings.new()
-	sync_settings()
+	suscribes()
 
-func hide_view():
-	# NOTE : Hide view ce fait seulement quand il y a un push
-	# PlayerManager.disable_joining()
-	super()
+func _exit_tree() -> void:
+	%FocusGroup.desactivate()
+	%BottomNavigation.next_btn_pressed.disconnect(_on_next_button_pressed)
+	%BottomNavigation.back_btn_pressed.disconnect(_on_back_button_pressed)
+	unsuscribes()
 
-func clean_up():
-	PlayerManager.disable_joining()
-	PlayerManager.player_joined.disconnect(_on_player_joined)
-	PlayerManager.player_left.disconnect(_on_player_left)
+func on_show() -> void:
+	init_setting_values() 
 
+func suscribes():
+	stars.value_changed.connect(on_stars_value_changed)
+	lives.value_changed.connect(on_lives_value_changed)
+	time_limit.value_changed.connect(on_time_limit_value_changed)
+	map_selection.value_changed.connect(on_map_selection_value_changed)
+	match_type.value_changed.connect(on_match_type_value_changed)
+
+func unsuscribes():
+	stars.value_changed.disconnect(on_stars_value_changed)
+	lives.value_changed.disconnect(on_lives_value_changed)
+	time_limit.value_changed.disconnect(on_time_limit_value_changed)
+	map_selection.value_changed.disconnect(on_map_selection_value_changed)
+	match_type.value_changed.disconnect(on_match_type_value_changed)
+	
+func init_setting_values() -> void:
+	lobby_setting.stars_to_win = stars.get_current_value() as int
+	lobby_setting.lives = get_int_or_false(lives.get_current_value())
+	lobby_setting.time_limit = get_int_or_false(time_limit.get_current_value())
+	set_map_selection_mode(map_selection.get_current_value())
+	
+	if PlayerManager.get_player_count() < 3:
+		match_type.hide()
+		lobby_setting.match_type = VersusSettings.EMatchType.SameParty
+		%BottomNavigation.set_last_element(map_selection)
+	else:
+		match_type.show()
+		set_match_type(match_type.get_current_value())
+		map_selection.focus_neighbor_bottom = match_type.get_path()
+		map_selection.focus_next = match_type.get_path()
+		%BottomNavigation.set_last_element(match_type)
 #endregion
 
-func sync_settings():
-	# sync all the parameters = uis.value
-	var map_select_mode_id = map_selection_options.get_selected_id()
-	lobby_setting.set_map_selection_mode(map_selection_options.get_item_text(map_select_mode_id))
-	pass
+#region Value changed events logic
 
-func _on_player_joined(player_id : int, _player_info : PlayerInfo):
-	if players.has(player_id):
-		_on_player_left(player_id)
-	
-	players[player_id] = Label.new()
-	players[player_id].text = "Player P%d" %player_id
-	players_container.add_child(players[player_id])
-	
-func _on_player_left(player_id : int):
-	if not players.has(player_id):
-		return
-	players[player_id].queue_free()
-	players.erase(player_id)
+func on_stars_value_changed(_index: int, value: int) -> void:
+	lobby_setting.stars_to_win = value as int
 
-#region events
+func on_lives_value_changed(_index: int, value: Variant) -> void:
+	lobby_setting.lives = value as int
+
+func on_time_limit_value_changed(_index: int, value: Variant) -> void:
+	lobby_setting.time_limit = value as int
+
+func on_map_selection_value_changed(_index: int, value: String) -> void:
+	set_map_selection_mode(value)
+
+func on_match_type_value_changed(_index: int, value: String) -> void:
+	set_match_type(value)
+#endregion
+
+#region Navigation Logic
 func _on_next_button_pressed() -> void:
-	sync_settings()
 	if lobby_setting.map_selection_mode != lobby_setting.ESelectionMode.Random:
-		if not map_choice_view: # cache view
-			var scene = map_choice_scene.instantiate()
-			assert(scene is VersusMapChoiceView, "map_choice_scene is not a VersusMapChoiceView")
-			map_choice_view = scene as VersusMapChoiceView
-		
-		map_choice_view.lobby_setting = lobby_setting
-		ViewManager.push(map_choice_view)
+		_go_to_map_selection_view()
 	else:
 		GameManager.start_versus_game(level_handler_scene, lobby_setting)
 
 func _on_back_button_pressed() -> void:
 	ViewManager.pop()
 
+func _go_to_map_selection_view():
+		_lazzy_get_map_selection_view()
+		map_selection_view.lobby_setting = lobby_setting
+		ViewManager.push(map_selection_view)
 #endregion
+
+#region Helpers
+func set_map_selection_mode(mode : String) -> void:
+	match mode:
+		"Random" : lobby_setting.map_selection_mode = VersusSettings.ESelectionMode.Random
+		"Majority Pick" : lobby_setting.map_selection_mode = VersusSettings.ESelectionMode.Majority
+		"Ban System" : lobby_setting.map_selection_mode = VersusSettings.ESelectionMode.Ban
+		"Host" : lobby_setting.map_selection_mode = VersusSettings.ESelectionMode.Host
+		_ : push_warning("VersusSettings : Current mode selected for map_selection_mode is Unknown")
+
+func set_match_type(type : String) -> void:
+	match type:
+		"Tournois" : lobby_setting.match_type = VersusSettings.EMatchType.Tournois
+		"Same party" : lobby_setting.match_type = VersusSettings.EMatchType.SameParty
+		_ : push_warning("VersusSettings : Current type selected for match_type is Unknown")
+
+func get_int_or_false(value : String):
+	if value == "OFF":
+		return -1
+	return value as int
+
+## Creer le cache si il n'existe pas 
+func _lazzy_get_map_selection_view():
+	if not map_selection_view: 
+		var scene = map_selection_scene.instantiate()
+		assert(scene is VersusMapSelectionView, "map_choice_scene is not a VersusMapSelectionView")
+		map_selection_view = scene as VersusMapSelectionView
+
+#endregion
+	
+	

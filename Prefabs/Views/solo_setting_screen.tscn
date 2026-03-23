@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://cfe3w8nmoaxa8"]
+
+[node name="SoloSettingScreen" type="CanvasLayer" unique_id=309243536]
+
+[node name="Control" type="Control" parent="." unique_id=1664113105]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

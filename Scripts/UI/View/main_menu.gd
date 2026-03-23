@@ -25,7 +25,7 @@ func _on_story_play_button_pressed() -> void:
 func _on_versus_play_button_pressed() -> void:
 	# --- local versus instantation ---
 	var versus_view = versus_scene.instantiate()
-	assert(versus_view is VersusSettingView, "MainMenuView : versus_scene isn't a VersusSettingView")
+	assert(versus_view is VersusJoinView, "MainMenuView : versus_scene isn't a VersusJoinView")
 	ViewManager.push(versus_view)
 
 func _on_settings_pressed() -> void:

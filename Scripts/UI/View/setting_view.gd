@@ -2,68 +2,82 @@ class_name GameSettingView
 extends View
 
 
-@export var music_slider : HSlider
-@export var sfx_slider : HSlider
-@export var controller_vibrations : CheckButton
-@export var fullscreen_toggle : CheckButton
-@export var resolution_btn : OptionButton
+@onready var bottom_nav : BottomNavigation = %BottomNavigation
 
-const MUSIC_SETTING = "volume_music"
-const SFX_SETTING = "volume_sfx"
-const CONTROLLER_VIBRATION_SETTING = "controller_vibrations"
-const FULLSCREEN_SETTING = "fullscreen"
-const RESOLUTION_SETTING = "resolution"
+@onready var general : EnumButton = %GeneralSlider
+@onready var music : EnumButton = %MusicSlider
+@onready var sfx : EnumButton = %SFXSlider
+@onready var controller_vibrations : EnumButton = %ControllerVibrations
+@onready var fullscreen : EnumButton = %Fullscreen
+@onready var resolution : EnumButton = %Resolution
 
 var _resolutions : Dictionary[StringName, Vector2i]
 
 func show_view():
 	super()
-	music_slider.grab_focus()
+	bottom_nav.back_btn_pressed.connect(_on_back_button_pressed, ConnectFlags.CONNECT_ONE_SHOT)
+
 
 func _ready() -> void:
-	music_slider.value = SoundManager.get_music_volume()
-	sfx_slider.value = SoundManager.get_sfx_volume()
-	controller_vibrations.button_pressed = Settings.get_setting(CONTROLLER_VIBRATION_SETTING)
-	fullscreen_toggle.button_pressed = Settings.get_setting(FULLSCREEN_SETTING)
-	
 	_resolutions = ResolutionUtil.retrieve_possible_resolutions()
-	for key in _resolutions.keys():
-		resolution_btn.add_item(key)
-	var current_res = Settings.get_setting(RESOLUTION_SETTING)
-	for i in range(resolution_btn.get_item_count()):
-		if _resolutions[resolution_btn.get_item_text(i)] == current_res:
-			resolution_btn.select(i)
-			break
+	
+	music.set_index_from_value(Settings.get_volume_music() * 100)
+	sfx.set_index_from_value(Settings.get_volume_sfx() * 100)
+	controller_vibrations.set_index_from_value(Settings.is_controller_vibration_enabled())
+	fullscreen.set_index_from_value(Settings.is_fullscreen())
+	#resolution.options = _resolutions.keys()
+#	resolution.set_index_from_value(Settings.get_resolution())
+	_subscribe()
 
 func _on_back_button_pressed() -> void:
+	# rajouter des element comment la transition (pas forcement la)
 	ViewManager.pop()
 
-func _on_music_slider_value_changed(value: float) -> void:
-	SoundManager.set_music_volume(value)
-	Settings.set_setting(MUSIC_SETTING, value)
+func _subscribe():
+	music.value_changed.connect(_on_music_value_changed)
+	sfx.value_changed.connect(_on_sfx_value_changed)
+	# ---
+	fullscreen.value_changed.connect(_on_fullscreen_value_changed)
+	# ---
+	controller_vibrations.value_changed.connect(_on_controller_vibrations_value_changed)
+	
+func _exit_tree() -> void:
+	if not music.value_changed.is_connected(_on_music_value_changed):
+		return
+	
+	music.value_changed.disconnect(_on_music_value_changed)
+	sfx.value_changed.disconnect(_on_sfx_value_changed)
+	# ---
+	fullscreen.value_changed.disconnect(_on_fullscreen_value_changed)
+	# ---
+	controller_vibrations.value_changed.disconnect(_on_controller_vibrations_value_changed)
+#region Audio
+func _on_music_value_changed(_index : int, value: int) -> void:
+	Settings.set_volume_music(value / 100.0)
 
-func _on_sound_effect_slider_value_changed(value: float) -> void:
-	SoundManager.set_sfx_volume(value)
-	Settings.set_setting(SFX_SETTING, value)
+func _on_sfx_value_changed(_index : int, value: int) -> void:
+	Settings.set_volume_sfx(value / 100.0)
 
-func _on_controller_vibrations_button_toggled(toggled_on: bool) -> void:
-	Settings.set_setting(CONTROLLER_VIBRATION_SETTING, toggled_on)
+#endregion
+#region Display
+func _on_fullscreen_value_changed(_index : int, value: bool) -> void:
+	Settings.set_fullscreen(value)
 
-func _on_fullscreen_button_toggled(toggled_on: bool) -> void:
-	var mode;
-	match toggled_on:
-		true : mode = DisplayServer.WINDOW_MODE_FULLSCREEN
-		false : mode = DisplayServer.WINDOW_MODE_WINDOWED
-	DisplayServer.window_set_mode(mode)
-	Settings.set_setting(FULLSCREEN_SETTING, mode)
+#resolution
+#endregion
 
+#region Game
+func _on_controller_vibrations_value_changed(_index : int, value: bool) -> void:
+	Settings.set_controller_vibration(value)
 
-func _on_resolution_button_item_selected(index: int) -> void:
-	var res = _resolutions.get(resolution_btn.get_item_text(index), Vector2i(1152, 648))
-	Settings.set_setting(RESOLUTION_SETTING, res)
-	get_window().size = res
-	if Settings.get_setting(FULLSCREEN_SETTING) == DisplayServer.WINDOW_MODE_FULLSCREEN:
-		get_window().content_scale_size = res
-	else:
-		var screen_size = DisplayServer.screen_get_size()
-		get_window().position = (screen_size - res) / 2
+#endregion
+
+#func _on_resolution_button_item_selected(index: int) -> void:
+	#var res = _resolutions.get(resolution_btn.get_item_text(index), Vector2i(1152, 648))
+	#Settings.set_setting(RESOLUTION_SETTING, res)
+	#get_window().size = res
+	#if Settings.get_setting(FULLSCREEN_SETTING) == DisplayServer.WINDOW_MODE_FULLSCREEN:
+		#get_window().content_scale_size = res
+	#else:
+		#var screen_size = DisplayServer.screen_get_size()
+		#get_window().position = (screen_size - res) / 2

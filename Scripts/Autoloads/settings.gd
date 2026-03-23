@@ -55,12 +55,15 @@ func get_volume_sfx() -> float:
 	return settings.get("volume_sfx", 1.0)
 
 func set_volume_master(value: float) -> void:
+	#SoundManager.set_music_volume(value)
 	set_setting("volume_master", clampf(value, 0.0, 1.0))
 
 func set_volume_music(value: float) -> void:
+	SoundManager.set_music_volume(value)
 	set_setting("volume_music", clampf(value, 0.0, 1.0))
 
 func set_volume_sfx(value: float) -> void:
+	SoundManager.set_sfx_volume(value)
 	set_setting("volume_sfx", clampf(value, 0.0, 1.0))
 
 #endregion
@@ -90,6 +93,9 @@ func set_resolution(res: Vector2i) -> void:
 # ==========================================
 
 #region Game Helpers
+
+func set_controller_vibration(enable : bool):
+	settings.set("controller_vibrations", enable)
 
 func is_controller_vibration_enabled() -> bool:
 	return settings.get("controller_vibrations", true)

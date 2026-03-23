@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://dpv0ah3n52fbe" path="res://Preset/mario_theme.tres" id="1_ne242"]
 [ext_resource type="Script" uid="uid://cb0mvg4xyjv6m" path="res://Scripts/UI/View/main_menu.gd" id="1_qnxn7"]
 [ext_resource type="PackedScene" uid="uid://ikfiw1uyf04d" path="res://Scenes/levels/level_1.tscn" id="2_dm0fm"]
-[ext_resource type="PackedScene" uid="uid://7axn47r7bt5m" path="res://Prefabs/Views/versus_lobby_view.tscn" id="2_ne242"]
+[ext_resource type="PackedScene" uid="uid://cxd6hog1emmsv" path="res://Prefabs/Views/versus_lobby_view.tscn" id="2_ne242"]
 [ext_resource type="PackedScene" uid="uid://bu5m7g5rru35s" path="res://Prefabs/Views/setting_view.tscn" id="3_qnxn7"]
 [ext_resource type="AudioStream" uid="uid://5d6ytbsgo50v" path="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/01 Title Screen.mp3" id="4_f4nme"]
 [ext_resource type="Material" uid="uid://cdaao4txa27q7" path="res://Arts/Shaders/scrolling_background.tres" id="6_aq5bi"]
@@ -12,7 +12,7 @@
 
 [node name="MainMenu" type="CanvasLayer" unique_id=481017306 node_paths=PackedStringArray("first_focus")]
 script = ExtResource("1_qnxn7")
-first_focus = NodePath("MarginContainer/VBoxContainer/StoryPlayButton")
+first_focus = NodePath("MarginContainer/VBoxContainer/VBoxContainer/StoryPlayButton")
 solo_scene = ExtResource("2_dm0fm")
 versus_scene = ExtResource("2_ne242")
 setting_scene = ExtResource("3_qnxn7")
@@ -41,7 +41,7 @@ theme_override_constants/margin_top = 35
 layout_mode = 2
 size_flags_horizontal = 0
 theme = ExtResource("1_ne242")
-theme_override_constants/separation = 16
+theme_override_constants/separation = 44
 
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=292639022]
 layout_mode = 2
@@ -52,7 +52,12 @@ theme_override_font_sizes/font_size = 110
 text = "The 
 Shinobi"
 
-[node name="StoryPlayButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=606843029]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1491098161]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="StoryPlayButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=606843029]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Quit")
 focus_neighbor_bottom = NodePath("../VersusPlayButton")
@@ -64,7 +69,7 @@ theme_override_font_sizes/font_size = 24
 text = "Adventure"
 flat = true
 
-[node name="VersusPlayButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=170690580]
+[node name="VersusPlayButton" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=170690580]
 layout_mode = 2
 focus_neighbor_top = NodePath("../StoryPlayButton")
 focus_neighbor_bottom = NodePath("../Settings")
@@ -76,7 +81,7 @@ theme_override_font_sizes/font_size = 24
 text = "Versus"
 flat = true
 
-[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer" unique_id=913839931]
+[node name="Settings" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=913839931]
 layout_mode = 2
 focus_neighbor_top = NodePath("../VersusPlayButton")
 focus_neighbor_bottom = NodePath("../Quit")
@@ -88,7 +93,7 @@ theme_override_font_sizes/font_size = 24
 text = "Settings"
 flat = true
 
-[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=649153621]
+[node name="Quit" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=649153621]
 layout_mode = 2
 focus_neighbor_top = NodePath("../Settings")
 focus_neighbor_bottom = NodePath("../StoryPlayButton")
@@ -100,7 +105,12 @@ theme_override_font_sizes/font_size = 24
 text = "Quit"
 flat = true
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/StoryPlayButton" to="." method="_on_story_play_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/VersusPlayButton" to="." method="_on_versus_play_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[node name="Spacer" type="Control" parent="MarginContainer/VBoxContainer" unique_id=1856631382]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/StoryPlayButton" to="." method="_on_story_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/VersusPlayButton" to="." method="_on_versus_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

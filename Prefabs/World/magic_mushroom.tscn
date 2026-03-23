@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cecfp2bkt6itg"]
 
-[ext_resource type="Script" uid="uid://d4fi4pwrhjaol" path="res://Scripts/Items/magic_mushroom.gd" id="1_n0t7w"]
+[ext_resource type="Script" uid="uid://d4fi4pwrhjaol" path="res://Scripts/World/Items/magic_mushroom.gd" id="1_n0t7w"]
 [ext_resource type="Texture2D" uid="uid://cclm7o0dnfm0r" path="res://Arts/Textures/Items/MagicMushroom.png" id="1_uvhva"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uvhva"]

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cxd6hog1emmsv"]
 
-[ext_resource type="Script" uid="uid://d1d0bjhefkkwh" path="res://Scripts/UI/View/versus_join_view.gd" id="1_qcvsg"]
+[ext_resource type="Script" uid="uid://d1d0bjhefkkwh" path="res://Scripts/UI/Views/versus_join_view.gd" id="1_qcvsg"]
 [ext_resource type="PackedScene" uid="uid://yv8i8rnhkjs0" path="res://Prefabs/UI/Components/player_join.tscn" id="2_8oxfs"]
 [ext_resource type="PackedScene" uid="uid://blfitiwgljjst" path="res://Prefabs/Views/versus_setting_view.tscn" id="2_uxjxh"]
 [ext_resource type="Material" uid="uid://cdaao4txa27q7" path="res://Arts/Shaders/scrolling_background.tres" id="3_0dsea"]

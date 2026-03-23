@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://d3cxxyntx7bkx"]
 
-[ext_resource type="Script" uid="uid://fg4rywux5yy3" path="res://Scripts/Core/level_handler.gd" id="1_mq6nj"]
+[ext_resource type="Script" uid="uid://fg4rywux5yy3" path="res://Scripts/World/Levels/level_handler.gd" id="1_mq6nj"]
 [ext_resource type="PackedScene" uid="uid://bpbe43pckxwld" path="res://Scenes/MultiplayerLevels/m_level_1.tscn" id="2_hy7hh"]
-[ext_resource type="Script" uid="uid://dmx6k2raoc2ne" path="res://Scripts/UI/UI_Handler/split_screen_handler.gd" id="3_t3dhp"]
-[ext_resource type="Script" uid="uid://bfix42uqmk4wx" path="res://Scripts/Core/wrap_viewport_handler.gd" id="4_pekhv"]
+[ext_resource type="Script" uid="uid://dmx6k2raoc2ne" path="res://Scripts/UI/Managers/split_screen_handler.gd" id="3_t3dhp"]
+[ext_resource type="Script" uid="uid://bfix42uqmk4wx" path="res://Scripts/World/Levels/wrap_viewport_handler.gd" id="4_pekhv"]
 
 [node name="LevelHandler" type="Node" unique_id=1349000792 node_paths=PackedStringArray("split_screen_handler", "wrap_handler")]
 script = ExtResource("1_mq6nj")

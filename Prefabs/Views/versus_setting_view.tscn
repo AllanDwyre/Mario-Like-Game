@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://blfitiwgljjst"]
 
-[ext_resource type="Script" uid="uid://bjr51a0aiwaey" path="res://Scripts/UI/View/versus_setting_view.gd" id="1_h22ck"]
+[ext_resource type="Script" uid="uid://bjr51a0aiwaey" path="res://Scripts/UI/Views/versus_setting_view.gd" id="1_h22ck"]
 [ext_resource type="PackedScene" uid="uid://d2a7awwr1ve68" path="res://Prefabs/Views/versus_map_selection_view.tscn" id="2_0kbyg"]
 [ext_resource type="Material" uid="uid://cdaao4txa27q7" path="res://Arts/Shaders/scrolling_background.tres" id="3_0dsea"]
-[ext_resource type="Script" uid="uid://70m4gq13pmg1" path="res://Scripts/UI/UI_Handler/focus_group.gd" id="3_ul2lu"]
+[ext_resource type="Script" uid="uid://70m4gq13pmg1" path="res://Scripts/UI/Components/focus_group.gd" id="3_ul2lu"]
 [ext_resource type="PackedScene" uid="uid://deu8k1pnqqjx3" path="res://Prefabs/UI/Components/title.tscn" id="4_uxjxh"]
 [ext_resource type="PackedScene" uid="uid://c0d2jjv6j6f5d" path="res://Prefabs/UI/Components/enum_button.tscn" id="5_0dsea"]
 [ext_resource type="PackedScene" uid="uid://b4jgy7te7ssnc" path="res://Prefabs/UI/Components/bottom_navigation.tscn" id="6_uxjxh"]

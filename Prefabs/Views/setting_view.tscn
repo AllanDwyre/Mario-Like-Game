@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bu5m7g5rru35s"]
 
-[ext_resource type="Script" uid="uid://cs0us4oucggwk" path="res://Scripts/UI/View/setting_view.gd" id="1_g2ek3"]
+[ext_resource type="Script" uid="uid://cs0us4oucggwk" path="res://Scripts/UI/Views/setting_view.gd" id="1_g2ek3"]
 [ext_resource type="Material" uid="uid://cdaao4txa27q7" path="res://Arts/Shaders/scrolling_background.tres" id="2_8jua2"]
 [ext_resource type="PackedScene" uid="uid://c0d2jjv6j6f5d" path="res://Prefabs/UI/Components/enum_button.tscn" id="3_8jua2"]
 [ext_resource type="PackedScene" uid="uid://deu8k1pnqqjx3" path="res://Prefabs/UI/Components/title.tscn" id="3_qnrnj"]

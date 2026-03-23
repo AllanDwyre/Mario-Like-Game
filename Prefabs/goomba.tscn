@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dus6thmxe07jj"]
 
-[ext_resource type="Script" uid="uid://biqfpj30f3sil" path="res://Scripts/Enemies/goomba.gd" id="1_wfgj0"]
+[ext_resource type="Script" uid="uid://biqfpj30f3sil" path="res://Scripts/Actors/Enemies/goomba.gd" id="1_wfgj0"]
 [ext_resource type="Texture2D" uid="uid://bxatrs1l0lx5x" path="res://Arts/Textures/Enemies/Goomba/Goomba_Flat.png" id="1_xm4ep"]
 [ext_resource type="Texture2D" uid="uid://bcie37xfht33i" path="res://Arts/Textures/Enemies/Goomba/Goomba_Walk1.png" id="2_wfgj0"]
 [ext_resource type="Texture2D" uid="uid://bqhd5eu8ood6x" path="res://Arts/Textures/Enemies/Goomba/Goomba_Walk2.png" id="3_juk2e"]

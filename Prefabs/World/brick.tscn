@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cmhvm1u7lbpk6"]
 
 [ext_resource type="Texture2D" uid="uid://buqr46fsmxp7w" path="res://Arts/Textures/Items/Brick.png" id="1_fa25x"]
-[ext_resource type="Script" uid="uid://cfwpi5kjlafnf" path="res://Scripts/Items/brick.gd" id="1_hyest"]
+[ext_resource type="Script" uid="uid://cfwpi5kjlafnf" path="res://Scripts/World/Items/brick.gd" id="1_hyest"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hyest"]
 size = Vector2(16, 16)

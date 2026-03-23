@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://d2a7awwr1ve68"]
 
-[ext_resource type="Script" uid="uid://bjja4nssq5x12" path="res://Scripts/UI/View/versus_map_selection_view.gd" id="1_e3dv3"]
+[ext_resource type="Script" uid="uid://bjja4nssq5x12" path="res://Scripts/UI/Views/versus_map_selection_view.gd" id="1_e3dv3"]
 [ext_resource type="Material" uid="uid://cdaao4txa27q7" path="res://Arts/Shaders/scrolling_background.tres" id="2_nx24l"]
 [ext_resource type="PackedScene" uid="uid://deu8k1pnqqjx3" path="res://Prefabs/UI/Components/title.tscn" id="4_drhtr"]
 [ext_resource type="PackedScene" uid="uid://0m0i178dyusj" path="res://Prefabs/UI/Components/map_selection_container.tscn" id="4_nx24l"]

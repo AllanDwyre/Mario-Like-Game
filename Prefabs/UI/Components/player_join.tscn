@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://cdaao4txa27q7" path="res://Arts/Shaders/scrolling_background.tres" id="1_em257"]
 [ext_resource type="Script" uid="uid://d368xvbji4jg7" path="res://Scripts/UI/Components/player_join_container.gd" id="2_j34k6"]
-[ext_resource type="Script" uid="uid://70m4gq13pmg1" path="res://Scripts/UI/UI_Handler/focus_group.gd" id="3_5o2gc"]
+[ext_resource type="Script" uid="uid://70m4gq13pmg1" path="res://Scripts/UI/Components/focus_group.gd" id="3_5o2gc"]
 [ext_resource type="PackedScene" uid="uid://cb2hxai6xlalh" path="res://Prefabs/UI/Components/prompt.tscn" id="3_bcy7f"]
 [ext_resource type="Texture2D" uid="uid://diwlqtf5awg1t" path="res://Arts/Textures/kenney_input-prompts_1.4.1/PlayStation Series/Vector/playstation_button_color_circle.svg" id="4_bcy7f"]
 

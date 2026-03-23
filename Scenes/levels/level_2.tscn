@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://pjuh546hymq2"]
 
 [ext_resource type="TileSet" uid="uid://bi2mb7geb1qjw" path="res://Arts/tileset/mario_set.tres" id="1_q2mrg"]
-[ext_resource type="Script" uid="uid://bdjgqknel8f15" path="res://Scripts/Core/level.gd" id="1_rsv82"]
+[ext_resource type="Script" uid="uid://bdjgqknel8f15" path="res://Scripts/World/Levels/level.gd" id="1_rsv82"]
 [ext_resource type="AudioStream" uid="uid://cdrlitbaqi4k1" path="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/09 The Plains.mp3" id="2_8j7el"]
 [ext_resource type="PackedScene" uid="uid://dmsqrf8dtbh7j" path="res://Prefabs/World/flag_pole.tscn" id="2_mb2fk"]
 [ext_resource type="PackedScene" uid="uid://dus6thmxe07jj" path="res://Prefabs/goomba.tscn" id="4_peptx"]

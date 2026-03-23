@@ -1,8 +1,8 @@
 [gd_scene format=4 uid="uid://bpbe43pckxwld"]
 
-[ext_resource type="Script" uid="uid://bdjgqknel8f15" path="res://Scripts/Core/level.gd" id="1_jldn7"]
+[ext_resource type="Script" uid="uid://bdjgqknel8f15" path="res://Scripts/World/Levels/level.gd" id="1_jldn7"]
 [ext_resource type="TileSet" uid="uid://bi2mb7geb1qjw" path="res://Arts/tileset/mario_set.tres" id="3_8dj4v"]
-[ext_resource type="Script" uid="uid://bo53oewkgprwy" path="res://Scripts/Core/resetable_tilemap.gd" id="4_cdtq8"]
+[ext_resource type="Script" uid="uid://bo53oewkgprwy" path="res://Scripts/World/Levels/resetable_tilemap.gd" id="4_cdtq8"]
 [ext_resource type="PackedScene" uid="uid://dus6thmxe07jj" path="res://Prefabs/goomba.tscn" id="4_d4mvf"]
 [ext_resource type="PackedScene" uid="uid://cok01xtbqxelm" path="res://Prefabs/koopa.tscn" id="5_33le6"]
 

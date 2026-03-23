@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cok01xtbqxelm"]
 
-[ext_resource type="Script" uid="uid://caujc5vq64cg5" path="res://Scripts/Enemies/koopa.gd" id="1_63e3i"]
+[ext_resource type="Script" uid="uid://caujc5vq64cg5" path="res://Scripts/Actors/Enemies/koopa.gd" id="1_63e3i"]
 [ext_resource type="Texture2D" uid="uid://c8iiy82ss8b78" path="res://Arts/Textures/Enemies/Koopa/Koopa_Shell.png" id="1_e8pri"]
 [ext_resource type="Texture2D" uid="uid://bgwjsoig2uhly" path="res://Arts/Textures/Enemies/Koopa/Koopa_Walk1.png" id="2_63e3i"]
 [ext_resource type="Texture2D" uid="uid://ctmlghrckmnyn" path="res://Arts/Textures/Enemies/Koopa/Koopa_Walk2.png" id="3_oudqs"]

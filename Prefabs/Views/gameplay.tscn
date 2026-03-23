@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dcld6lo48isvu"]
 
-[ext_resource type="Script" uid="uid://driqgr45886de" path="res://Scripts/UI/View/gameplay_view.gd" id="1_hshb5"]
+[ext_resource type="Script" uid="uid://driqgr45886de" path="res://Scripts/UI/Views/gameplay_view.gd" id="1_hshb5"]
 [ext_resource type="Texture2D" uid="uid://cy2d4a48bf4tp" path="res://Arts/Textures/Items/Coin.png" id="1_rsnaw"]
 [ext_resource type="Theme" uid="uid://dpv0ah3n52fbe" path="res://Preset/mario_theme.tres" id="3_hshb5"]
 

@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dxlpd1yk4x2lv"]
+
+[ext_resource type="Script" uid="uid://vutbhqj6r8gg" path="res://Scripts/World/Levels/story_level_handler.gd" id="1_3yvg8"]
+
+[node name="StoryLevelHandler" type="Node" unique_id=724599442]
+script = ExtResource("1_3yvg8")

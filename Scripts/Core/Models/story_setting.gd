@@ -1,7 +1,7 @@
 class_name SoloSettings
-extends BaseGameSetting
+extends RefCounted
 
-
+var level : MapData
 
 # Maybe later : level setting:
 # - Time to finish level

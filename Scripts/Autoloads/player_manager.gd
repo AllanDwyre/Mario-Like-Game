@@ -7,6 +7,7 @@ var connected_players: Dictionary[int, PlayerInfo] = {}
 
 var _enable_keyboard = true
 var _enable_auto_leave = true
+var _current_listen_mode : PlayerInfo.ListenMode = PlayerInfo.ListenMode.KEYBOARD_OR_JOY
 
 # --- Signals ---
 signal player_joined(device_id: int, player_info: PlayerInfo)
@@ -32,10 +33,10 @@ func enable_keyboard(enable = true):
 		var using_controller = kb_player.last_used_device != KEYBOARD_ID
 		# --- Si le player utilise autre chose qu'un keyboard on l'assigne a cette autrechose ---
 		if using_controller:
-			kb_player.primary_device_id = kb_player.last_used_device
+			kb_player.device_id = kb_player.last_used_device
 			kb_player.listen_mode = PlayerInfo.ListenMode.EXCLUSIVE
 			connected_players.erase(KEYBOARD_ID)
-			connected_players[kb_player.primary_device_id] = kb_player
+			connected_players[kb_player.device_id] = kb_player
 		# --- Sinon, on le remove de la liste des participant ---
 		else:
 			leave_player(KEYBOARD_ID)
@@ -49,9 +50,9 @@ func enable_joining(enable_keyboard_ = true) -> void:
 func disable_joining() -> void:
 	print("joining disabled")
 	set_process_input(false)
-	change_players_listen_mode(PlayerInfo.ListenMode.EXCLUSIVE)
 
 func change_players_listen_mode(mode : PlayerInfo.ListenMode):
+	_current_listen_mode = mode
 	for player in connected_players.values():
 		player.listen_mode = mode
 # -------------------------------------------------
@@ -95,7 +96,7 @@ func leave_player(device_id: int) -> void:
 	player_left.emit(device_id) # notify system wide
 
 func join_player(device_id: int) -> void:
-	var player_info = PlayerInfo.new(device_id)
+	var player_info = PlayerInfo.new(device_id, _current_listen_mode)
 	connected_players[device_id] = player_info
 	player_info.set_player_id(get_player_count())
 	print("[PlayerManager] Player %d joined (device %d)" % [device_id, device_id])

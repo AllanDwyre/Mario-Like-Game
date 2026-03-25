@@ -11,7 +11,7 @@ func change_scene(path : Variant, transition: BaseTransition = InstantTransition
 		push_warning("SceneManager: change_scene called while transitioning")
 		return
 	
-	ViewManager.clear_history()
+	ViewManager.clear_all_history()
 	is_transitioning = true
 	
 	add_child(transition)

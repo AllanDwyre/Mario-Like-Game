@@ -40,7 +40,7 @@ func _ready() -> void:
 	set_physics_process(false)
 
 func setup_player(info : PlayerInfo):
-	print("player {info.device_id} setup !")
+	print("player %d setup !" % info.player_id)
 	player_info = info
 	
 	context = PlayerContext.new(self)
@@ -60,10 +60,10 @@ func _process(delta: float) -> void:
 		kill()
 
 func _physics_process(delta: float) -> void:
-	if is_fully_blocked():
-		print("Player is stuck")
-		unstuck()
-		return
+	#if is_fully_blocked():
+		#print("Player is stuck")
+		#unstuck()
+		#return
 	
 	movement.PhysicUpdate(delta)
 	
@@ -117,8 +117,8 @@ func detect_collision(body : Node2D):
 	var is_stomped = normal.y < COLLISION_NORMAL_THRESHOLD
 	
 	if is_stomped:
-		print(player.player_info.primary_device_id, "hit player", player_info.primary_device_id)
-		player.player_info.joy_vibration(1,0,1)
+		print(player.player_info.device_id, "hit player", player_info.device_id)
+		player.player_info.joy_vibration(.5,0,.5)
 		#take_damage(player)
 		player.movement.ForceJump()
 	

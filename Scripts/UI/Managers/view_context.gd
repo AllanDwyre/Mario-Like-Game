@@ -16,7 +16,7 @@ func insert_view(v : View):
 	if active_view and  v == active_view:
 		push_warning("Tried to push the same view as the active one")
 		return
-	v.reparent(self)
+	v.reparent.call_deferred(self)
 	clear_history()
 	v.show_view()
 	history.push_back(v)
@@ -39,6 +39,7 @@ func pop():
 		push_warning("Cannot pop no view to be removed")
 		return
 	var toRemoved = active_view
+	toRemoved.hide_view()
 	history.pop_back()
 	toRemoved.destroy_view()
 	# Après suprimer la vue, on reaffiche celle d'avant
@@ -54,7 +55,7 @@ func pop_until(target : View):
 		pop()
 
 func clear_history():
-	while history.size() > 1:
+	while not history.is_empty():
 		pop()
 
 func _exit_tree() -> void:

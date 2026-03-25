@@ -35,6 +35,9 @@ static func grab_focus_for(node : Control, focus_group : FocusGroup = null) -> v
 # ─── Focus Group Logic ──────────────────────────────────────────
 
 #region Get Interactable Logic
+func _init() -> void:
+	print(name)
+
 func _ready() -> void:
 	await get_tree().process_frame
 	_patch_all_interactibles(self)

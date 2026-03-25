@@ -3,7 +3,7 @@
 [ext_resource type="Theme" uid="uid://dpv0ah3n52fbe" path="res://Preset/mario_theme.tres" id="1_ne242"]
 [ext_resource type="Script" uid="uid://cb0mvg4xyjv6m" path="res://Scripts/UI/Views/main_menu.gd" id="1_qnxn7"]
 [ext_resource type="PackedScene" uid="uid://ikfiw1uyf04d" path="res://Scenes/levels/level_1.tscn" id="2_dm0fm"]
-[ext_resource type="PackedScene" uid="uid://cxd6hog1emmsv" path="res://Prefabs/Views/versus_lobby_view.tscn" id="2_ne242"]
+[ext_resource type="PackedScene" uid="uid://cxd6hog1emmsv" path="res://Prefabs/Views/versus_join_view.tscn" id="2_ne242"]
 [ext_resource type="PackedScene" uid="uid://bu5m7g5rru35s" path="res://Prefabs/Views/setting_view.tscn" id="3_qnxn7"]
 [ext_resource type="AudioStream" uid="uid://5d6ytbsgo50v" path="res://Arts/Audios/Music/New Super Mario Bros. (MP3).zophar/01 Title Screen.mp3" id="4_f4nme"]
 [ext_resource type="Material" uid="uid://cdaao4txa27q7" path="res://Arts/Shaders/scrolling_background.tres" id="6_aq5bi"]

@@ -7,7 +7,6 @@ const MAPS: Registry = preload("res://Data/map_registry.tres")
 @export var selection_container_scene : PackedScene
 
 var lobby_setting : VersusSettings
-var level_handler : PackedScene = preload("res://Scenes/level_handler.tscn")
 
 var _maps : Array[MapData] = [] 
 var _selection_containers : Array[MapSelectionContainer] = []
@@ -141,4 +140,4 @@ func _handle_host() -> void:
 
 func _go_to_map(map : MapData) -> void:
 	lobby_setting.chosen_map = map
-	GameManager.start_versus_game(level_handler, lobby_setting)
+	GameManager.start_versus_game(lobby_setting)

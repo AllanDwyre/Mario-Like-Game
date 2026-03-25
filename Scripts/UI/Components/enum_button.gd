@@ -64,6 +64,8 @@ var enable: bool = true :
 		if is_node_ready():
 			left_btn.disabled = not v
 			right_btn.disabled = not v
+			left_btn.visible = v
+			right_btn.visible = v
 
 
 var current_index: int = 0

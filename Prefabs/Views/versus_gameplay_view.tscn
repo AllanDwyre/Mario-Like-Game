@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://db7ije40foue"]
+
+[node name="VersusGameplayView" type="CanvasLayer" unique_id=236084124]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1182766978]
+offset_right = 40.0
+offset_bottom = 40.0

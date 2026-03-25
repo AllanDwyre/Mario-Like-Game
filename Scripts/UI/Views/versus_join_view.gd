@@ -24,14 +24,14 @@ func _ready() -> void :
 	PlayerManager.player_left.connect(_on_player_left)
 	_all_containers.assign(grid_container.find_children("*", "PlayerJoinContainer", false, true))
 	for container in _all_containers:
-		container.ready_value_changed.connect(observe_readyness)
+		container.ready_value_changed.connect(update_readyness)
 	_update_container()
 
 func _exit_tree() -> void:
 	PlayerManager.player_joined.disconnect(_on_player_joined)
 	PlayerManager.player_left.disconnect(_on_player_left)
 	for container in _all_containers:
-		container.ready_value_changed.disconnect(observe_readyness)
+		container.ready_value_changed.disconnect(update_readyness)
 	
 func _on_player_joined(device_id: int, player_info: PlayerInfo):
 	var container : PlayerJoinContainer = _get_available_container()
@@ -55,6 +55,7 @@ func _on_player_left(device_id: int):
 	for i in range(PlayerManager.get_player_count()):
 		players[i].rename_player(i)
 	_update_container()
+	_is_all_ready()
 
 func _update_container():
 	var player_count = PlayerManager.get_player_count() 
@@ -75,13 +76,17 @@ func _get_available_container() -> PlayerJoinContainer:
 		return null
 	return availables[0]
 
-func observe_readyness(new_value : bool) -> void :
+func update_readyness(new_value : bool) -> void :
 	if new_value:
 		_number_of_ready +=1
 	else:
 		_number_of_ready -=1
+	_is_all_ready()
+
+func _is_all_ready():
 	if _number_of_ready >= _active_player_containers.size() and _number_of_ready > 1:
 		go_to_setting_scene()
+
 
 func go_to_setting_scene() -> void :
 	if not _setting_view:

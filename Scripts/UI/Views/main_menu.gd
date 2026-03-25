@@ -8,7 +8,7 @@ extends View
 @export var main_menu_music : AudioStream
 
 func _ready() -> void:
-	ViewManager.insert(self)
+	ViewManager.insert.call_deferred(self)
 	SoundManager.play_music(main_menu_music)
 
 func show_view():
@@ -17,10 +17,8 @@ func show_view():
 
 func _on_story_play_button_pressed() -> void:
 	# TODO : Go to the world view / map selection view
-	var level_handler_scene: StringName = "res://Scenes/level_handler.tscn"
 	var setting = SoloSettings.new()
-	setting.level = "res://Scenes/levels/level_1.tscn"
-	GameManager.start_solo_game(level_handler_scene, setting)
+	GameManager.start_solo_game(setting)
 
 func _on_versus_play_button_pressed() -> void:
 	# --- local versus instantation ---

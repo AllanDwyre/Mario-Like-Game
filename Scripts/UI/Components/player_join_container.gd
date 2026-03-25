@@ -14,16 +14,16 @@ var device_id : int :
 	get:
 		if player_info == null:
 			return -999  # valeur impossible = aucun device
-		return player_info.primary_device_id
+		return player_info.device_id
 
 func setup(player_info_ : PlayerInfo):
 	player_info = player_info_
-	_device_input = DeviceInput.new(player_info.primary_device_id)
+	_device_input = DeviceInput.new(player_info.device_id)
 	_activate.call_deferred()
 	
 func _activate():
-	%FocusGroup.device_id = player_info.primary_device_id
-	%DeviceType.text = "%s %d" % [_device_input.get_name(), player_info.primary_device_id + 1]
+	%FocusGroup.device_id = player_info.device_id
+	%DeviceType.text = "%s %d" % [_device_input.get_name(), player_info.device_id + 1]
 	%PlayerName.text = "Player %d" % player_info.player_id
 	%FocusGroup.activate()
 	is_active = true

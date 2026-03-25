@@ -1,37 +1,61 @@
 [gd_scene format=3 uid="uid://0m0i178dyusj"]
 
-[ext_resource type="Script" uid="uid://blm7d4j7y5ags" path="res://Scripts/UI/Components/map_selection_container.gd" id="1_nq7db"]
+[ext_resource type="Script" uid="uid://70m4gq13pmg1" path="res://Scripts/UI/Components/focus_group.gd" id="1_2ntj5"]
 [ext_resource type="PackedScene" uid="uid://c0d2jjv6j6f5d" path="res://Prefabs/UI/Components/enum_button.tscn" id="2_2ntj5"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2ntj5"]
+[node name="MapSelectionContainer" type="Control" unique_id=50454020]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="MapSelectionContainer" type="VBoxContainer" unique_id=923393624]
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = ExtResource("1_nq7db")
+[node name="FocusGroup" type="Control" parent="." unique_id=443859887]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_2ntj5")
+metadata/_custom_type_script = "uid://70m4gq13pmg1"
 
-[node name="PanelContainer" type="PanelContainer" parent="." unique_id=954377349]
-clip_contents = true
-custom_minimum_size = Vector2(270, 360)
+[node name="MarginContainer" type="MarginContainer" parent="FocusGroup" unique_id=1294782021]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="FocusGroup/MarginContainer" unique_id=1462571592]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="FocusGroup/MarginContainer/VBoxContainer" unique_id=1964602366]
+layout_mode = 2
+
+[node name="PlayerName" type="Label" parent="FocusGroup/MarginContainer/VBoxContainer/HBoxContainer" unique_id=683560879]
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Player 1"
+
+[node name="Status" type="Label" parent="FocusGroup/MarginContainer/VBoxContainer/HBoxContainer" unique_id=628526877]
+layout_mode = 2
+text = "Waiting"
+
+[node name="TextureRect" type="TextureRect" parent="FocusGroup/MarginContainer/VBoxContainer" unique_id=2129585346]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="EnumButton" parent="FocusGroup/MarginContainer/VBoxContainer" unique_id=935061389 instance=ExtResource("2_2ntj5")]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_2ntj5")
-
-[node name="MarginContainer" type="MarginContainer" parent="PanelContainer" unique_id=1149402641]
-layout_mode = 2
-theme_override_constants/margin_bottom = 22
-
-[node name="MapSelectionEnum" parent="PanelContainer/MarginContainer" unique_id=935061389 instance=ExtResource("2_2ntj5")]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 8
 label_name = &""
 options = Array[String](["Plains", "Industry"])
-
-[node name="PlayerLabel" type="Label" parent="." unique_id=1072938409]
-unique_name_in_owner = true
-layout_mode = 2
-size_flags_vertical = 6
-text = "Player 1"
-horizontal_alignment = 1
